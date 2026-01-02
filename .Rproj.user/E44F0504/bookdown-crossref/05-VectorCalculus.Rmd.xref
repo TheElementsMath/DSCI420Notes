@@ -1,0 +1,18 @@
+h1:vector-calculus Vector Calculus
+h2:differentiation-of-univariate-functions Differentiation of Univariate Functions
+h3:taylor-series-and-polynomial-approximation Taylor Series and Polynomial Approximation
+h3:differentiation-rules Differentiation Rules
+h3:exercises Exercises
+h2:partial-differentiation-and-gradients Partial Differentiation and Gradients
+h3:basic-rules-of-partial-differentiation Basic Rules of Partial Differentiation
+h3:multivariate-chain-rule-matrix-form Multivariate Chain Rule (Matrix Form)
+h3:exercises-1 Exercises
+h2:gradients-of-vector-valued-functions Gradients of Vector-Valued Functions
+h3:dimensional-summary-of-derivatives Dimensional Summary of Derivatives
+h3:exercises-2 Exercises
+h2:gradients-of-matrices Gradients of Matrices
+h3:gradients-as-tensors Gradients as Tensors
+h3:exercises-3 Exercises
+h2:useful-identities-for-computing-gradients Useful Identities for Computing Gradients
+h3:exercises-4 Exercises
+

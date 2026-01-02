@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.4 2.3.2 Elementary Transformations | D420: Mathematics for Machine Learning</title>
+  <meta name="description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.4 2.3.2 Elementary Transformations | D420: Mathematics for Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.4 2.3.2 Elementary Transformations | D420: Mathematics for Machine Learning" />
+  
+  <meta name="twitter:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+<meta name="author" content="D420 Faculty Team" />
+
+
+<meta name="date" content="2025-10-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="solving-systems-of-equations.html"/>
+<link rel="next" href="the-minus-1-trick.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">D420: Mathematics for Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="list-of-symbols.html"><a href="list-of-symbols.html"><i class="fa fa-check"></i><b>0.1</b> List of Symbols</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-motivation.html"><a href="introduction-and-motivation.html"><i class="fa fa-check"></i><b>1</b> Introduction and Motivation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="finding-words-for-intuitions.html"><a href="finding-words-for-intuitions.html"><i class="fa fa-check"></i><b>1.1</b> Finding Words for Intuitions</a></li>
+<li class="chapter" data-level="1.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html"><i class="fa fa-check"></i><b>1.2</b> Two Ways to Read This Book</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-i-mathematical-foundations"><i class="fa fa-check"></i><b>1.2.1</b> Part I: Mathematical Foundations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-ii-machine-learning-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II: Machine Learning Applications</a></li>
+<li class="chapter" data-level="1.2.3" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#learning-path"><i class="fa fa-check"></i><b>1.2.3</b> Learning Path</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="exercises-and-feedback.html"><a href="exercises-and-feedback.html"><i class="fa fa-check"></i><b>1.3</b> Exercises and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="linear-algebra.html"><a href="linear-algebra.html"><i class="fa fa-check"></i><b>2</b> Linear Algebra</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i>Vectors</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="vectors.html"><a href="vectors.html#vector-spaces"><i class="fa fa-check"></i><b>2.0.1</b> Vector Spaces</a></li>
+<li class="chapter" data-level="2.0.2" data-path="vectors.html"><a href="vectors.html#closure"><i class="fa fa-check"></i><b>2.0.2</b> Closure</a></li>
+<li class="chapter" data-level="2.0.3" data-path="vectors.html"><a href="vectors.html#other-properties-of-vectors"><i class="fa fa-check"></i><b>2.0.3</b> Other Properties of Vectors</a></li>
+<li class="chapter" data-level="2.0.4" data-path="vectors.html"><a href="vectors.html#geometric-interpretation-of-a-vector"><i class="fa fa-check"></i><b>2.0.4</b> Geometric Interpretation of a Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html"><i class="fa fa-check"></i><b>2.1</b> Systems of Linear Equations</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#solutions-to-systems-of-linear-equations"><i class="fa fa-check"></i><b>2.1.1</b> Solutions to Systems of Linear Equations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#geometric-interpretation"><i class="fa fa-check"></i><b>2.1.2</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#matrix-formulation"><i class="fa fa-check"></i><b>2.1.3</b> Matrix Formulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>2.2</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="matrices.html"><a href="matrices.html#matrix-addition"><i class="fa fa-check"></i><b>2.2.1</b> Matrix Addition</a></li>
+<li class="chapter" data-level="2.2.2" data-path="matrices.html"><a href="matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.2.2</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2.3" data-path="matrices.html"><a href="matrices.html#identity-matrix"><i class="fa fa-check"></i><b>2.2.3</b> Identity Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="matrices.html"><a href="matrices.html#matrix-properties"><i class="fa fa-check"></i><b>2.2.4</b> Matrix Properties</a></li>
+<li class="chapter" data-level="2.2.5" data-path="matrices.html"><a href="matrices.html#matrix-inverse"><i class="fa fa-check"></i><b>2.2.5</b> Matrix Inverse</a></li>
+<li class="chapter" data-level="2.2.6" data-path="matrices.html"><a href="matrices.html#matrix-transpose"><i class="fa fa-check"></i><b>2.2.6</b> Matrix Transpose</a></li>
+<li class="chapter" data-level="2.2.7" data-path="matrices.html"><a href="matrices.html#symmetric-matrices"><i class="fa fa-check"></i><b>2.2.7</b> Symmetric Matrices</a></li>
+<li class="chapter" data-level="2.2.8" data-path="matrices.html"><a href="matrices.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.2.8</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.2.9" data-path="matrices.html"><a href="matrices.html#compact-form-of-linear-systems"><i class="fa fa-check"></i><b>2.2.9</b> Compact Form of Linear Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html"><i class="fa fa-check"></i><b>2.3</b> Solving Systems of Equations</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#particular-and-general-solutions"><i class="fa fa-check"></i><b>2.3.1</b> Particular and General Solutions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#gaussian-elimination"><i class="fa fa-check"></i><b>2.3.2</b> Gaussian Elimination</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="elementary-transformations.html"><a href="elementary-transformations.html"><i class="fa fa-check"></i><b>2.4</b> 2.3.2 Elementary Transformations</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="elementary-transformations.html"><a href="elementary-transformations.html#example-transforming-to-row-echelon-form"><i class="fa fa-check"></i><b>2.4.1</b> Example: Transforming to Row-Echelon Form</a></li>
+<li class="chapter" data-level="2.4.2" data-path="elementary-transformations.html"><a href="elementary-transformations.html#row-echelon-form-ref"><i class="fa fa-check"></i><b>2.4.2</b> Row-Echelon Form (REF)</a></li>
+<li class="chapter" data-level="2.4.3" data-path="elementary-transformations.html"><a href="elementary-transformations.html#reduced-row-echelon-form-rref"><i class="fa fa-check"></i><b>2.4.3</b> Reduced Row-Echelon Form (RREF)</a></li>
+<li class="chapter" data-level="2.4.4" data-path="elementary-transformations.html"><a href="elementary-transformations.html#gaussian-elimination-1"><i class="fa fa-check"></i><b>2.4.4</b> Gaussian Elimination</a></li>
+<li class="chapter" data-level="2.4.5" data-path="elementary-transformations.html"><a href="elementary-transformations.html#example-reduced-row-echelon-form"><i class="fa fa-check"></i><b>2.4.5</b> Example: Reduced Row-Echelon Form</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="the-minus-1-trick.html"><a href="the-minus-1-trick.html"><i class="fa fa-check"></i><b>2.5</b> 2.3.3 The Minus-1 Trick</a></li>
+<li class="chapter" data-level="2.6" data-path="calculating-an-inverse-matrix-via-gaussian-elimination.html"><a href="calculating-an-inverse-matrix-via-gaussian-elimination.html"><i class="fa fa-check"></i><b>2.6</b> Calculating an Inverse Matrix via Gaussian Elimination</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="calculating-an-inverse-matrix-via-gaussian-elimination.html"><a href="calculating-an-inverse-matrix-via-gaussian-elimination.html#example"><i class="fa fa-check"></i><b>2.6.1</b> Example:</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">D420: Mathematics for Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="elementary-transformations" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> 2.3.2 Elementary Transformations<a href="elementary-transformations.html#elementary-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Elementary transformations</strong> are operations that simplify a system of linear equations without changing its solution set.<br />
+These are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Row exchange:</strong> Swap two equations (rows).<br />
+</li>
+<li><strong>Row scaling:</strong> Multiply an equation (row) by a nonzero scalar <span class="math inline">\(\lambda \in \mathbb{R} \setminus \{0\}\)</span>.<br />
+</li>
+<li><strong>Row addition:</strong> Add a multiple of one equation (row) to another.</li>
+</ol>
+<p>These operations are key to transforming a system into simpler forms, such as <strong>row-echelon form (REF)</strong> or <strong>reduced row-echelon form (RREF)</strong>.</p>
+<hr />
+<div id="example-transforming-to-row-echelon-form" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Example: Transforming to Row-Echelon Form<a href="elementary-transformations.html#example-transforming-to-row-echelon-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Given a system of equations (Eq. 2.44), we write it in <strong>augmented matrix form</strong>:
+<span class="math display">\[
+[A | b] =
+\begin{bmatrix}
+-2 &amp; 4 &amp; -2 &amp; -1 &amp; 4 &amp; -3 \\
+4 &amp; -8 &amp; 3 &amp; -3 &amp; 1 &amp; 2 \\
+1 &amp; -2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\
+1 &amp; -2 &amp; 0 &amp; -3 &amp; 4 &amp; a
+\end{bmatrix}
+\]</span></p>
+<p>By applying <strong>elementary row operations</strong>, we obtain a simpler (row-echelon) form:
+<span class="math display">\[
+\begin{bmatrix}
+1 &amp; -2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; -1 &amp; 3 &amp; -2 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a + 1
+\end{bmatrix}
+\]</span></p>
+<p>The resulting equations are:
+<span class="math display">\[
+\begin{aligned}
+x_1 - 2x_2 + x_3 - x_4 + x_5 &amp;= 0 \\
+x_3 - x_4 + 3x_5 &amp;= -2 \\
+x_4 - 2x_5 &amp;= 1 \\
+0 &amp;= a + 1
+\end{aligned}
+\]</span></p>
+<p>A <strong>particular solution</strong> exists only when <span class="math inline">\(a = -1\)</span>:
+<span class="math display">\[
+\mathbf{x}_p =
+\begin{bmatrix}
+2 \\ 0 \\ -1 \\ 1 \\ 0
+\end{bmatrix}
+\]</span></p>
+<p>The <strong>general solution</strong> is:
+<span class="math display">\[
+\mathbf{x} =
+\begin{bmatrix}
+2 \\ 0 \\ -1 \\ 1 \\ 0
+\end{bmatrix}
++ \lambda_1
+\begin{bmatrix}
+2 \\ 1 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
++ \lambda_2
+\begin{bmatrix}
+2 \\ 0 \\ -1 \\ 2 \\ 1
+\end{bmatrix}, \quad \lambda_1, \lambda_2 \in \mathbb{R}.
+\]</span></p>
+<hr />
+</div>
+<div id="row-echelon-form-ref" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Row-Echelon Form (REF)<a href="elementary-transformations.html#row-echelon-form-ref" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A matrix is in <strong>row-echelon form</strong> if:
+1. All-zero rows are at the bottom.
+2. Each pivot (first nonzero entry from the left) is strictly to the right of the pivot in the row above.</p>
+<p>This produces a <strong>“staircase” structure</strong>.</p>
+<div id="basic-and-free-variables" class="section level4 hasAnchor" number="2.4.2.1">
+<h4><span class="header-section-number">2.4.2.1</span> Basic and Free Variables<a href="elementary-transformations.html#basic-and-free-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>Basic variables</strong> correspond to pivot columns.<br />
+</li>
+<li><strong>Free variables</strong> correspond to non-pivot columns.<br />
+In the example: <span class="math inline">\(x_1, x_3, x_4\)</span> are basic; <span class="math inline">\(x_2, x_5\)</span> are free.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="reduced-row-echelon-form-rref" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Reduced Row-Echelon Form (RREF)<a href="elementary-transformations.html#reduced-row-echelon-form-rref" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A system is in <strong>reduced row-echelon form</strong> if:
+1. It is in REF.<br />
+2. Each pivot is 1.<br />
+3. Each pivot is the only nonzero entry in its column.</p>
+<p>RREF makes it easy to:
+- Identify basic and free variables.
+- Read off particular and general solutions.</p>
+<hr />
+</div>
+<div id="gaussian-elimination-1" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Gaussian Elimination<a href="elementary-transformations.html#gaussian-elimination-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Gaussian elimination</strong> systematically applies elementary transformations to bring a matrix to <strong>RREF</strong>.<br />
+This allows direct solution of <span class="math inline">\(A\mathbf{x} = \mathbf{b}\)</span> or <span class="math inline">\(A\mathbf{x} = 0\)</span>.</p>
+<hr />
+</div>
+<div id="example-reduced-row-echelon-form" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Example: Reduced Row-Echelon Form<a href="elementary-transformations.html#example-reduced-row-echelon-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+A =
+\begin{bmatrix}
+1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; -4
+\end{bmatrix}
+\]</span></p>
+<p>Pivot columns: 1, 3, and 4.<br />
+Non-pivot columns (2 and 5) correspond to <strong>free variables</strong>.</p>
+<p>The general solution to <span class="math inline">\(A\mathbf{x} = 0\)</span> is:
+<span class="math display">\[
+\mathbf{x} =
+\lambda_1
+\begin{bmatrix}
+3 \\ -1 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
++
+\lambda_2
+\begin{bmatrix}
+3 \\ 0 \\ 9 \\ -4 \\ -1
+\end{bmatrix}, \quad
+\lambda_1, \lambda_2 \in \mathbb{R}.
+\]</span></p>
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="solving-systems-of-equations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-minus-1-trick.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["D420-Book.pdf", "D420-Book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

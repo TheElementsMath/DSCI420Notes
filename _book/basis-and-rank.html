@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.6 Basis and Rank | DSCI 420: Mathematics for Machine Learning</title>
+  <meta name="description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.6 Basis and Rank | DSCI 420: Mathematics for Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.6 Basis and Rank | DSCI 420: Mathematics for Machine Learning" />
+  
+  <meta name="twitter:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+<meta name="author" content="D420 Faculty Team" />
+
+
+<meta name="date" content="2025-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="linear-independence.html"/>
+<link rel="next" href="linear-mappings.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">D420: Mathematics for Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html"><i class="fa fa-check"></i>Table of Symbols</a>
+<ul>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#important-symbols-and-where-to-find-them"><i class="fa fa-check"></i>Important Symbols and Where to Find Them:</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#table-of-abbreviations-and-acronyms"><i class="fa fa-check"></i>Table of Abbreviations and Acronyms</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-motivation.html"><a href="introduction-and-motivation.html"><i class="fa fa-check"></i><b>1</b> Introduction and Motivation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="finding-words-for-intuitions.html"><a href="finding-words-for-intuitions.html"><i class="fa fa-check"></i><b>1.1</b> Finding Words for Intuitions</a></li>
+<li class="chapter" data-level="1.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html"><i class="fa fa-check"></i><b>1.2</b> Two Ways to Read This Book</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-i-mathematical-foundations"><i class="fa fa-check"></i><b>1.2.1</b> Part I: Mathematical Foundations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-ii-machine-learning-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II: Machine Learning Applications</a></li>
+<li class="chapter" data-level="1.2.3" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#learning-path"><i class="fa fa-check"></i><b>1.2.3</b> Learning Path</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="exercises-and-feedback.html"><a href="exercises-and-feedback.html"><i class="fa fa-check"></i><b>1.3</b> Exercises and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="linear-algebra.html"><a href="linear-algebra.html"><i class="fa fa-check"></i><b>2</b> Linear Algebra</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><strong>2.0</strong> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="vectors.html"><a href="vectors.html#vector-spaces"><i class="fa fa-check"></i><b>2.0.1</b> Vector Spaces</a></li>
+<li class="chapter" data-level="2.0.2" data-path="vectors.html"><a href="vectors.html#closure"><i class="fa fa-check"></i><b>2.0.2</b> Closure</a></li>
+<li class="chapter" data-level="2.0.3" data-path="vectors.html"><a href="vectors.html#other-properties-of-vectors"><i class="fa fa-check"></i><b>2.0.3</b> Other Properties of Vectors</a></li>
+<li class="chapter" data-level="2.0.4" data-path="vectors.html"><a href="vectors.html#geometric-interpretation-of-a-vector"><i class="fa fa-check"></i><b>2.0.4</b> Geometric Interpretation of a Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html"><i class="fa fa-check"></i><b>2.1</b> Systems of Linear Equations</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#solutions-to-systems-of-linear-equations"><i class="fa fa-check"></i><b>2.1.1</b> Solutions to Systems of Linear Equations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#geometric-interpretation"><i class="fa fa-check"></i><b>2.1.2</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#matrix-formulation"><i class="fa fa-check"></i><b>2.1.3</b> Matrix Formulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>2.2</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="matrices.html"><a href="matrices.html#matrix-addition"><i class="fa fa-check"></i><b>2.2.1</b> Matrix Addition</a></li>
+<li class="chapter" data-level="2.2.2" data-path="matrices.html"><a href="matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.2.2</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2.3" data-path="matrices.html"><a href="matrices.html#identity-matrix"><i class="fa fa-check"></i><b>2.2.3</b> Identity Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="matrices.html"><a href="matrices.html#matrix-properties"><i class="fa fa-check"></i><b>2.2.4</b> Matrix Properties</a></li>
+<li class="chapter" data-level="2.2.5" data-path="matrices.html"><a href="matrices.html#matrix-inverse"><i class="fa fa-check"></i><b>2.2.5</b> Matrix Inverse</a></li>
+<li class="chapter" data-level="2.2.6" data-path="matrices.html"><a href="matrices.html#matrix-transpose"><i class="fa fa-check"></i><b>2.2.6</b> Matrix Transpose</a></li>
+<li class="chapter" data-level="2.2.7" data-path="matrices.html"><a href="matrices.html#symmetric-matrices"><i class="fa fa-check"></i><b>2.2.7</b> Symmetric Matrices</a></li>
+<li class="chapter" data-level="2.2.8" data-path="matrices.html"><a href="matrices.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.2.8</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.2.9" data-path="matrices.html"><a href="matrices.html#compact-form-of-linear-systems"><i class="fa fa-check"></i><b>2.2.9</b> Compact Form of Linear Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html"><i class="fa fa-check"></i><b>2.3</b> Solving Systems of Equations</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#particular-and-general-solutions"><i class="fa fa-check"></i><b>2.3.1</b> Particular and General Solutions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#elementary-transformations"><i class="fa fa-check"></i><b>2.3.2</b> Elementary Transformations</a></li>
+<li class="chapter" data-level="2.3.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#the-minus-1-trick"><i class="fa fa-check"></i><b>2.3.3</b> The Minus-1 Trick</a></li>
+<li class="chapter" data-level="2.3.4" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#calculating-an-inverse-matrix-via-gaussian-elimination"><i class="fa fa-check"></i><b>2.3.4</b> Calculating an Inverse Matrix via Gaussian Elimination</a></li>
+<li class="chapter" data-level="2.3.5" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#algorithms-for-solving-a-system-of-linear-equations"><i class="fa fa-check"></i><b>2.3.5</b> Algorithms for Solving a System of Linear Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html"><i class="fa fa-check"></i><b>2.4</b> Vector Spaces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#groups"><i class="fa fa-check"></i><b>2.4.1</b> Groups</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#vector-subspaces"><i class="fa fa-check"></i><b>2.4.2</b> Vector Subspaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="linear-independence.html"><a href="linear-independence.html"><i class="fa fa-check"></i><b>2.5</b> Linear Independence</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="linear-independence.html"><a href="linear-independence.html#gaussian-elimination-method"><i class="fa fa-check"></i><b>2.5.1</b> Gaussian Elimination Method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="basis-and-rank.html"><a href="basis-and-rank.html"><i class="fa fa-check"></i><b>2.6</b> Basis and Rank</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="basis-and-rank.html"><a href="basis-and-rank.html#generating-set-and-basis"><i class="fa fa-check"></i><b>2.6.1</b> Generating Set and Basis</a></li>
+<li class="chapter" data-level="2.6.2" data-path="basis-and-rank.html"><a href="basis-and-rank.html#rank"><i class="fa fa-check"></i><b>2.6.2</b> Rank</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="linear-mappings.html"><a href="linear-mappings.html"><i class="fa fa-check"></i><b>2.7</b> Linear Mappings</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
+<li class="chapter" data-level="2.7.2" data-path="linear-mappings.html"><a href="linear-mappings.html#coordinate-systems-and-bases"><i class="fa fa-check"></i><b>2.7.2</b> Coordinate Systems and Bases</a></li>
+<li class="chapter" data-level="2.7.3" data-path="linear-mappings.html"><a href="linear-mappings.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.7.3</b> Basis Change and Equivalence</a></li>
+<li class="chapter" data-level="2.7.6" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.6</b> Image and Kernel of a Linear Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.8</b> Affine Spaces</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="affine-spaces.html"><a href="affine-spaces.html#relation-to-linear-equations"><i class="fa fa-check"></i><b>2.8.1</b> Relation to Linear Equations</a></li>
+<li class="chapter" data-level="2.8.2" data-path="affine-spaces.html"><a href="affine-spaces.html#affine-mappings"><i class="fa fa-check"></i><b>2.8.2</b> Affine Mappings</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSCI 420: Mathematics for Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basis-and-rank" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Basis and Rank<a href="basis-and-rank.html#basis-and-rank" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="generating-set-and-basis" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Generating Set and Basis<a href="basis-and-rank.html#generating-set-and-basis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-145" class="definition"><strong>Definition 2.26  </strong></span>Let <span class="math inline">\(V = (V, +, \cdot)\)</span> be a vector space and <span class="math inline">\(A = \{ \mathbf{x}_1, \ldots, \mathbf{x}_k \} \subseteq V\)</span>. If every vector <span class="math inline">\(\mathbf{v} \in  \mathbf{V}\)</span> can be written as a linear combination of <span class="math inline">\(\mathbf{x}_1, \ldots, \mathbf{x}_k\)</span>, then <span class="math inline">\(A\)</span> is called a <strong>generating set</strong> of <span class="math inline">\(\mathbf{V}\)</span>.</p>
+</div>
+<p>The set of all such linear combinations is called the <strong>span</strong> of <span class="math inline">\(A\)</span>, denoted by:
+<span class="math display">\[
+V = \text{span}[A] = \text{span}[\mathbf{x}_1, \ldots, \mathbf{x}_k].
+\]</span></p>
+<p>A generating set spans the entire vector space, meaning every vector can be expressed as a combination of those in the set.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-146" class="definition"><strong>Definition 2.27  </strong></span>A generating set <span class="math inline">\(A \subseteq  V\)</span> is <strong>minimal</strong> if no smaller subset <span class="math inline">\(\tilde{A} \subset A\)</span> spans <span class="math inline">\(V\)</span>. Every <strong>linearly independent generating set</strong> of <span class="math inline">\(V\)</span> is minimal and is called a <strong>basis</strong> of <span class="math inline">\(V\)</span>.</p>
+</div>
+<p>Equivalently:</p>
+<ul>
+<li>A basis is a minimal generating set.<br />
+</li>
+<li>A basis is also a maximal linearly independent set (adding any new vector makes it dependent).</li>
+</ul>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-147" class="theorem"><strong>Theorem 2.3  </strong></span>For a basis <span class="math inline">\(B = \{\mathbf{b}_1, \ldots, \mathbf{b}_k\}\)</span>, every vector <span class="math inline">\(\mathbf{x} \in V\)</span> can be expressed <strong>uniquely</strong> as:
+<span class="math display">\[
+\mathbf{x} = \sum_{i=1}^{k} \lambda_i \mathbf{b}_i = \sum_{i=1}^{k} \psi_i \mathbf{b}_i,
+\]</span>
+where <span class="math inline">\(\lambda_i = \psi_i\)</span> for all <span class="math inline">\(i = 1, \ldots, k\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-148" class="example"><strong>Example 2.49  </strong></span>The <strong>standard basis</strong> is:
+<span class="math display">\[
+B= \left\{
+\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix},
+\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix},
+\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+\right\}.
+\]</span></p>
+<p>Other valid bases include:
+<span class="math display">\[
+B_1 =
+\left\{
+\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix},
+\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix},
+\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}
+\right\}, \quad
+B_2 =
+\left\{
+\begin{bmatrix} 0.5 \\ 0.8 \\ 0.4 \end{bmatrix},
+\begin{bmatrix} 1.8 \\ 0.3 \\ 0.3 \end{bmatrix},
+\begin{bmatrix} -2.2 \\ -1.3 \\ 3.5 \end{bmatrix}
+\right\}.
+\]</span></p>
+</div>
+<div class="note">
+<p>Every vector space <span class="math inline">\(V\)</span> has a basis, but there are usually many possible bases. All bases of <span class="math inline">\(V\)</span> contain the same number of vectors, called <strong>basis vectors</strong>. The <strong>dimension</strong> of <span class="math inline">\(V\)</span>, written <span class="math inline">\(\text{dim}(V)\)</span>, is the number of basis vectors. If <span class="math inline">\(U \subseteq V\)</span> is a subspace, then:
+<span class="math display">\[
+\text{dim}(U) \leq \text{dim}(V),
+\]</span>
+with equality if and only if <span class="math inline">\(U = V\)</span>.</p>
+</div>
+<div class="note">
+<p>To find a basis for a subspace <span class="math inline">\(U = \text{span}[\mathbf{x}_1, \ldots, \mathbf{x}_m] \subseteq \mathbb{R}^n\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Form a matrix <span class="math inline">\(\mathbf{A}\)</span> with the spanning vectors as columns.<br />
+</li>
+<li>Compute the row echelon form of <span class="math inline">\(\mathbf{A}\)</span>.<br />
+</li>
+<li>The columns corresponding to pivot positions form a basis for <span class="math inline">\(U\)</span>.</li>
+</ol>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-149" class="example"><strong>Example 2.50  </strong></span>Let <span class="math inline">\(U \subseteq \mathbb{R}^5\)</span> be spanned by the vectors:
+<span class="math display">\[
+\mathbf{x}_1 =
+\begin{bmatrix}
+1 \\ 2 \\ -1 \\ -1 \\ -1
+\end{bmatrix}, \quad
+\mathbf{x}_2 =
+\begin{bmatrix}
+2 \\ -1 \\ 1 \\ 2 \\ -2
+\end{bmatrix}, \quad
+\mathbf{x}_3 =
+\begin{bmatrix}
+3 \\ -4 \\ 3 \\ 5 \\ -3
+\end{bmatrix}, \quad
+\mathbf{x}_4 =
+\begin{bmatrix}
+-1 \\ 8 \\ -5 \\ -6 \\ 1
+\end{bmatrix}.
+\]</span></p>
+<p>After performing Gaussian elimination on the matrix <span class="math inline">\([\mathbf{x}_1 \ \mathbf{x}_2 \ \mathbf{x}_3 \ \mathbf{x}_4]\)</span>, the pivot columns correspond to <span class="math inline">\(\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_4\)</span>, which are linearly independent.
+Hence, <span class="math inline">\(\{\mathbf{x}_1, \mathbf{x}_2, \mathbf{x}_4\}\)</span> is a basis of <span class="math inline">\(U\)</span> and <span class="math inline">\(\text{dim}(U) = 3\)</span>. Note also that the standard basis for <span class="math inline">\(\mathbb{R}^5\)</span> has 5 vectors (each one with 0’s in each entry other than the <span class="math inline">\(n^{th}\)</span> spot). So, <span class="math inline">\(\text{dim}(U) &lt; \text{dim}(V)\)</span>.</p>
+</div>
+<hr />
+</div>
+<div id="rank" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Rank<a href="basis-and-rank.html#rank" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-150" class="definition"><strong>Definition 2.28  </strong></span>The <strong>rank</strong> of a matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span>, denoted <span class="math inline">\(\text{rk}(\mathbf{A})\)</span>, is the number of linearly independent columns (or rows) of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-151" class="definition"><strong>Definition 2.29  </strong></span>Let <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> be a matrix. The <strong>column space</strong> of <span class="math inline">\(\mathbf{A}\)</span>, denoted as <span class="math inline">\(\text{Col}(\mathbf{A})\)</span>, is the subspace of <span class="math inline">\(\mathbb{R}^m\)</span> spanned by the columns of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+</div>
+<p>In other words,
+<span class="math display">\[
+  \text{Col}(\mathbf{A}) = \text{span} \{ \mathbf{a}_1, \mathbf{a}_2, \ldots, \mathbf{a}_n \},
+  \]</span>
+where <span class="math inline">\(\mathbf{a}_i\)</span> is the <span class="math inline">\(i^\text{th}\)</span> column of <span class="math inline">\(\mathbf{A}\)</span>. The column space represents all possible vectors <span class="math inline">\(\mathbf{b}\)</span> for which the linear system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span> has a solution.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-152" class="definition"><strong>Definition 2.30  </strong></span>The <strong>row space</strong> of <span class="math inline">\(\mathbf{A}\)</span>, denoted as <span class="math inline">\(\text{Row}(\mathbf{A})\)</span>, is the subspace of <span class="math inline">\(\mathbb{R}^n\)</span> spanned by the rows of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+</div>
+<p>Equivalently,
+<span class="math display">\[
+  \text{Row}(\mathbf{A}) = \text{span} \{ \mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_m \},
+  \]</span>
+where <span class="math inline">\(\mathbf{r}_i\)</span> is the <span class="math inline">\(i^\text{th}\)</span> row of <span class="math inline">\(\mathbf{A}\)</span>. The row space contains all possible linear combinations of the rows of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-153" class="lemma"><strong>Lemma 2.7  </strong></span><strong>Properties of the rank:</strong>
+Let <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> matrix and <span class="math inline">\(\mathbf{x}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> vectors of length <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\text{rk}(\mathbf{A}) = \text{rk}(\mathbf{A}^\top)\)</span>: column rank equals row rank.<br />
+</li>
+<li>The <strong>column space</strong> of <span class="math inline">\(\mathbf{A}\)</span> has dimension <span class="math inline">\(\text{rk}(\mathbf{A})\)</span>.<br />
+</li>
+<li>The <strong>row space</strong> of <span class="math inline">\(\mathbf{A}\)</span> also has dimension <span class="math inline">\(\text{rk}(\mathbf{A})\)</span>.<br />
+</li>
+<li><span class="math inline">\(\mathbf{A}\)</span> is <strong>invertible</strong> iff <span class="math inline">\(\text{rk}(\mathbf{A}) = n\)</span> (for <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>).<br />
+</li>
+<li>The system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span> has a solution iff <span class="math inline">\(\text{rk}(\mathbf{A}) = \text{rk}([\mathbf{A}|\mathbf{b}])\)</span>.<br />
+</li>
+<li>The <strong>null space</strong> of <span class="math inline">\(\mathbf{A}\)</span> (solutions of <span class="math inline">\(\mathbf{A}\mathbf{x} = 0\)</span>) has dimension <span class="math inline">\(n - \text{rk}(\mathbf{A})\)</span>.<br />
+</li>
+<li>A matrix has <strong>full rank</strong> if <span class="math inline">\(\text{rk}(\mathbf{A}) = \min(m, n)\)</span>.<br />
+</li>
+<li>If <span class="math inline">\(\text{rk}(\mathbf{A}) &lt; \min(m, n)\)</span>, it is <strong>rank deficient</strong>.</li>
+</ul>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-154" class="example"><strong>Example 2.51  </strong></span><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+\Rightarrow \text{rk}(\mathbf{A}) = 2.
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 2 &amp; 1 \\
+-2 &amp; -3 &amp; 1 \\
+3 &amp; 5 &amp; 0
+\end{bmatrix}
+\Rightarrow
+\begin{bmatrix}
+1 &amp; 2 &amp; 1 \\
+0 &amp; 1 &amp; 3 \\
+0 &amp; 0 &amp; 0
+\end{bmatrix}
+\Rightarrow \text{rk}(\mathbf{A}) = 2.
+\]</span></p>
+</div>
+</div>
+<div id="exercises-7" class="section level3 unnumbered unlisted hasAnchor">
+<h3>Exercises<a href="basis-and-rank.html#exercises-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-155" class="exercise"><strong>Exercise 2.64  </strong></span>Prove that <span class="math inline">\(\text{rk}(\mathbf{A}) = \text{rk}(\mathbf{A}^\top)\)</span>: column rank equals row rank.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-156" class="exercise"><strong>Exercise 2.65  </strong></span>Prove that the <strong>column space</strong> of <span class="math inline">\(\mathbf{A}\)</span> has dimension <span class="math inline">\(\text{rk}(\mathbf{A})\)</span>. Prove that the <strong>row space</strong> of <span class="math inline">\(\mathbf{A}\)</span> also has dimension <span class="math inline">\(\text{rk}(\mathbf{A})\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-157" class="exercise"><strong>Exercise 2.66  </strong></span>Prove that <span class="math inline">\(\mathbf{A}\)</span> is <strong>invertible</strong> iff <span class="math inline">\(\text{rk}(\mathbf{A}) = n\)</span> (for <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>).</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-158" class="exercise"><strong>Exercise 2.67  </strong></span>Prove that the system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span> has a solution iff <span class="math inline">\(\text{rk}(\mathbf{A}) = \text{rk}([\mathbf{A}|\mathbf{b}])\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-159" class="exercise"><strong>Exercise 2.68  </strong></span>Prove that the null space of <span class="math inline">\(\mathbf{A}\)</span> (solutions of <span class="math inline">\(\mathbf{A}\mathbf{x} = 0\)</span>) has dimension <span class="math inline">\(n - \text{rk}(\mathbf{A})\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-160" class="exercise"><strong>Exercise 2.69  </strong></span>Let <span class="math inline">\(\mathbf{A}\)</span> be a regular <span class="math inline">\(2 \times 2\)</span> (invertible) matrix. Show that <span class="math inline">\(\mathbf{A}\)</span> has rank 2.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-161" class="exercise"><strong>Exercise 2.70  </strong></span>In <span class="math inline">\(\mathbb{R}^{2 \times 2}\)</span>, show that <span class="math inline">\(rk(\mathbf{A}) = 1\)</span> if <span class="math inline">\(\det(\mathbf{A}) = 0\)</span>, but <span class="math inline">\(\mathbf{A}\)</span> is not the zero matrix.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-162" class="exercise"><strong>Exercise 2.71  </strong></span>Find the rank of <span class="math inline">\(\mathbf{A} = \begin{bmatrix}1&amp;0&amp;2&amp;1\\ 0&amp;2&amp;4&amp;2\\0&amp;2&amp;2&amp;1 \end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-163" class="exercise"><strong>Exercise 2.72  </strong></span>Find the rank of <span class="math inline">\(\mathbf{A} = \begin{bmatrix}1&amp;2&amp;1&amp;-1\\ 9&amp;5&amp;2&amp;2\\ 7&amp;1&amp;0&amp;4 \end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-164" class="exercise"><strong>Exercise 2.73  </strong></span>Let <span class="math inline">\(\mathbf{x}\)</span> be a unit vector in <span class="math inline">\(\mathbb{R}^n\)</span>. Partition <span class="math inline">\(\mathbf{x}\)</span> as <span class="math display">\[\mathbf{x} = \begin{bmatrix}x_1 \\ x_2 \\ \vdots \\x_n \end{bmatrix} = \begin{bmatrix} x_1 \\ \mathbf{y} \end{bmatrix}.\]</span> Let <span class="math display">\[\mathbf{Q} = \begin{bmatrix}x_1 &amp; \mathbf{y}^T\\ \mathbf{y} &amp; \mathbf{I} - \left(\dfrac{1}{1 - x_1} \right) \mathbf{y} \mathbf{y}^T \end{bmatrix}.\]</span> <span class="math inline">\(Q\)</span> is orthogonal. (This procedure gives a quick method for finding an orthonormal basis for <span class="math inline">\(\mathbb{R}^n\)</span> with a prescribed first vector <span class="math inline">\(\mathbf{x}\)</span>, a construction that is frequently useful in applications). Select any non-trivial vector in <span class="math inline">\(\mathbb{R}^3\)</span> and verify that <span class="math inline">\(\mathbf{Q}\)</span> is orthogonal.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linear-independence.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-mappings.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["D420-Book.pdf", "D420-Book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

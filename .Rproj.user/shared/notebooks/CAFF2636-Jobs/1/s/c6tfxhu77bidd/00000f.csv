@@ -1,0 +1,17 @@
+"0","url <- ""https://www.jobbank.gc.ca/jobsearch/jobsearch?searchstring=data+analyst&locationstring=British+Columbia"""
+"0",""
+"0","page <- read_html(url)"
+"0",""
+"0","titles <- page %>% html_nodes("".resultJobItem h3 a"") %>% html_text(trim = TRUE)"
+"0","companies <- page %>% html_nodes("".business"") %>% html_text(trim = TRUE)"
+"0","locations <- page %>% html_nodes("".location"") %>% html_text(trim = TRUE)"
+"0",""
+"0","jobs <- data.frame("
+"0","  Title = titles,"
+"0","  Employer = companies,"
+"0","  Location = locations,"
+"0","  stringsAsFactors = FALSE"
+"0",")"
+"2","Error in data.frame(Title = titles, Employer = companies, Location = locations,  : 
+  arguments imply differing number of rows: 0, 25
+"

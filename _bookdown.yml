@@ -1,0 +1,21 @@
+book_filename: "D420-Book"
+language:
+  ui:
+    chapter_name: "Chapter "
+rmd_files:
+  - index.Rmd
+  - "A-Symbols.Rmd"
+  - "A1-IntroductionAndMotivation.Rmd"
+  - "02-LinearAlgebra.Rmd"
+  - "03-AnalyticGeometry.Rmd"
+  - "04-MatrixDecomposition.Rmd"
+  - "05-VectorCalculus.Rmd"
+  - "06-ProbabilityAndDistributions.Rmd"
+  - "07-ContinuousOptimization.Rmd"
+  - "08-Data,Models,andLearning.Rmd"
+  - "09-LinearRegression.Rmd"
+  - "10-DimensionReductionWithPrincipalComponentAnalysis.Rmd"
+  - "11-DensityEstimationWithGaussianMixtureModels.Rmd"
+  - "12-ClassificationWithSupportVectorMachines.Rmd"
+delete_merged_file: true
+output_dir: "_book"

@@ -1,0 +1,1932 @@
+# Probability and Distributions
+
+
+
+**Probability** is the study of **uncertainty** — it allows us to measure and reason about the likelihood of events.  Probability can be interpreted in two complementary ways:
+
+- As the **fraction of times an event occurs** in repeated experiments.  
+- As a **degree of belief** in the occurrence of an event.
+
+<p align="center">
+<img src="Figure6.1MML.png" alt="A mind map of the concepts related to random variables and
+probability distributions, as described in this chapter." width="400">
+</p>
+
+In machine learning, probability helps us **quantify uncertainty** in:
+
+- The **data** we collect,  
+- The **models** we build, and  
+- The **predictions** those models make.  
+
+
+
+
+
+
+
+<div class="definition">
+A **random variable** is a function that maps outcomes of a random experiment  
+to numerical or categorical values that we care about.
+</div>
+
+Formally, the idea of a random variable connects:
+
+- The **sample space** (possible outcomes),  
+- The **events** (collections of outcomes),  
+- And the **probability distribution**, which assigns a likelihood to each outcome or set of outcomes.
+
+
+
+<div class="example">
+Consider the simple experiment of rolling a fair six-sided die once.
+
+
+The sample space \( \Omega \) is the set of all possible outcomes:
+\[
+\Omega = \{1, 2, 3, 4, 5, 6\}.
+\]
+Each element of \( \Omega \) is a possible outcome of the experiment.
+
+An event is any subset of the sample space.  Some examples include:
+
+- Event \(A\): “Roll an even number”
+  \[
+  A = \{2, 4, 6\}.
+  \]
+- Event \(B\): “Roll a number greater than 4”
+  \[
+  B = \{5, 6\}.
+  \]
+
+
+A random variable \(X\) is defined as a function:
+\[
+X : \Omega \to \mathbb{R}.
+\]
+For example, we could let
+\[
+X(\omega) =
+\begin{cases}
+1, & \text{if } \omega \text{ is even} \\
+0, & \text{if } \omega \text{ is odd}
+\end{cases}.
+\]
+So:
+
+- \(X(2) = 1\), \(X(4) = 1\), \(X(6) = 1\)  
+- \(X(1) = 0\), \(X(3) = 0\), \(X(5) = 0\)  
+
+The random variable turns outcomes into numbers.
+
+
+Since the die is fair, each outcome has probability:
+\[
+P(\{\omega\}) = \frac{1}{6}, \quad \omega \in \Omega.
+\]
+The probability distribution of \(X\) assigns probabilities to the values of \(X\):
+\[
+P(X = 1) = P(\{2,4,6\}) = \frac{3}{6} = \frac{1}{2},
+\]
+\[
+P(X = 0) = P(\{1,3,5\}) = \frac{3}{6} = \frac{1}{2}.
+\]
+Thus, the distribution of \(X\) is:
+\[
+X =
+\begin{cases}
+1 & \text{with probability } \tfrac{1}{2}, \\
+0 & \text{with probability } \tfrac{1}{2}.
+\end{cases}
+\]
+
+
+**Big Picture Connection**
+
+- Sample space: all possible outcomes (\(\Omega\))
+- Events: subsets of outcomes
+- Random variable: a function mapping outcomes to numbers
+- Probability distribution: probabilities assigned to the values of the random variable.
+</div>
+
+
+
+
+<div class="definition">
+A **probability distribution** describes how probabilities are spread over the possible values of a random variable.  
+</div>
+
+Probability distributions tell us the chance that specific outcomes will occur. 
+Distributions are foundational tools for:
+
+- Probabilistic modeling,  
+- Graphical models,  
+- Model selection, and  
+- Inference.
+
+
+
+<div class="definition">
+A **probability space** consists of three key elements:
+
+1. **Sample space** – the set of all possible outcomes  
+2. **Events** – subsets of the sample space  
+3. **Probability function** – assigns a number between 0 and 1 to each event 
+</div>
+
+These components work together to define how probability is assigned and interpreted.
+
+---
+
+
+## Construction of a Probability Space
+
+The goal of **probability theory** is to define a mathematical framework for describing random outcomes of experiments.  For example, while we cannot predict the outcome of a single coin toss, repeating the experiment many times reveals regular patterns in the long run.  This structure allows us to perform *automated reasoning* (computer driven), generalizing Boolean *logical reasoning* into a continuous framework for uncertainty.
+
+---
+
+### Philosophical Issues
+
+Classical Boolean logic cannot express **plausible reasoning** — the type of reasoning we use in uncertain, real-world situations.  Probability theory extends logic to handle **degrees of plausibility** rather than discrete true/false statements.
+
+> “For plausible reasoning it is necessary to extend the discrete true and false values of truth to continuous plausibilities.” — *E. T. Jaynes (2003)*
+
+
+
+
+<div class="example">
+If your friend is late, you may rule out the hypothesis *she is on time* and find *she is delayed by traffic* more plausible, though not logically required.  
+</div>
+
+This everyday reasoning can be formalized through probability theory.
+
+<div class="definition">
+E. T. Jaynes identified three key criteria for plausibility that form the foundation of probability:
+
+1. **Plausibility as real numbers.**  
+   - Degrees of plausibility are represented by real numbers.  
+   - This allows for continuous gradations of belief between complete disbelief (false) and certainty (true).
+
+2. **Consistency with common sense.**  
+   - The rules governing these plausibility values must be consistent with the rules of common sense reasoning.  
+   - For example, if evidence makes an event more likely, the numerical plausibility should increase accordingly.
+
+3. **Consistency in reasoning**, meaning:
+     - **(a) Non-contradiction:** If the same conclusion can be reached by different arguments, it must have the same plausibility.  
+     - **(b) Honesty:** All available and relevant information must be considered.  
+     - **(c) Reproducibility:** Identical states of knowledge must lead to identical plausibility assignments.  
+
+</div>
+
+
+The Cox–Jaynes theorem shows that any system satisfying these principles must follow the rules of probability.
+
+<div class="theorem">
+**Cox-Jaynes:**  Under the Jaynes assumptions, the rules governing plausibilities are *isomorphic* to the *rules of probability theory*.  
+
+That is, for plausability measure $p$ and probability measure $P$, there exists a monotonic transformation \( f \) such that for any propositions \( A \) and \( B \): \[P(A|B) = f(p(A|B)),\]
+where \( P(A|B) \) satisfies the standard **sum** and **product** rules of probability:
+\[
+P(A \land B|C) = P(A|C) \, P(B|A, C)
+\]
+
+\[
+P(A \lor B|C) = P(A|C) + P(B|C) - P(A \land B|C).
+\]
+
+</div>
+
+---
+
+### Bayesian vs. Frequentist Interpretations
+
+There are two different interpretations of probability that we need to consider when dealing with machine learning models: Bayesian and Frequentist.
+
+| Interpretation | Description | Example Usage |
+|----------------|--------------|----------------|
+| **Bayesian** | Probability represents degree of belief or subjective uncertainty about an event. | Updating belief after observing data. |
+| **Frequentist** | Probability represents the long-run relative frequency of an event over repeated trials. | Estimating event probability as data size $\rightarrow \infty$. |
+
+Both perspectives appear in machine learning, depending on whether the focus is on modeling uncertainty (Bayesian) or empirical frequency (Frequentist).
+
+
+
+
+<div class="example">
+We have a coin that might be biased.  We toss it 10 times and observe 7 heads.  We want to know: *What is the probability that the coin is biased toward heads?*
+
+**Frequentist Perspective:**
+The frequentist treats the probability as an *objective long-run frequency*.  
+
+- The coin has a fixed, but unknown probability \( p \) of landing heads.  
+- The data (7 heads out of 10 tosses) are used to **estimate** this parameter.
+
+\[
+\hat{p} = \frac{7}{10} = 0.7
+\]
+A 95% confidence interval for \( p \) (using a binomial model) might be approximately:
+\[
+p \in [0.35, 0.93]
+\]
+Therefore, if we were to repeat the entire experiment many times, then 95% of the confidence intervals constructed this way would contain the true \( p \).  The parameter \( p \) is fixed — only the data vary.
+
+**Bayesian Perspective:**
+The Bayesian treats probability as a *degree of belief* about \( p \).  The parameter \( p \) itself is a random variable with a prior distribution.  The data are used to update beliefs via Bayes’ theorem.
+
+Assume a uniform prior:
+\[
+p \sim \text{Beta}(1, 1)
+\]
+After observing 7 heads and 3 tails:
+\[
+p | \text{data} \sim \text{Beta}(8, 4)
+\]
+then,
+\[
+E[p|\text{data}] = \frac{8}{8 + 4} = 0.67
+\]
+A 95% **credible interval** is approximately:
+\[
+p \in [0.42, 0.88]
+\]
+Therefore, given the data and prior beliefs, there is a 95% probability that \( p \) lies between 0.42 and 0.88. Here, the data are fixed and the parameter is uncertain.
+</div>
+
+Below are some of the differences between the frequentist and Bayesian perspective.
+
+
+| Aspect | Frequentist | Bayesian |
+|:--------|:-------------|:----------|
+| Definition of Probability | Long-run frequency of events | Degree of belief about parameters |
+| Parameter \( p \) | Fixed but unknown | Random variable |
+| Data | Random | Fixed (once observed) |
+| Interval Meaning | 95% of intervals contain true \( p \) in repeated experiments | 95% probability that \( p \) lies in the given range |
+| Uses Prior Information | No | Yes |
+---
+
+### Probability and Random Variables
+
+There are three key ideas in probability theory:
+
+1. **Probability Space** – the fundamental mathematical setup.  
+2. **Random Variables** – functions mapping outcomes to measurable quantities.  
+3. **Distributions (Laws)** – describe how probabilities are assigned to these quantities.
+
+
+
+
+
+<div class="definition">
+A **probability space** is defined by three components:
+
+- **Sample Space ($\Omega$):**  
+  The set of all possible outcomes of an experiment.  
+  Example: two coin tosses $\longrightarrow \Omega = \{hh, ht, th, tt\}$.  
+
+- **Event Space ($\mathcal{A}$):**  
+  The collection of subsets of Ω that can occur as events.  Often, for discrete spaces, $\mathcal{A}$ is the **power set** of $\Omega$.
+
+- **Probability Measure ($P$):**  
+  A function assigning probabilities to events:  
+  - \( 0 \leq P(A) \leq 1 \) for all \( A \in \mathcal{A} \)  
+  - \( P(\Omega) = 1 \)
+</div>
+
+
+
+
+<div class="definition">
+A **random variable** is a function \( X: \Omega \rightarrow T \)  that maps outcomes \( \omega \in \Omega \) to values \( x \in T \), the **target space**.
+</div>
+
+
+
+<div class="example">
+Toss two coins and let \( X \) = number of heads. Then \( T = \{0, 1, 2\} \), and:
+\[
+X(hh) = 2, \quad X(ht) = 1, \quad X(th) = 1, \quad X(tt) = 0.
+\]  Here, we see that our function $X$ maps from our set of outcomes $\Omega = \{hh, ht, th, tt\}$ into our target space $T = \{0,1,2\}$.
+</div>
+
+The probability of \( X \) taking certain values can be expressed as:
+\[
+P_X(S) = P(X \in S) = P(\{\omega \in \Omega : X(\omega) \in S\})
+\]
+
+This defines the distribution (law) of \( X \), written \( P_X = P \circ X^{-1} \).
+
+- If \( T \) is finite or countable, \( X \) is a **discrete random variable**.  
+- If \( T = \mathbb{R}^D \), \( X \) is a **continuous random variable**.
+
+
+
+<div class="example">
+Suppose we draw two coins (with replacement) from a bag containing U.S. coins ($) with probability 0.3 and U.K. coins (£) with probability 0.7.
+
+**Sample space:**  
+Ω = {(\$,\$), (\$,£), (£,\$), (£,£)}
+
+**Random variable:**  
+\( X \) = number of U.S. coins drawn  \( \longrightarrow T = \{0,1,2\} \)
+
+**Probability mass function:**
+\[
+\begin{aligned}
+P(X=2) &= 0.3 \times 0.3 = 0.09 \\
+P(X=1) &= 2 \times 0.3 \times 0.7 = 0.42 \\
+P(X=0) &= 0.7 \times 0.7 = 0.49
+\end{aligned}
+\]
+Thus, \( X \) defines a discrete probability distribution over \( T \).
+</div>
+
+
+---
+
+### Statistics
+
+Probability and statistics are related but distinct disciplines:
+
+| Field | Main Focus |
+|--------|-------------|
+| **Probability** | Starts with a model and derives what outcomes we expect. |
+| **Statistics** | Starts with observed data and infers the underlying model. |
+
+In machine learning, we use both:
+
+- Probability helps model uncertainty and future generalization.  
+- Statistics helps infer model parameters from data.
+
+Probability theory provides the foundation for analyzing **generalization error** and for developing data-driven models that learn from uncertainty.
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+<div class="exercise">
+
+A hospital researcher is interested in the number of times the average post-op patient will ring the nurse during a 12-hour shift. For a random sample of 50 patients, the following information was obtained. Let $X =$ the number of times a patient rings the nurse during a 12-hour shift.
+
+| \(X\) | \(P(X)\) |
+|------:|:--------:|
+| 0 | \( \frac{4}{50} \) |
+| 1 | \( \frac{8}{50} \) |
+| 2 | \( \frac{16}{50} \) |
+| 3 | \( \frac{14}{50} \) |
+| 4 | \( \frac{6}{50} \) |
+| 5 | \( \frac{2}{50} \) |
+
+What is $T$?  Do these data follow the rules of probability?  What is $P(X\geq 3)$ (use notation)?
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+        
+
+<div class="exercise">
+
+Suppose Nancy has classes three days a week. She attends classes three days a week 80\% of the time, two days 15\% of the time, one day 4\% of the time, and no days 1\% of the time. Suppose one week is randomly selected.  What is $T$?  Do these data follow the rules of probability?   Suppose we select a week at random.  What is the probability associated with each value in $T$?  What is the probability that Nancy attends at least 2 classes in the week (use notation)? 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+## Discrete and Continuous Probabilities
+
+
+This section discusses two main types of probability distributions — **discrete** and **continuous** — and how they describe the likelihood of events depending on whether the target space is countable or continuous.
+
+---
+
+### Discrete Probabilities
+
+
+<div class="definition">
+The probability that \( X \) takes a particular value \( x \) is given by the **probability mass function (pmf)**:
+  \[
+  P(X = x)
+  \]
+</div>
+
+<div class="example">
+Suppose a small factory inspects 4 items at random from a large production line. Each item is independently defective with probability \(0.2\).
+
+Let  
+\[
+X = \text{number of defective items among the 4 inspected}.
+\]
+The possible values of \(X\) are:
+\[
+\{0,1,2,3,4\}.
+\]
+
+Each inspection is a Bernoulli trial, so \(X\) follows a **binomial distribution**:
+\[
+X \sim \text{Binomial}(n=4, p=0.2).
+\]
+
+The PMF of a binomial random variable is:
+\[
+p_X(x) = P(X = x) = \binom{4}{x}(0.2)^x(0.8)^{4-x}, \quad x = 0,1,2,3,4.
+\]
+Evaluating:
+\[
+\begin{aligned}
+P(X=0) &= (0.8)^4 = 0.4096 \\
+P(X=1) &= 4(0.2)(0.8)^3 = 0.4096 \\
+P(X=2) &= 6(0.2)^2(0.8)^2 = 0.1536 \\
+P(X=3) &= 4(0.2)^3(0.8) = 0.0256 \\
+P(X=4) &= (0.2)^4 = 0.0016
+\end{aligned}
+\]
+Therefore, we have the following PMF as a table:
+
+| \(x\) | \(P(X = x)\) |
+|----:|:-------------:|
+| 0 | 0.4096 |
+| 1 | 0.4096 |
+| 2 | 0.1536 |
+| 3 | 0.0256 |
+| 4 | 0.0016 |
+
+Notice that the PMF is not uniform: some outcomes are much more likely than others. Most of the probability mass is concentrated at \(x=0\) and \(x=1\). Exact probabilities for events can be computed by summing the PMF for example:
+\[
+P(X \le 1) = P(X=0) + P(X=1) = 0.8192.
+\]
+
+We note that this has all of the PMF requirements:
+
+- \(p_X(x) \ge 0\) for all \(x\)
+- \(\sum_{x=0}^4 p_X(x) = 1\)
+- Each value of \(X\) has a clearly defined probability.
+</div>
+
+<div class="definition">
+For two random variables \( X \) and \( Y \):
+
+  - The **joint probability** is \( P(X = x_i, Y = y_j) \), denoted \( p(x, y) \).  
+  - The **marginal probability** of \( X \) is obtained by summing over all possible \( y \):
+    \[
+    P(X = x_i) = \sum_j P(X = x_i, Y = y_j)
+    \]
+  - The **conditional probability** of \( Y \) given \( X \) is:
+    \[
+    P(Y = y_j \mid X = x_i) = \frac{P(X = x_i, Y = y_j)}{P(X = x_i)}
+    \]
+</div>
+
+<div class="example">
+A school surveys students about whether they study regularly and whether they pass a math exam.  The events are:
+
+- \(S\): student studies regularly
+- \(P\): student passes the exam
+
+The results are summarized in the following **joint probability table**:
+
+|              | Pass (\(P\)) | Fail (\(P^c\)) | **Total** |
+|--------------|-------------:|---------------:|------:|
+| Study (\(S\))     | 0.42 | 0.08 | 0.50 |
+| No Study (\(S^c\))| 0.18 | 0.32 | 0.50 |
+| **Total**        | 0.60 | 0.40 | 1.00 |
+
+
+Joint probabilities describe the probability that two events occur together.  For example,
+\[
+P(S,P) = P(S \cap P) = 0.42, \quad P(S^c, P^c) = P(S^c \cap P^c) = 0.32.
+\]
+
+Marginal probabilities are obtained by summing over rows or columns of the joint table.
+\[
+\begin{aligned}
+P(S) &= 0.42 + 0.08 = 0.50 \\
+P(S^c) &= 0.18 + 0.32 = 0.50 \\
+P(P) &= 0.42 + 0.18 = 0.60 \\
+P(P^c) &= 0.08 + 0.32 = 0.40
+\end{aligned}
+\]
+
+
+Conditional probability measures the likelihood of one event given that another event has occurred.  For example, the probability of passing given the student studies:
+\[
+P(P \mid S) = \frac{P(S \cap P)}{P(S)} = \frac{0.42}{0.50} = 0.84.
+\]
+Another example might be the probability of passing given the student does not study:
+\[
+P(P \mid S^c) = \frac{0.18}{0.50} = 0.36.
+\]
+
+</div>
+
+The probabilities of all possible states must sum to one:
+  \[
+  \sum_i P(X = x_i) = 1
+  \]
+Discrete distributions are commonly used to model categorical variables, such as labels or class features.
+
+---
+
+### Continuous Probabilities
+
+
+<div class="definition">
+A **continuous random variable** takes values from an interval on the real line \( \mathbb{R} \).
+</div>
+
+The probability that \( X \) lies in an interval \( [a, b] \) is:
+  \[
+  P(a \le X \le b) = \int_a^b f(x) \, dx
+  \]
+
+<div class="definition">
+The function \( f(x) \) is the **probability density function (pdf)**, which satisfies:
+
+  1. \( f(x) \ge 0 \) for all \( x \)
+  2. \( \int_{-\infty}^{\infty} f(x) \, dx = 1 \)
+
+The **cumulative distribution function (cdf)** is defined as:
+  \[
+  F_X(x) = P(X \le x) = \int_{-\infty}^{x} f(t) \, dt
+  \]
+</div>
+
+<div class="example">
+
+Let \(X\) be a continuous random variable representing the amount of time (in hours) a student spends studying for an exam.  Assume \(X\) has the following probability density function (PDF):
+\[
+f_X(x) =
+\begin{cases}
+\frac{1}{4}, & 0 \le x \le 4, \\
+0, & \text{otherwise}.
+\end{cases}
+\]
+This is a uniform distribution on the interval \([0,4]\).  The height of the density is constant: \(f_X(x) = \frac{1}{4}\). Probabilities are found by computing areas, not by evaluating the PDF at a point. For example, the probability that a student studies between 1 and 3 hours is:
+\[
+P(1 \le X \le 3) = \int_1^3 \frac{1}{4} \, dx = \frac{1}{4}(3 - 1) = \frac{1}{2}.
+\]
+
+
+The cumulative distribution function (CDF) is defined by:
+\[
+F_X(x) = P(X \le x).
+\]
+Compute \(F_X(x)\) by integrating the PDF:
+\[
+F_X(x) =
+\begin{cases}
+0, & x < 0, \\
+\displaystyle \int_0^x \frac{1}{4} \, dt = \frac{x}{4}, & 0 \le x \le 4, \\
+1, & x > 4.
+\end{cases}
+\]
+\(F_X(x)\) gives the probability that the study time is at most \(x\) hours. For example:
+\[
+P(X \le 2) = F_X(2) = \frac{2}{4} = 0.5.
+\]
+
+
+</div>
+
+Note that \( P(X = x) = 0 \) for continuous random variables.
+
+<div class="example">
+Let \(X\) be a continuous random variable (CRV) with probability density function (PDF) \(f_X(x)\). By definition, probabilities for a CRV are computed using integrals:
+\[
+P(a \le X \le b) = \int_a^b f_X(x)\,dx.
+\]
+Consider the probability that \(X\) takes exactly one value \(x_0\):
+\[
+P(X = x_0).
+\]
+This probability corresponds to the integral over an interval of zero width:
+\[
+P(X = x_0) = \int_{x_0}^{x_0} f_X(x)\,dx.
+\]
+Since the limits of integration are the same,
+\[
+\int_{x_0}^{x_0} f_X(x)\,dx = 0.
+\]
+Therefore,
+\[
+P(X = x_0) = 0
+\]
+for any real number \(x_0\).
+
+
+</div>
+
+---
+
+### Contrasting Discrete and Continuous Distributions
+
+| Property | Discrete | Continuous |
+|:----------|:----------|:------------|
+| Representation | Probability Mass Function \( p(x) \) | Probability Density Function \( f(x) \) |
+| Domain | Finite or countable set | Interval in \( \mathbb{R} \) |
+| Probability of a single value | \( P(X = x) \geq 0 \) | \( P(X = x) = 0 \) |
+| Normalization | \( \sum_x p(x) = 1 \) | \( \int f(x)dx = 1 \) |
+| Example | Categorical variable, coin toss | Gaussian, uniform distribution on an interval |
+
+
+
+<div class="example">
+**Discrete case:**  
+  A variable \( Z \) with three equally likely outcomes \(\{-1.1, 0.3, 1.5\}\):
+  \[
+  P(Z = z_i) = \frac{1}{3}
+  \]
+</div>
+
+
+
+<div class="example">
+**Continuous case:**  
+  A variable \( X \) uniformly distributed over \( [0.9, 1.6] \) has:
+  \[
+  \int_{0.9}^{1.6} p(x) \, dx = 1
+  \]
+  The height of \( p(x) \) can exceed 1 as long as the total area equals 1.
+</div>
+
+
+
+
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+<div class="exercise">
+Consider the table below:
+
+|        | \(x_1\) | \(x_2\) | \(x_3\) | \(x_4\) |
+|--------|--------:|--------:|--------:|--------:|
+| \(y_1\) | 10 | 40 | 65 | 35 |
+| \(y_2\) | 15 | 55 | 25 | 60 |
+| \(y_3\) | 20 | 30 | 50 | 45 |
+
+
+1. \( p(x_i, y_j) = p(x, y) \).  What is this called and what is \( p(x_3, y_2) \)?
+2. \( p(X = x) = p(x) \).  What is this called and what is the formula?
+3. Find \( p(x_4) \).  Write it out using the formula.
+4. Find \( p(y_2) \).  Write it out using the formula.
+5. \( p(X = x_i \mid Y = y_j) = p(x \mid y) \).   What is this called and what is the formula?
+6. Find \( p(x_2 \mid y_3) \) and \( p(y_1 \mid x_4) \).
+7. \( p(x) = \sum_{y \in Y} p(x, y) \).  What is this called? Use the formula to find \( p(x_2) \).
+   
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Let $X$ be a random variable with PDF given by \[f_X(x)= \begin{cases} cx^2 & |x| \leq 1\\0 & otherwise \end{cases}.\]
+
+1.  Find the constant $c$.
+2.  Find $P(X \geq 1/2)$
+        
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Let $X$ be a continuous random variable with PDF \[f_X(x) = \dfrac{1}{2}e^{-|x|}, \;\;\;\; x \in \mathbb{R}.\]  If $Y = X^2$, find the CDF of $Y$. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Let $X$ be a continuous random variable with PDF \[f_X(x) = \begin{cases} 4x^3 & 0 < x \leq 1\\0 & otherwise \end{cases}.\]  Find $P(X\leq 2/3 | X > 1/3)$. 
+    
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Let $f(x) = k(3x^2 + 1)$.
+
+1.  Find the value of $k$ that makes the given function a PDF on the interval $0 \leq x \leq 2$.
+2.  Let $X$ be a continuous random variable whose PDF is $f(x)$. Compute the probability that $X$ is between 1 and 2.
+3.  Find the distribution function of $X$.
+4.  Find the probability that $X$ is exactly equal to 1. 
+        
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+<div class="exercise">
+Let \[f(t) = \begin{cases}t & 0 < t \leq 1\\ 2-t & 1 < t \leq 2 \\ 0 & otherwise \end{cases}.\]
+
+1.  Prove this is a PDF.
+2.  Find $p(x \leq 1.5)$ 
+3.  Find $p(x > 1.2)$
+4.  Find $p(1.2 < x \leq 1.5)$
+5.  Find $p(x = 1)$
+        
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Show that the normal distribution is a PDF. Note that the normal distribution is given by \[f(z) = \dfrac{1}{\sqrt{2\pi}}e^{-z^2/2}.\] 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+ 
+
+
+
+
+
+
+
+
+## Sum Rule, Product Rule, and Bayes’ Theorem
+
+
+Probability theory can be viewed as an extension of logic that allows reasoning under uncertainty.  All of probability theory can be built from two fundamental rules — the **Sum Rule** and the **Product Rule** — both of which arise naturally from the desiderata of plausible reasoning (Jaynes, 2003).
+
+---
+
+### The Sum Rule (Marginalization Property)
+
+The **Sum Rule** relates a **joint distribution** to its **marginal distribution** by summing or integrating over unobserved variables.
+
+
+
+
+<div class="theorem">
+**Sum Rule:**  If \( x \) and \( y \) are random variables with joint probability \( p(x, y) \), then:
+\[
+p(x) =
+\begin{cases}
+\sum\limits_{y \in Y} p(x, y), & \text{if } y \text{ is discrete} \\
+\int_Y p(x, y) \, dy, & \text{if } y \text{ is continuous}
+\end{cases}
+\]
+
+- \( p(x, y) \): joint probability of \( x \) and \( y \)  
+- \( p(x) \): marginal probability of \( x \)  
+- \( Y \): set of all possible values of \( y \)
+</div>
+
+
+
+
+<div class="example">
+Discrete Joint Distribution
+
+Let \( X \) and \( Y \) be discrete random variables with joint probability mass function given by:
+
+| \(Y \backslash X\) | 1 | 2 | 3 |
+|------------------:|---|---|---|
+| 0 | 0.10 | 0.15 | 0.05 |
+| 1 | 0.20 | 0.30 | 0.20 |
+
+Use the **sum rule** to find the marginal probability \( P(X = 2) \).
+
+**Solution**
+For discrete random variables, the sum rule states:
+\[
+P(X=x) = \sum_{y} P(X=x, Y=y)
+\]
+
+Thus,
+\[
+P(X=2) = P(2,0) + P(2,1)
+= 0.15 + 0.30
+= 0.45
+\]
+
+
+</div>
+
+
+
+<div class="example">
+Continuous Joint Distribution
+
+Let \( X \) and \( Y \) be continuous random variables with joint probability density function:
+\[
+f_{X,Y}(x,y) =
+\begin{cases}
+\frac{1}{6}, & 0 \le x \le 3,\; 0 \le y \le 2 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+Use the sum rule (integral form) to find the marginal probability  
+\[
+P(1 \le X \le 2)
+\]
+
+**Solution**
+For continuous random variables, the sum rule is:
+\[
+P(X \in A) = \int_A \int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dy\,dx
+\]
+
+So,
+\[
+P(1 \le X \le 2)
+= \int_1^2 \int_0^2 \frac{1}{6}\,dy\,dx
+\]
+
+Evaluate the integrals:
+\[
+= \int_1^2 \frac{1}{6}(2)\,dx
+= \int_1^2 \frac{1}{3}\,dx
+= \frac{1}{3}
+\]
+
+</div>
+
+For multiple variables \( x = [x_1, \dots, x_D]^\top \), the marginal distribution of one component \( x_i \) is obtained by integrating/summing over all other variables:
+  \[
+  p(x_i) = \int p(x_1, \dots, x_D) \, dx_{\backslash i}
+  \]
+
+<div class="note">
+Marginalization often involves **high-dimensional integrals or sums**, which are computationally expensive to evaluate exactly.
+</div>
+
+---
+
+### The Product Rule (Factorization Property)
+
+The **Product Rule** expresses a joint distribution in terms of a marginal and a conditional distribution:
+
+
+
+<div class="theorem">
+If \( x \) and \( y \) are random variables, then:
+\[
+p(x, y) = p(y \mid x)\,p(x)
+\]
+Equivalently,
+\[
+p(x, y) = p(x \mid y)\,p(y)
+\]
+where:  
+
+- \( p(x, y) \) — joint probability of \( x \) and \( y \)  
+- \( p(y \mid x) \) — conditional probability of \( y \) given \( x \)  
+- \( p(x) \) — marginal (or prior) probability of \( x \)
+</div>
+
+The product rule states that the joint probability can always be factorized into two parts:
+
+  - The **marginal probability** \( p(x) \)  
+  - The **conditional probability** \( p(y \mid x) \)  
+
+
+
+<div class="example">
+Let \(X\) and \(Y\) be discrete random variables defined as follows:
+
+- \(X\): the type of coin selected  
+  - \(x_1\): Fair coin  
+  - \(x_2\): Biased coin  
+
+- \(Y\): outcome of a single coin toss  
+  - \(y_1\): Heads  
+  - \(y_2\): Tails  
+
+Suppose:
+\[
+P(X = x_1) = 0.6, \quad P(X = x_2) = 0.4
+\]
+Assume the following conditional probabilities:
+
+- If the coin is fair:
+\[
+P(y_1 \mid x_1) = 0.5, \quad P(y_2 \mid x_1) = 0.5
+\]
+
+- If the coin is biased:
+\[
+P(y_1 \mid x_2) = 0.8, \quad P(y_2 \mid x_2) = 0.2
+\]
+
+Using the formula
+\[
+P(x,y) = P(y \mid x)\,P(x),
+\]
+we compute each joint probability.
+
+- \(P(x_1, y_1)\):
+\[
+P(y_1 \mid x_1)P(x_1) = (0.5)(0.6) = 0.30
+\]
+
+- \(P(x_1, y_2)\):
+\[
+(0.5)(0.6) = 0.30
+\]
+
+- \(P(x_2, y_1)\):
+\[
+(0.8)(0.4) = 0.32
+\]
+
+- \(P(x_2, y_2)\):
+\[
+(0.2)(0.4) = 0.08
+\]
+
+Thus, we have the following results:
+
+| \(Y \backslash X\) | \(x_1\) | \(x_2\) |
+|------------------:|:------:|:------:|
+| \(y_1\) (Heads)   | 0.30   | 0.32   |
+| \(y_2\) (Tails)   | 0.30   | 0.08   |
+
+</div>
+
+
+Because the ordering of variables is arbitrary, the rule is symmetric:
+  \[
+  p(x, y) = p(x \mid y) \, p(y) = p(y \mid x) \, p(x)
+  \]
+
+
+
+---
+
+### Bayes’ Theorem (Probabilistic Inversion)
+
+
+By combining the Sum and Product Rules, we obtain **Bayes’ Theorem**:
+
+
+
+
+<div class="theorem">
+Let \( p(x) \) be the our initial belief about $x$ before seeing the data (the **prior**), \( p(y \mid x) \) the likelihood of data $y$ given $x$ (the **likelihood**) and  \( p(y) \) the probability of event $y$ (the **evidence or marginal likelihood**).  Then, the **posterior**, \( p(x \mid y) \), (the updated belief about \( x \) after observing \( y \)) is given by:  
+\[
+p(x \mid y) =
+\frac{p(y \mid x) \, p(x)}{p(y)}
+\]
+</div>
+
+
+Bayes’ Theorem allows us to invert the relationship between \( x \) and \( y \), making it a cornerstone of **Bayesian inference**.
+
+
+
+<div class="example">
+Suppose a factory produces light bulbs, and **5%** of the bulbs are defective.  A quality-control test is used with the following accuracy:
+
+- If a bulb **is defective**, the test correctly identifies it as defective **90%** of the time.  
+- If a bulb **is not defective**, the test incorrectly labels it as defective **8%** of the time.  
+
+Let 
+
+-  \(D\) = the bulb is defective  
+-  \(T\) = the test indicates the bulb is defective  
+
+Then, we see that
+\[
+P(D) = 0.05, \quad P(D^c) = 0.95, \quad
+P(T \mid D) = 0.90, \quad
+P(T \mid D^c) = 0.08.
+\]
+
+Using the law of total probability, we can determine the probability that the light bulb is defective.  We do so by using the sum rule and summing the situations where the test is defective (ie, the test says the bulb is defective and the bulb is defective, and when the test says the bulb is defective but the bulb is actually not defective).
+\[
+P(T) = P(T \mid D)P(D) + P(T \mid D^c)P(D^c)
+\]
+
+\[
+P(T) = (0.90)(0.05) + (0.08)(0.95) = 0.045 + 0.076 = 0.121
+\]
+
+To find the probability of the bulb being defective given that the test says it is defective,
+\[
+P(D \mid T) = \frac{P(T \mid D)P(D)}{P(T)}
+\]
+
+\[
+P(D \mid T) = \frac{(0.90)(0.05)}{0.121} \approx 0.372
+\]
+Therefore, even though the test is fairly accurate, only about **37.2%** of bulbs that test defective are actually defective.
+</div>
+
+
+
+
+The posterior combines all available information from both the prior and the observed data.  In many applications, such as machine learning, reinforcement learning, and Bayesian statistics, the posterior is the key object of interest.  However, in practice, it is often difficult to compute \( p(y) \) exactly due to the integral over all possible \( x \).  
+
+
+<div class="example">
+Consider a **spam detection model** that classifies emails as *spam* or *not spam*.  Of all email traffic, 80% are not spam and 20% are spam.  The word *free* appears in 65% of spam emails while it appears in 10% of non-spam emails.  What is the probability that an email is spam given that it includes the word "free"?
+
+The events are:
+
+- Let \(S\) = the email is spam  
+- Let \(N\) = the email is not spam 
+- Let \(W\) = the email contains the word “free”
+
+From historical email data:
+\[
+P(S) = 0.20, \quad P(N) = 0.80
+\]
+\[
+P(W \mid S) = 0.65
+\]
+\[
+P(W \mid N) = 0.10
+\]
+
+
+Using the law of total probability:
+\[
+P(W) = P(W \mid S)P(S) + P(W \mid N)P(N)
+\]
+
+\[
+P(W) = (0.65)(0.20) + (0.10)(0.80) = 0.13 + 0.08 = 0.21
+\]
+
+
+We now compute the probability that an email is spam given that it contains the word “free”:
+\[
+P(S \mid W) = \frac{P(W \mid S)P(S)}{P(W)}
+\]
+\[
+P(S \mid W) = \frac{(0.65)(0.20)}{0.21} \approx 0.619
+\]
+So, about 62% of all emails that contain the word free are spam emails.
+</div>
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+<div class="exercise">
+
+A doctor is called to see a sick child. The doctor has prior information that 90\% of sick children in that neighborhood have the flu, while the other 10\% are sick with measles. Let $F$ stand for an event of a child being sick with flu and $M$ stand for an event of a child being sick with measles. Assume for simplicity that $F \cup M = \Omega$, i.e., that there are no other maladies in that neighborhood.
+        A well-known symptom of measles is a rash (the event of having which we denote $R$). Assume that the probability of having a rash if one has measles is $P(R |M)=0.95$. However, occasionally children with flu also develop rash, and the probability of having a rash if one has flu is $P(R|F)=0.08$.
+        Upon examining the child, the doctor finds a rash. What is the probability that the child has measles? 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+In a study, physicians were asked what the odds of breast cancer would be in a woman who was initially thought to have a 1\% risk of cancer but who ended up with a positive mammogram result (a mammogram accurately classifies about 80\% of cancerous tumors and 90\% of benign tumors.) 95 out of a hundred physicians estimated the probability of cancer to be about 75\%.  Do you agree?
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Suppose we have 3 cards identical in form except that both sides of the first card are colored red, both sides of the second card are colored black, and one side of the third card is colored red and the other side is colored black.
+        The 3 cards are mixed up in a hat, and 1 card is randomly selected and put down on the ground. If the upper side of the chosen card is colored red, what is the probability that the other side is colored black?
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Dangerous fires are rare (1\% of the time).  Smoke is not rare because of BBQ's (10\% of the time).  We know that 90\% of dangerous fires make smoke.  What is the probability of dangerous fires when we see smoke?
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Suppose an HIV test is 99\% accurate (in both directions) and 0.3\% of the population is HIV positive.  If someone tests positive for HIV, what is the probability that they are actually positive?
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+We know that 40\% of all spam emails have more exclamation marks than periods.  Only 2\% of non-spam emails have more exclamation marks than periods.  We also know that about 35\% of all emails are spam.  We just received an email that has more exclamation marks than periods.  What is the probability that it is spam?
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+State and prove Bayes' theorem. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+## Summary Statistics and Independence
+
+This section explores how to summarize and compare random variables using summary statistics, covariance, and independence. These concepts are essential in understanding uncertainty, relationships between variables, and geometric interpretations in probability spaces.
+
+---
+
+###   Means and Covariances
+
+
+<div class="definition">
+The **expected value** \( E_X[g(x)] \) of a function \( g(x) \) with respect to a random variable \( X \) represents the long-run average outcome weighted by its probability.  
+
+  - **Continuous case:**  
+    \[
+    E_X[g(x)] = \int_X g(x)p(x)\,dx
+    \]  
+  - **Discrete case:**  
+    \[
+    E_X[g(x)] = \sum_{x \in X} g(x)p(x)
+    \]
+</div>
+
+The **mean** is a special case where \( g(x) = x \), giving \( E_X[x] \).  Two other related measures of central tendency are:
+
+  - **Median:** Middle value (robust to outliers)  
+  - **Mode:** Most frequent or likely value  
+
+<div class="example">
+Discrete Expected Value
+
+Let \(X\) be a discrete random variable representing the number shown when rolling a fair six-sided die.  The probability Mass Function
+\[
+P(X = x) = \frac{1}{6}, \quad x = 1,2,3,4,5,6
+\]
+Thus, the expected Value is
+\[
+\mathbb{E}[X] = \sum_{x=1}^6 x \, P(X=x)
+= \frac{1}{6}(1+2+3+4+5+6)
+= \frac{21}{6}
+= 3.5
+\]
+</div>
+
+<div class="example">
+Continuous Expected Value with \( g(x) = x \) (The Mean)
+
+Let \(X \sim \text{Uniform}(0,2)\).  The probability density function is
+\[
+f(x) =
+\begin{cases}
+\frac{1}{2}, & 0 \le x \le 2, \\
+0, & \text{otherwise}.
+\end{cases}
+\]
+Therefore, the expected Value is
+\[
+\mathbb{E}[X] = \int_{-\infty}^{\infty} x f(x)\, dx
+= \int_0^2 x \cdot \frac{1}{2} \, dx
+\]
+\[
+= \frac{1}{2} \left[ \frac{x^2}{2} \right]_0^2
+= \frac{1}{2} \cdot 2
+= 1
+\]
+This is the mean of the distribution.
+</div>
+
+
+<div class="example">
+Continuous Expected Value with \( g(x) \neq x \)
+
+Let \(X \sim \text{Uniform}(0,1)\), and define:
+\[
+g(X) = X^2
+\]
+The expected Value of \( g(X) \)
+\[
+\mathbb{E}[g(X)] = \mathbb{E}[X^2]
+= \int_0^1 x^2 \cdot 1 \, dx
+\]
+\[
+= \left[ \frac{x^3}{3} \right]_0^1
+= \frac{1}{3}.
+\]
+</div>
+
+
+<div class="definition">
+**Covariance** measures how two random variables vary together:
+  \[
+  \text{Cov}[x, y] = E[xy] - E[x]E[y]
+  \]
+</div>
+
+
+<div class="example">
+Covariance of Two Random Variables
+
+Let \(X\) and \(Y\) be discrete random variables with the following joint probability distribution:
+
+| \(x\) | \(y\) | \(p(x,y)\) |
+|----|----|----|
+| 0 | 0 | \(0.25\) |
+| 0 | 1 | \(0.25\) |
+| 1 | 0 | \(0.25\) |
+| 1 | 1 | \(0.25\) |
+
+The expected value of $X$ is
+\[
+E[X] = \sum_{x,y} x \, p(x,y)
+= (0)(0.25) + (0)(0.25) + (1)(0.25) + (1)(0.25)
+= 0.5.
+\]
+
+
+The expected value of $Y$ is
+\[
+E[Y] = \sum_{x,y} y \, p(x,y)
+= (0)(0.25) + (1)(0.25) + (0)(0.25) + (1)(0.25)
+= 0.5.
+\]
+
+The expected value of $XY$ is
+\[
+E[XY] = \sum_{x,y} xy \, p(x,y)
+= (0)(0)(0.25) + (0)(1)(0.25) + (1)(0)(0.25) + (1)(1)(0.25)
+= 0.25.
+\]
+
+Therefore, the covariance is
+\[
+\text{Cov}[X,Y]
+= E[XY] - E[X]E[Y]
+= 0.25 - (0.5)(0.5)
+= 0,
+\]
+meaning there is no linear relationship between \(X\) and \(Y\).  In this case, \(X\) and \(Y\) are independent random variables.
+</div>
+
+<div class="definition">
+**Variance** is the covariance of a variable with itself:
+  \[
+  V[x] = \text{Cov}[x, x]
+  \]
+</div>
+
+The variance describes how much the data spread around the mean.
+
+
+<div class="example">
+
+Let \(X\) be a discrete random variable with probability mass function:
+
+| \(x\) | \(p(x)\) |
+|---|---|
+| 0 | \(0.2\) |
+| 1 | \(0.5\) |
+| 2 | \(0.3\) |
+What is the variance of $X$?
+
+The expected value of $X$ is
+\[
+E[X] = \sum_x x p(x)
+= 0(0.2) + 1(0.5) + 2(0.3)
+= 1.1
+\]
+
+The expected value of $X^2$ is
+\[
+E[X^2] = \sum_x x^2 p(x)
+= 0^2(0.2) + 1^2(0.5) + 2^2(0.3)
+= 1.7
+\]
+
+Therefore, by definition,
+\[
+\mathrm{Var}(X)
+= \mathrm{Cov}(X, X)
+= E[X^2] - E[X]^2
+= 1.7 - (1.1)^2
+= 1.7 - 1.21
+= 0.49
+\]
+
+The variance measures how much the values of \(X\) spread out around the mean.  Here, the variance of \(X\) is \(0.49\), which quantifies the variability of the random variable.
+</div>
+
+The **covariance matrix** summarizes all pairwise covariances for multivariate data and is symmetric and positive semi-definite. The covariance matrix has the following general form:
+
+\[
+\Sigma =
+\begin{bmatrix}
+\text{Cov}[x_1, x_1] & \text{Cov}[x_1, x_2] & \cdots & \text{Cov}[x_1, x_D] \\
+\text{Cov}[x_2, x_1] & \text{Cov}[x_2, x_2] & \cdots & \text{Cov}[x_2, x_D] \\
+\vdots & \vdots & \ddots & \vdots \\
+\text{Cov}[x_D, x_1] & \text{Cov}[x_D, x_2] & \cdots & \text{Cov}[x_D, x_D]
+\end{bmatrix}
+\]
+
+
+**Correlation** normalizes covariance to the range \([-1, 1]\):
+  \[
+  \text{corr}[x, y] = \frac{\text{Cov}[x, y]}{\sqrt{V[x]V[y]}}
+  \]
+  
+  - \( \text{corr} = 1 \): perfect positive relationship  
+  - \( \text{corr} = -1 \): perfect negative relationship  
+  - \( \text{corr} = 0 \): uncorrelated variables
+
+---
+
+### **Empirical Means and Covariances**
+
+In practice, we estimate population statistics using sample data:
+
+
+
+<div class="definition">
+**Empirical Mean:**
+    \[
+    \mathbf{a}r{x} = \frac{1}{N}\sum_{n=1}^{N} x_n
+    \]
+**Empirical Covariance:**
+    \[
+    \Sigma = \frac{1}{N}\sum_{n=1}^{N}(x_n - \mathbf{a}r{x})(x_n - \mathbf{a}r{x})^\top
+    \]
+</div>
+
+Both the empirical mean and covariance are the sample-based estimates of the true (population) parameters.
+
+
+
+<div class="example">
+Suppose we observe paired data from two random variables \(X\) and \(Y\).  The data consist of \(n = 4\) observations:
+
+\[
+(x_i, y_i) =
+(1, 2),\;
+(2, 3),\;
+(3, 5),\;
+(4, 4).
+\]
+
+
+The empirical mean (sample mean) of \(X\) and \(Y\) is defined as
+\[
+\mathbf{a}r{x} = \frac{1}{n}\sum_{i=1}^n x_i,
+\qquad
+\mathbf{a}r{y} = \frac{1}{n}\sum_{i=1}^n y_i.
+\]
+
+Compute each mean:
+\[
+\mathbf{a}r{x} = \frac{1+2+3+4}{4} = 2.5,
+\qquad
+\mathbf{a}r{y} = \frac{2+3+5+4}{4} = 3.5.
+\]
+
+The empirical covariance between \(X\) and \(Y\) is
+\[
+\widehat{\mathrm{Cov}}(X,Y)
+= \frac{1}{n}\sum_{i=1}^n (x_i - \mathbf{a}r{x})(y_i - \mathbf{a}r{y}).
+\]
+
+Compute each term:
+\[
+\begin{aligned}
+(1-2.5)(2-3.5) &= ( -1.5)(-1.5) = 2.25, \\
+(2-2.5)(3-3.5) &= (-0.5)(-0.5) = 0.25, \\
+(3-2.5)(5-3.5) &= (0.5)(1.5) = 0.75, \\
+(4-2.5)(4-3.5) &= (1.5)(0.5) = 0.75.
+\end{aligned}
+\]
+
+Sum and divide by \(n\):
+\[
+\widehat{\mathrm{Cov}}(X,Y)
+= \frac{2.25 + 0.25 + 0.75 + 0.75}{4}
+= 1.0.
+\]
+</div>
+
+### Alternatice Expressions for the Variance
+
+There are a number of alternative forms of the variance:
+
+-  **Definition:**  
+  \[
+  V[x] = E[(x - \mu)^2]
+  \]   
+-  **Raw-score formula:**  
+  \[
+  V[x] = E[x^2] - (E[x])^2
+  \]   
+-  **Pairwise difference form:**  
+  \[
+  \frac{1}{N^2}\sum_{i,j=1}^{N}(x_i - x_j)^2 = 2\left(E[x^2] - (E[x])^2\right)
+  \]
+
+
+---
+
+### **Sums and Transformations of Random Variables**
+
+
+
+<div class="lemma">
+For two random variables \( X \) and \( Y \):
+\[
+\begin{aligned}
+E[x + y] &= E[x] + E[y] \\
+V[x + y] &= V[x] + V[y] + 2\,\text{Cov}[x, y]
+\end{aligned}
+\]
+
+If we apply an affine transformation \( y = A x + b \):
+\[
+\begin{aligned}
+E[y] &= A E[x] + b, \\
+V[y] &= A V[x] A^\top
+\end{aligned}
+\]
+</div>
+
+
+
+<div class="example">
+$V[x] = E[(x - \mu)^2]$ is an equivalent version of $V[x] = E[x^2] - (E[x])^2$ (and this is exactly the definition of variance we gave earlier).  If we recall that $\mu = E[x]$, we can use the affine transformation property of the expected value to get:
+\begin{align*}
+E[(x - \mu)^2] &= E[(x - \mu)(x-\mu)] \\
+&= E[x^2 - 2\mu x + \mu^2] \\
+&= E[x^2] - 2\mu E[x] + \mu^2 \\
+&= E[x^2] - 2E[x]^2 + E[x]^2\\
+&=E[x^2] - E[x]^2.
+\end{align*}
+</div>
+
+
+---
+
+### **Statistical Independence**
+
+
+
+<div class="definition">
+**Independent variables:**  
+Two random variables \( X \) and \( Y \) are independent if  
+  \[
+  p(x, y) = p(x)p(y)
+  \]
+**Conditional independence:**  
+  \( X \) and \( Y \) are conditionally independent given \( Z \) if  
+  \[
+  p(x, y \mid z) = p(x \mid z)p(y \mid z)
+  \]
+</div>
+
+Conditional independence is often written as \( X \perp\!\!\!\perp Y \mid Z \).  These relationships are fundamental in probabilistic modeling and graphical models.
+
+---
+
+### **Inner Products and Geometry of Random Variables**
+
+Random variables can be viewed as vectors in a space with inner products defined by covariance:
+  \[
+  \langle X, Y \rangle = \text{Cov}[x, y]
+  \]
+The length of a random variable is its standard deviation:
+  \[
+  \|X\| = \sqrt{V[x]} = \sigma[x]
+  \]
+The angle between random variables is related to correlation:
+  \[
+  \cos(\theta) = \frac{\text{Cov}[x, y]}{\sqrt{V[x]V[y]}} = \text{corr}[x, y]
+  \]
+\( \theta = 90^\circ \Leftrightarrow\) uncorrelated variables (orthogonal in this space)
+
+This geometric interpretation helps visualize dependence and uncertainty.
+
+
+
+
+
+
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+<div class="exercise">
+The distribution of the amount of gravel (in tons) sold by a particular construction supply company in a given week is a continuous RV $X$ with pdf \[f(x) = \begin{cases} \dfrac{3}{2}(1-x^2) & 0 \leq x \leq 1 \\ 0 & otherwise \end{cases}.\]
+        \begin{enumerate}
+            \item   Find the CDF.\vfill
+            \item   Find $E[X]$ and $Var(X)$ \vfill
+            \item   Find $P(X \geq 3/4)$ \vfill
+        \end{enumerate} 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Let $X$ be a random variable with PDF given by \[f_X(x)= \begin{cases} cx^2 & |x| \leq 1\\0 & otherwise \end{cases}.\]
+        \begin{enumerate}
+            \item   Find the constant $c$.\vfill
+            \item   Find $E[X]$ and $Var(X)$ \vfill
+            \item   Find $P(X \geq 1/2)$ \vfill
+        \end{enumerate} 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+Let $X$ be a positive continuous random variable. Prove that $E[X] = \int_{0}^{\infty} P(X \geq x) dx$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+   Show that $cov[x,y] = E[xy] -E[x]E[y]$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+## Gaussian Distribution
+
+The **Gaussian (or normal) distribution** is one of the most fundamental probability distributions for continuous-valued random variables.  Its importance arises from its computational convenience and its natural appearance in many real-world and theoretical contexts — most notably due to the **Central Limit Theorem**, which states that the sum of many independent and identically distributed random variables tends to a Gaussian distribution.
+
+
+The Gaussian distribution plays a central role in machine learning, forming the foundation of many machine learning ideas such as **linear regression** (as the likelihood and prior), **mixture models** (for density estimation), **Gaussian processes**, etc.
+
+
+
+<div class="definition">
+For a scalar random variable \( x \), the Gaussian (normal) probability density function (pdf) is defined as
+\[
+p(x \mid \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left( -\frac{(x - \mu)^2}{2\sigma^2} \right),
+\]
+where:
+
+- \( \mu \) is the mean (location parameter),  
+- \( \sigma^2 \) is the variance (spread or scale parameter).
+</div>
+
+
+<div class="example">
+Consider a random variable \(X\) representing the heights (in cm) of a population of adults, modeled as:
+\[
+X \sim \mathcal{N}(\mu = 170, \sigma^2 = 25)
+\]
+so that the mean height is 170 cm and the standard deviation is \(\sigma = 5\) cm.
+
+The probability density function is:
+\[
+p(x \mid 170, 25) = \frac{1}{\sqrt{2\pi \cdot 25}}
+\exp\left( -\frac{(x - 170)^2}{2 \cdot 25} \right)
+= \frac{1}{5\sqrt{2\pi}} \exp\left( -\frac{(x - 170)^2}{50} \right).
+\]
+
+
+
+Find the density at \(x = 175\) cm:
+
+\[
+p(175) = \frac{1}{5\sqrt{2\pi}} \exp\left( -\frac{(175 - 170)^2}{50} \right)
+= \frac{1}{5\sqrt{2\pi}} \exp\left( -\frac{25}{50} \right)
+= \frac{1}{5\sqrt{2\pi}} \exp(-0.5) \approx 0.048.
+\]
+
+This tells us that a height of 175 cm has a density of approximately 0.048 under this normal distribution.  This is simply the height of the curve - it is not the probability of someone having a height of 175cm.
+</div>
+
+
+
+
+<div class="definition">
+For a random vector \( \mathbf{x} \in \mathbb{R}^D \), the **multivariate Gaussian distribution** is given by:
+\[
+p(\mathbf{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma})
+= (2\pi)^{-D/2} |\boldsymbol{\Sigma}|^{-1/2}
+\exp\!\left( -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^\top
+\boldsymbol{\Sigma}^{-1} (\mathbf{x} - \boldsymbol{\mu}) \right),
+\]
+where:
+
+- \( \boldsymbol{\mu} \) is the mean vector , and  
+- \( \boldsymbol{\Sigma} \) is the covariance matrix.
+</div>
+
+
+<div class="example">
+Consider a 2-dimensional random vector 
+
+\[
+\mathbf{x} = 
+\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+\]
+representing the height (in cm) and weight (in kg) of a person. Suppose the data is modeled as a 2D Gaussian with
+\[
+\boldsymbol{\mu} = 
+\begin{bmatrix} 170 \\ 65 \end{bmatrix}, \quad
+\boldsymbol{\Sigma} =
+\begin{bmatrix} 25 & 10 \\ 10 & 16 \end{bmatrix}.
+\]
+Then the probability density function is:
+\[
+p(\mathbf{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) 
+= \frac{1}{2 \pi \sqrt{|\boldsymbol{\Sigma}|}} 
+\exp\!\Bigg( -\frac{1}{2} (\mathbf{x}-\boldsymbol{\mu})^\top
+\boldsymbol{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu}) \Bigg).
+\]
+
+
+Let \(\mathbf{x} = \begin{bmatrix} 175 \\ 70 \end{bmatrix}\). Then the difference from the mean is
+\[
+\mathbf{x} - \boldsymbol{\mu} = 
+\begin{bmatrix} 5 \\ 5 \end{bmatrix}.
+\]
+
+Compute the Mahalanobis term:
+\[
+(\mathbf{x}-\boldsymbol{\mu})^\top \boldsymbol{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu}) \approx 2.0
+\]
+
+and the determinant 
+\[
+|\boldsymbol{\Sigma}| = 25\cdot16 - 10^2 = 300.
+\]
+Thus, the density is
+\[
+p(\mathbf{x}) \approx \frac{1}{2 \pi \sqrt{300}} \exp(-1) \approx 0.0042.
+\]
+
+This gives the height of the Gaussian curve at the vector \([175, 70]^\top\).
+</div>
+
+
+---
+
+### Joint, Marginal, and Conditional Gaussians
+
+
+<div class="lemma">
+Consider a joint Gaussian over concatenated variables:
+\[
+p(\mathbf{x}, \mathbf{y}) =
+\mathcal{N}\!\left(
+\begin{bmatrix}
+\boldsymbol{\mu}_x \\[4pt]
+\boldsymbol{\mu}_y
+\end{bmatrix},
+\begin{bmatrix}
+\boldsymbol{\Sigma}_{xx} & \boldsymbol{\Sigma}_{xy} \\[4pt]
+\boldsymbol{\Sigma}_{yx} & \boldsymbol{\Sigma}_{yy}
+\end{bmatrix}
+\right).
+\]
+Then:
+
+- The **marginals** \( p(\mathbf{x}) \) and \( p(\mathbf{y}) \) are Gaussian.  
+- The **conditional distribution** \( p(\mathbf{x} \mid \mathbf{y}) \) is also Gaussian, with mean and covariance derived as:
+
+\[
+\begin{aligned}
+\boldsymbol{\mu}_{x|y} &= \boldsymbol{\mu}_x
++ \boldsymbol{\Sigma}_{xy} \boldsymbol{\Sigma}_{yy}^{-1} (\mathbf{y} - \boldsymbol{\mu}_y), \\
+\boldsymbol{\Sigma}_{x|y} &= \boldsymbol{\Sigma}_{xx}
+- \boldsymbol{\Sigma}_{xy} \boldsymbol{\Sigma}_{yy}^{-1} \boldsymbol{\Sigma}_{yx}.
+\end{aligned}
+\]
+</div>
+
+
+<div class="example">
+Consider two random variables \(\mathbf{x} \in \mathbb{R}\) and \(\mathbf{y} \in \mathbb{R}\) with the joint Gaussian distribution:
+\[
+\begin{bmatrix} \mathbf{x} \\ \mathbf{y} \end{bmatrix} 
+\sim \mathcal{N} \left(
+\begin{bmatrix} 1 \\ 2 \end{bmatrix},
+\begin{bmatrix} 2 & 1 \\ 1 & 3 \end{bmatrix}
+\right).
+\]
+
+- The marginal of \(\mathbf{x}\) is Gaussian:
+\[
+p(\mathbf{x}) \= \mathcal{N}(\mu_x, \Sigma_{xx}) = \mathcal{N}(1, 2)
+\]
+
+- The marginal of \(\mathbf{y}\) is Gaussian:
+\[
+p(\mathbf{y}) \= \mathcal{N}(\mu_y, \Sigma_{yy}) = \mathcal{N}(2, 3)
+\]
+
+Suppose we observe \(p(\mathbf{y}) = 3\). Then the conditional distribution \(p(\mathbf{x} \mid \mathbf{y}=3)\) is Gaussian with:
+
+\[
+\mu_{x|y} = \mu_x + \Sigma_{xy} \Sigma_{yy}^{-1} (y - \mu_y)
+= 1 + 1 \cdot 3^{-1} \cdot (3 - 2)
+= 1 + \frac{1}{3} \approx 1.333
+\]
+
+\[
+\Sigma_{x|y} = \Sigma_{xx} - \Sigma_{xy} \Sigma_{yy}^{-1} \Sigma_{yx}
+= 2 - 1 \cdot 3^{-1} \cdot 1
+= 2 - \frac{1}{3} \approx 1.667
+\]
+
+Thus, the conditional distribution is:
+\[
+p(\mathbf{x} \mid \mathbf{y}=3) = \mathcal{N}(1.333, 1.667)
+\]
+
+</div>
+
+
+
+---
+
+### Product of Gaussian Densities
+
+
+
+
+<div class="lemma">
+The product of two Gaussian densities is proportional to another Gaussian.
+</div>
+
+This property is essential for Bayesian inference, where the posterior distribution is obtained by multiplying the likelihood and prior, both often modeled as Gaussians.
+
+
+<div class="example">
+If $\mathcal{N}(\mathbf{x}|\mathbf{a}, \mathbf{A})$ and $\mathcal{N}(\mathbf{x}|\mathbf{b}, \mathbf{B})$ are the two Gaussians, their product is a Gaussian of the form $\mathcal{N}(\mathbf{x}|\mathbf{c}, \mathbf{C})$ where
+
+-  $\mathbf{C} = \left( \mathbf{A}^{-1} +  \mathbf{B}^{-1} \right)^{-1}$  
+-  $\mathbf{c} = \mathbf{C}\left( \mathbf{A}^{-1}\mathbf{a} +  \mathbf{B}^{-1}\mathbf{b} \right)$  
+-  $c = (2\pi)^{-D/2} |\mathbf{A} + \mathbf{B}|^{-1/2} exp(-1/2 (\mathbf{a} - \mathbf{b})^T(\mathbf{A} + \mathbf{B})^{-1}(\mathbf{a} - \mathbf{b}))$.  
+</div>
+
+---
+
+### Mixtures of Gaussians
+
+A **mixture of Gaussians** combines multiple Gaussian components to form a more flexible distribution:
+
+\[
+p(x) = \alpha p_1(x) + (1 - \alpha)p_2(x),
+\]
+where \( 0 < \alpha < 1 \) is the mixture weight.
+
+
+
+
+
+
+<div class="lemma">
+Let 
+\[
+p(x) = \alpha p_1(x) + (1 - \alpha)p_2(x),
+\]
+where \( 0 < \alpha < 1 \).  If \( p_1(x) = \mathcal{N}(\mu_1, \sigma_1^2) \) and \( p_2(x) = \mathcal{N}(\mu_2, \sigma_2^2) \),  
+then:
+\[
+\begin{aligned}
+E[x] &= \alpha \mu_1 + (1 - \alpha)\mu_2, \\
+V[x] &= \alpha \sigma_1^2 + (1 - \alpha)\sigma_2^2
++ \alpha(1 - \alpha)(\mu_1 - \mu_2)^2.
+\end{aligned}
+\]
+</div>
+
+This expression illustrates the **law of total variance**:
+\[
+\mathrm{Var}(X) = E_Y[\mathrm{Var}(X \mid Y)] + \mathrm{Var}_Y(E[X \mid Y]).
+\]
+
+---
+
+### Linear and Affine Transformations of Gaussians
+
+If \( \mathbf{X} \sim \mathcal{N}(\mathbf{0}, \mathbf{I}) \) and \( \mathbf{Y} = \mathbf{A}\mathbf{X} + \boldsymbol{\mu} \),
+then
+\[
+\mathbf{Y} \sim \mathcal{N}(\boldsymbol{\mu}, \mathbf{A}\mathbf{A}^\top).
+\]
+
+Hence, any linear or affine transformation of a Gaussian random variable is also Gaussian.  This property is fundamental in probabilistic modeling, regression, and state estimation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+<div class="exercise">
+
+Derive the formula for the product of Gaussians.  That is, prove \[\mathcal{N}(\mathbf{x}|\mathbf{a},\mathbf{a})\mathcal{N}(\mathbf{x}|\mathbf{B},\mathbf{B}) = c\mathcal{N}(\mathbf{x},\mathbf{c},\mathbf{C}),\] showing the values of $c, \mathbb{c}$ and $\mathbb{C}$. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+<div class="exercise">
+a.  Select any two integers $a$ and $b$.  What is $\alpha a + (1-\alpha)b$, where $0 \leq \alpha \leq 1$.   
+b.  Select any $a,b \in \mathbb{R}^2$.  What is $\alpha a + (1-\alpha)b$, where $0 \leq \alpha \leq 1$.   
+c.  Generalize the results from the last 2 parts to $a,b \in \mathbb{R}^n$. Justify your answer. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+<div class="exercise">
+Suppose we have a full rank matrix $\mathbf{a} \in \mathbb{R}^{M \times N}$, where $M \geq N$ and $\mathbb{y} \in \mathbb{R}^M$ is a Gaussian random variable with mean $\mathbf{a}\mathbf{x}$, i.e., \[p(\mathbf{y}) = \mathcal{N}(\mathbf{y}|\mathbf{a}\mathbf{x}, \mathbf{\Sigma}).\]  If $\mathbf{a}$ is invertible, find $p(\mathbf{x})$.
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Justify the following statement for a full rank matrix $\mathbf{a} \in \mathbb{R}^{M \times N}$, where $M \geq N$, $\mathbb{y} \in \mathbb{R}^M$ and $\mathbf{x} \in \mathbb{R}^N$: \[\mathbb{y} = \mathbf{a}\mathbf{x} \Longleftrightarrow \left(\mathbf{a}^T\mathbf{a}\right)^{-1}\mathbf{a}^T\mathbb{y} = \mathbf{x}.\] Be careful to justify all of your steps.
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+

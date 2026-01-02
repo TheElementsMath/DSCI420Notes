@@ -1,0 +1,27 @@
+h1:linear-regression Linear Regression
+h2:problem-formulation Problem Formulation
+h3:parametric-models Parametric Models
+h3:exercises Exercises
+h2:parameter-estimation Parameter Estimation
+h3:maximum-likelihood-estimation-mle Maximum Likelihood Estimation (MLE)
+h3:mle-with-nonlinear-features MLE with Nonlinear Features
+h3:overfitting-in-linear-regression Overfitting in Linear Regression
+h3:maximum-a-posteriori-map-estimation Maximum A Posteriori (MAP) Estimation
+h3:optimization Optimization
+h3:comparison-to-mle Comparison to MLE
+h3:map-estimation-as-regularization MAP Estimation as Regularization
+h3:exercises-1 Exercises
+h2:bayesian-linear-regression Bayesian Linear Regression
+h3:the-model The Model
+h3:posterior-distribution Posterior Distribution
+h3:posterior-predictions Posterior Predictions
+h3:marginal-likelihood Marginal Likelihood
+h4:key-insights Key Insights
+h4:summary-of-distributions Summary of Distributions
+h3:exercises-2 Exercises
+h2:maximum-likelihood-as-orthogonal-projection Maximum Likelihood as Orthogonal Projection
+h3:simple-linear-regression-case Simple Linear Regression Case
+h3:general-linear-regression-case General Linear Regression Case
+h3:special-case-orthonormal-basis Special Case: Orthonormal Basis
+h3:exercises-3 Exercises
+

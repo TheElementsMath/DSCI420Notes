@@ -1,0 +1,31 @@
+h1:analytic-geometry Analytic Geometry
+h2:norms Norms
+h3:exercises Exercises
+h2:inner-products Inner Products
+h3:symmetric-positive-definite-matrices Symmetric, Positive Definite Matrices
+h3:exercises-1 Exercises
+h2:lengths-and-distances Lengths and Distances
+h3:distance-and-metrics Distance and Metrics
+h3:exercises-2 Exercises
+h2:angles-and-orthogonality Angles and Orthogonality
+h3:orthogonal-matrices Orthogonal Matrices
+h3:exercises-3 Exercises
+h2:orthonormal-basis Orthonormal Basis
+h3:exercises-4 Exercises
+h2:orthogonal-complement Orthogonal Complement
+h3:exercises-5 Exercises
+h2:inner-product-of-functions Inner Product of Functions
+h3:exercises-6 Exercises
+h2:orthogonal-projections Orthogonal Projections
+h3:projection-onto-a-line Projection onto a Line
+h3:projection-onto-general-subspaces Projection onto General Subspaces
+h3:gram-schmidt-orthogonalization Gram-Schmidt Orthogonalization
+h3:projection-onto-affine-subspaces Projection onto Affine Subspaces
+h3:exercises-7 Exercises
+h2:rotations Rotations
+h3:rotations-in-2 Rotations in ( ^2 )
+h3:rotations-in-3 Rotations in ( ^3 )
+h3:rotations-in-n-dimensions Rotations in ( n ) Dimensions
+h3:properties-of-rotations Properties of Rotations
+h3:exercises-8 Exercises
+

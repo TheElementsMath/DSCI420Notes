@@ -1,0 +1,21 @@
+h1:density-estimation-with-gaussian-mixture-models Density Estimation with Gaussian Mixture Models
+h2:gaussian-mixture-models-gmms Gaussian Mixture Models (GMMs)
+h3:exercises Exercises
+h2:parameter-learning-via-maximum-likelihood Parameter Learning via Maximum Likelihood
+h3:likelihood-and-log-likelihood Likelihood and Log-Likelihood
+h3:responsibilities Responsibilities
+h3:updating-parameters Updating Parameters
+h3:interpretation Interpretation
+h3:exercises-1 Exercises
+h2:expectation-maximization-em-algorithm Expectation-Maximization (EM) Algorithm
+h3:algorithm-steps Algorithm Steps
+h3:example-gmm-fit Example: GMM Fit
+h3:exercises-2 Exercises
+h2:latent-variable-perspective Latent-Variable Perspective
+h3:generative-model Generative Model
+h3:likelihood Likelihood
+h3:posterior-distribution Posterior Distribution
+h3:extension-to-full-dataset Extension to Full Dataset
+h3:em-algorithm-revisited EM Algorithm Revisited
+h3:exercises-3 Exercises
+

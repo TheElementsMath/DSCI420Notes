@@ -1,0 +1,32 @@
+h1:probability-and-distributions Probability and Distributions
+h2:construction-of-a-probability-space Construction of a Probability Space
+h3:philosophical-issues Philosophical Issues
+h3:bayesian-vs.-frequentist-interpretations Bayesian vs. Frequentist Interpretations
+h3:probability-and-random-variables Probability and Random Variables
+h3:statistics Statistics
+h3:exercises Exercises
+h2:discrete-and-continuous-probabilities Discrete and Continuous Probabilities
+h3:discrete-probabilities Discrete Probabilities
+h3:continuous-probabilities Continuous Probabilities
+h3:contrasting-discrete-and-continuous-distributions Contrasting Discrete and Continuous Distributions
+h3:exercises-1 Exercises
+h2:sum-rule-product-rule-and-bayes-theorem Sum Rule, Product Rule, and Bayes’ Theorem
+h3:the-sum-rule-marginalization-property The Sum Rule (Marginalization Property)
+h3:the-product-rule-factorization-property The Product Rule (Factorization Property)
+h3:bayes-theorem-probabilistic-inversion Bayes’ Theorem (Probabilistic Inversion)
+h3:exercises-2 Exercises
+h2:summary-statistics-and-independence Summary Statistics and Independence
+h3:means-and-covariances Means and Covariances
+h3:empirical-means-and-covariances 
+h3:alternatice-expressions-for-the-variance Alternatice Expressions for the Variance
+h3:sums-and-transformations-of-random-variables 
+h3:statistical-independence 
+h3:inner-products-and-geometry-of-random-variables 
+h3:exercises-3 Exercises
+h2:gaussian-distribution Gaussian Distribution
+h3:joint-marginal-and-conditional-gaussians Joint, Marginal, and Conditional Gaussians
+h3:product-of-gaussian-densities Product of Gaussian Densities
+h3:mixtures-of-gaussians Mixtures of Gaussians
+h3:linear-and-affine-transformations-of-gaussians Linear and Affine Transformations of Gaussians
+h3:exercises-4 Exercises
+

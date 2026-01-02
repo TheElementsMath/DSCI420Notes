@@ -1,0 +1,27 @@
+h1:matrix-decompositions Matrix Decompositions
+h2:determinant-and-trace Determinant and Trace
+h3:geometric-interpretation Geometric Interpretation
+h3:properties-of-the-determinant Properties of the Determinant
+h3:trace Trace
+h3:characteristic-polynomial Characteristic Polynomial
+h3:exercises Exercises
+h2:eigenvalues-and-eigenvectors Eigenvalues and Eigenvectors
+h3:key-properties Key Properties
+h3:relations-to-determinant-and-trace Relations to Determinant and Trace
+h3:exercises-1 Exercises
+h2:cholesky-decomposition Cholesky Decomposition
+h3:exercises-2 Exercises
+h2:eigendecomposition-and-diagonalization Eigendecomposition and Diagonalization
+h3:diagonalizable-matrices Diagonalizable Matrices
+h3:eigendecomposition-theorems Eigendecomposition Theorems
+h3:exercises-3 Exercises
+h2:singular-value-decomposition-svd Singular Value Decomposition (SVD)
+h3:geometric-intuition Geometric Intuition
+h3:construction-of-the-svd Construction of the SVD
+h3:comparison-eigenvalue-decomposition-vs-svd Comparison: Eigenvalue Decomposition vs SVD
+h3:exercises-4 Exercises
+h2:matrix-approximation-via-svd Matrix Approximation via SVD
+h3:error-measurement Error Measurement
+h3:exercises-5 Exercises
+h2:matrix-phylogeny-overview Matrix Phylogeny (Overview)
+

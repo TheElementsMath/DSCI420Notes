@@ -1,0 +1,2400 @@
+# Analytic Geometry
+
+In Chapter 2, we explored **vectors**, **vector spaces**, and **linear mappings** at an abstract level.  This chapter introduces geometric interpretation and intuition to these ideas, focusing on:
+
+- **Lengths** and **distances** between vectors  
+- **Angles** between vectors  
+- **Inner products** and their induced geometry  
+- **Orthogonal projections** (important for PCA and regression)  
+
+The **inner product** introduces geometry into vector spaces by defining similarity, length, and distance.
+
+
+
+
+<p align="center">
+<img src="Figure3.1MML.png" alt="A mind map of the concepts introduced in this chapter, along with when they are used in other parts of the book." width="400">
+</p>
+
+
+
+
+---
+
+##  Norms
+
+A **norm** measures the length of a vector.
+
+
+<div class="definition"> 
+A norm on a vector space \(V\) is a function:
+\[
+\| \cdot \| : V \to \mathbb{R}, \quad \mathbf{x} \mapsto \|\mathbf{x}\|
+\]
+satisfying:
+
+1. **Absolute homogeneity:** \(\|\lambda \mathbf{x}\| = |\lambda| \|\mathbf{x}\|\)  
+2. **Triangle inequality:** \(\|\mathbf{x} + \mathbf{y}\| \le \|\mathbf{x}\| + \|\mathbf{y}\|\)  
+3. **Positive definiteness:** \(\|\mathbf{x}\| \ge 0\) and \(\|\mathbf{x}\| = 0 \iff \mathbf{x} = 0\)  
+</div>
+
+Geometrically, the triangle inequality means that in any triangle, the sum of any two sides is at least the length of the third.
+
+
+
+<div class="example">
+An example of a norm is the Manhattan Norm (or $l_1$ norm):
+\[
+\|\mathbf{x}\|_1 = \sum_{i=1}^n |x_i|.
+\]
+One can show that it satisfies all of norm properties given in the definition.
+</div>
+
+
+
+
+<div class="example">
+Another example of a norm is the Euclidean Norm (or $l_2$ norm):
+\[
+\|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^n x_i^2} = \sqrt{\mathbf{x}^\top \mathbf{x}}.
+\]
+Again, this function satisfies all of the properties of a norm.
+</div>
+
+
+<div class="example">
+The sup norm is another common norm:
+\[
+\|\mathbf{x}\|_{\infty} = \max_{i} \{ x_i \}
+\]
+Again, this function satisfies all of the properties of a norm.
+</div>
+
+<div class="note"> 
+The **Euclidean norm** is the default norm used in the book and these notes.
+</div>
+
+
+
+
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+<div class="exercise">
+ Compute the length of $\mathbf{x} = \begin{bmatrix}1\\2\\3\end{bmatrix}$ using the Manhattan, Euclidean and $l_{\infty}$ norms. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Compute the length of $\mathbf{x} = \begin{bmatrix}3\\4\\6\\8\end{bmatrix}$ using the Manhattan, Euclidean and $l_{\infty}$ norms.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Compute the length of $\mathbf{x} = \begin{bmatrix}-2\\-5\\3\end{bmatrix}$ using the Manhattan, Euclidean and $l_{\infty}$ norms
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Consider the $l_{\infty}$ norm: $\| \mathbf{x} \| = \max_{i} |x_i|$.  To prove the triangle inequality holds, we claim that $\max_{i} |x_i+y_i| $ \leq $\max_i |x_i | + \max_i |y_i|$.  Find an example where this is true as an equality and find an example where this is true as a strict inequality.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Prove that the Manhattan ($l_1$) norm is a norm. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+<div class="exercise">
+ Prove that the Euclidean ($l_2$) norm is a norm.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Prove the $l_{\infty}$ norm is a norm.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+##  Inner Products
+
+Inner products provide the foundation for geometric concepts such as **length**, **angle**, and **orthogonality**.
+
+
+
+<div class="definition">
+An **inner product** is a function that takes two vectors and gives a real number.  It must satisfy three key properties:
+
+1. **Symmetry:**  
+   The order of the vectors doesn’t matter.
+   \[
+   \langle \mathbf{x}, \mathbf{y} \rangle = \langle \mathbf{y}, \mathbf{x} \rangle
+   \]  
+
+2. **Linearity:**  
+   It behaves nicely with addition and scaling:  
+   \[
+   \langle a \mathbf{x} + b \mathbf{y}, \mathbf{z} \rangle = a \langle \mathbf{x}, \mathbf{z} \rangle + b \langle \mathbf{y}, \mathbf{z} \rangle
+   \]
+
+3. **Positive Definiteness:**  
+   The inner product of a vector with itself is always positive unless the vector is zero:  
+   \[
+   \langle \mathbf{x}, \mathbf{x} \rangle > 0 \quad \text{if } \mathbf{x} \ne 0
+   \]
+</div>
+
+
+<div class="example">
+The **dot product** in \(\mathbb{R}^n\) is:
+\[
+\mathbf{x}^\top \mathbf{y} = \sum_{i=1}^n x_i y_i.
+\]
+This is a specific example of an **inner product**.
+</div>
+
+
+The pair \((V, \langle \cdot, \cdot \rangle)\) is an **inner product space**.  If the dot product is used, it is a **Euclidean vector space**.
+
+
+
+<div class="example">
+For \(V = \mathbb{R}^2\),
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle = x_1 y_1 - (x_1 y_2 + x_2 y_1) + 2x_2 y_2.
+\]
+This satisfies the properties of an inner product but differs from the dot product.
+</div>
+
+
+---
+
+###  Symmetric, Positive Definite Matrices
+
+Symmetric, positive definite (SPD) matrices are closely related to inner products and are central in machine learning and matrix decompositions.
+
+
+Let \(V\) be an \(n\)-dimensional inner product space with basis \(\mathbf{B} = (\mathbf{b}_1, ..., \mathbf{b}_n)\).  For \(\mathbf{x}, \mathbf{y} \in V\), we have $\mathbf{x} = \sum_{i=1}^n \psi_i \mathbf{b}_i$, and $\mathbf{y} = \sum_{j=1}^n \lambda_j \mathbf{b}_j$ for some $\psi_i$ and $\lambda_j$ values. Linearity of the inner product gives us
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle = \sum_{i=1}^n \sum_{j=1}^n \psi_i \langle \mathbf{b}_i, \mathbf{b}_j \rangle \lambda_j = \hat{\mathbf{x}}^\top \mathbf{A} \hat{\mathbf{y}},
+\]
+where \(\mathbf{A}_{ij} = \langle \mathbf{b}_i, \mathbf{b}_j \rangle\).  Thus, the inner product is fully determined by a **symmetric matrix** \(\mathbf{A}\), and if it is positive definite, then:
+\[
+\mathbf{x}^\top A \mathbf{x} > 0 \quad \forall \mathbf{x} \ne 0.
+\]
+
+
+
+<div class="example">
+Let \(V\) be a 2-dimensional inner product space with ordered basis
+$\mathbf{B} = \left( \begin{bmatrix} 1\\1 \end{bmatrix}, \begin{bmatrix}-1\\1 \end{bmatrix} \right)$.  Let $\mathbf{x} = \begin{bmatrix} 3\\5 \end{bmatrix}$ and $\mathbf{y} = \begin{bmatrix} -2\\0 \end{bmatrix}$ be two vectors in $V$.  Then
+\begin{align*} \mathbf{x} &=  3\begin{bmatrix} 1\\1 \end{bmatrix} 5 \begin{bmatrix}-1\\1 \end{bmatrix}\\
+\mathbf{y} &=  -2\begin{bmatrix} 1\\1 \end{bmatrix} + 0\begin{bmatrix}-1\\1 \end{bmatrix}.
+\end{align*}
+The inner product is therefore
+\begin{align*}
+\langle \mathbf{x}, \mathbf{y} \rangle &= \left\langle 3\begin{bmatrix} 1\\1 \end{bmatrix} + 5\begin{bmatrix}-1\\1 \end{bmatrix}, -2\begin{bmatrix} 1\\1 \end{bmatrix} + 0\begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle \\
+
+&= 3\left\langle \begin{bmatrix} 1\\1 \end{bmatrix}, -2\begin{bmatrix} 1\\1 \end{bmatrix} + 0\begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle + 
+5\left\langle \begin{bmatrix}-1\\1 \end{bmatrix}, -2\begin{bmatrix} 1\\1 \end{bmatrix} + 0\begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle \\
+
+&= 3\left\langle  -2\begin{bmatrix} 1\\1 \end{bmatrix} + 0\begin{bmatrix}-1\\1 \end{bmatrix}, \begin{bmatrix} 1\\1 \end{bmatrix} \right\rangle + 
+5\left\langle  -2\begin{bmatrix} 1\\1 \end{bmatrix} + 0\begin{bmatrix}-1\\1 \end{bmatrix}, \begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle \\
+
+&= 3\left\langle  \begin{bmatrix} 1\\1 \end{bmatrix} , \begin{bmatrix} 1\\1 \end{bmatrix} \right\rangle(-2) + 
+3\left\langle \begin{bmatrix}-1\\1 \end{bmatrix}, \begin{bmatrix} 1\\1 \end{bmatrix} \right\rangle (0) 
++ \\
+& \quad +
+5\left\langle  \begin{bmatrix} 1\\1 \end{bmatrix} , \begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle(-2) 
++ 
+5\left\langle \begin{bmatrix}-1\\1 \end{bmatrix}, \begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle(0)\\
+
+
+
+
+&= \psi_1\left\langle \begin{bmatrix} 1\\1 \end{bmatrix} , \begin{bmatrix} 1\\1 \end{bmatrix} \right\rangle \lambda_1 + 
+\psi_1\left\langle \begin{bmatrix}-1\\1 \end{bmatrix}, \begin{bmatrix} 1\\1 \end{bmatrix} \right\rangle \lambda_2 + \\
+&\quad + \psi_2\left\langle  \begin{bmatrix} 1\\1 \end{bmatrix} , \begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle \lambda_1
++ 
+\psi_2\left\langle \begin{bmatrix}-1\\1 \end{bmatrix}, \begin{bmatrix}-1\\1 \end{bmatrix} \right\rangle \lambda_2\\
+
+&= \sum_{i=1}^n \sum_{j=1}^n \psi_i \langle \mathbf{b}_i, \mathbf{b}_j \rangle \lambda_j.
+\end{align*}
+Now, since $\langle \mathbf{b}_i, \mathbf{b}_j \rangle = 2$ when $i = j$ and 0 otherwise, we can see that \[\langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}^\top \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} \mathbf{y} = -12.\]  If we look at $\mathbf{x}$ and $\mathbf{y}$ in the standard basis, they are $\begin{bmatrix}-2\\8 \end{bmatrix}$ and $\begin{bmatrix}-2\\-2 \end{bmatrix}$ and we can confirm that $\langle \mathbf{x}, \mathbf{y} \rangle = -12$.
+</div>
+
+
+<div class="example">
+Let \(V\) be a 2-dimensional inner product space with ordered basis
+$\mathbf{B} = \left( \begin{bmatrix} 1\\1 \end{bmatrix}, \begin{bmatrix}0\\1 \end{bmatrix} \right)$.  Let $\mathbf{x} = \begin{bmatrix} 3\\5 \end{bmatrix}$ and $\mathbf{y} = \begin{bmatrix} -2\\0 \end{bmatrix}$ be two vectors in $V$.  Then
+\begin{align*} \mathbf{x} &=  3\begin{bmatrix} 1\\1 \end{bmatrix} 5 \begin{bmatrix}0\\1 \end{bmatrix}\\
+\mathbf{y} &=  -2\begin{bmatrix} 1\\1 \end{bmatrix} + 0\begin{bmatrix}0\\1 \end{bmatrix}.
+\end{align*}
+Keeping in mind that 
+\begin{align*} 
+\left\langle\begin{bmatrix} 1\\1 \end{bmatrix}, \begin{bmatrix}0\\1 \end{bmatrix} \right \rangle &= 1\\
+\left\langle\begin{bmatrix} 1\\1 \end{bmatrix}, \begin{bmatrix} 1\\1 \end{bmatrix} \right \rangle &= 2\\
+\left\langle\begin{bmatrix}0\\1 \end{bmatrix}, \begin{bmatrix}0\\1 \end{bmatrix} \right \rangle &= 1,
+\end{align*}
+we have
+\[\langle \mathbf{x}, \mathbf{y} \rangle = \mathbf{x}^\top \begin{bmatrix} 2 & 1 \\ 1 & 1 \end{bmatrix} \mathbf{y} = -22.\]  If we look at $\mathbf{x}$ and $\mathbf{y}$ in the standard basis, they are $\begin{bmatrix} 3\\ 8 \end{bmatrix}$ and $\begin{bmatrix}-2\\-2 \end{bmatrix}$ and we can confirm that $\langle \mathbf{x}, \mathbf{y} \rangle = -22$.
+</div>
+
+
+
+<div class="definition">
+A symmetric matrix \(\mathbf{A} \in \mathbb{R}^{n \times n}\) is **positive definite** if:
+\[
+\mathbf{x}^\top \mathbf{A} \mathbf{x} > 0 \quad \forall \mathbf{x} \ne 0
+\]
+If \(\mathbf{x}^\top \mathbf{A} \mathbf{x} \ge 0\), \(\mathbf{A}\) is **positive semidefinite**.
+</div>
+
+
+
+
+<div class="example">
+\[
+A_1 = \begin{bmatrix} 9 & 6 \\ 6 & 5 \end{bmatrix}, \quad
+A_2 = \begin{bmatrix} 9 & 6 \\ 6 & 3 \end{bmatrix}
+\]
+
+- \(A_1\) is **positive definite**, since:
+  \[
+  \mathbf{x}^\top A_1 \mathbf{x} = (3\mathbf{x}_1 + 2\mathbf{x}_2)^2 + \mathbf{x}_2^2 > 0
+  \]
+- \(A_2\) is **not positive definite**, since for \(\mathbf{x} = [2, -3]^\top\),
+  \[
+  \mathbf{x}^\top A_2 \mathbf{x} < 0
+  \]
+</div>
+  
+
+
+
+<div class="theorem">
+For a real, finite-dimensional vector space \(V\) with basis \(\mathbf{B}\):
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle = \hat{\mathbf{x}}^\top A \hat{\mathbf{y}}
+\]
+is an inner product *iff* \(\mathbf{A}\) is symmetric and positive definite.
+</div>
+
+
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+- The **kernel (null space)** of \(A\) is \(\{0\}\).
+- All **diagonal entries** \(a_{ii} > 0\).
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+ Show that an inner product is homogeneous in the second spot.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Show that $\left\langle \begin{bmatrix}x_1\\x_2\end{bmatrix}, \begin{bmatrix}y_1\\ y_2\end{bmatrix} \right\rangle = |x_1y_1| + |x_2y_2|$ is not an inner product. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+ Show that $\langle f,g \rangle = \int_{0}^1 f(x)g(x) \, dx$ is an inner product for functions $f$ and $g$ that are continuous on $[0,1]$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Show that $\langle f,g \rangle = \int_{0}^1 f(x)g(x) + f^\prime(x) g^{\prime}(x) \, dx$ is an inner product for functions $f$ and $g$ that are differentiable on $[0,1]$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+<div class="exercise">
+Determine if $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 2 & 0 \end{bmatrix}$ is symmetric positive definite. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Find a value $k$ that makes $\mathbf{A} = \begin{bmatrix} 1 & 2 \\ 2 & k \end{bmatrix}$ symmetric positive semi-definite. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+## Lengths and Distances
+
+An inner product naturally induces a norm that measures the length of a vector:
+\[
+\|\mathbf{x}\| = \sqrt{\langle \mathbf{x}, \mathbf{x} \rangle}.
+\]
+This means we can compute vector lengths directly from the inner product.  However, not all norms come from inner products (for example, the Manhattan norm does not).
+
+
+
+<div class="theorem">
+For any vectors \(\mathbf{x}, \mathbf{y}\) in an inner product space:
+\[
+|\langle \mathbf{x}, \mathbf{y} \rangle| \leq \|\mathbf{x}\| \|\mathbf{y}\|.
+\]
+</div>
+
+This fundamental inequality relates the inner product to the lengths of vectors.
+
+
+
+
+<div class="example">
+Let  
+\[
+\mathbf{x} = \begin{bmatrix}2 \\ -1\end{bmatrix}, \qquad
+\mathbf{y} = \begin{bmatrix}1 \\ 3\end{bmatrix}.
+\]
+
+Compute the inner product:
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle =  \mathbf{x} \cdot \mathbf{y} = 2(1) + (-1)(3) = -1,
+\]
+so the left-hand side is
+\[
+|\langle \mathbf{x}, \mathbf{y} \rangle| = |-1| = 1.
+\]
+
+Compute the norms:
+\[
+\|\mathbf{x}\| = \sqrt{2^2 + (-1)^2} = \sqrt{5}, \qquad
+\|\mathbf{y}\| = \sqrt{1^2 + 3^2} = \sqrt{10}.
+\]
+
+Thus,
+\[
+\|\mathbf{x}\|\,\|\mathbf{y}\| = \sqrt{50} \approx 7.07.
+\]
+
+We see that
+\[
+1 \le 7.07,
+\]
+so the Cauchy–Schwarz inequality holds.
+</div>
+  
+
+
+---
+
+### Distance and Metrics
+
+
+
+<div class="definition">
+In an inner product space \((V, \langle \cdot, \cdot \rangle)\), the **distance** between two vectors is defined as:
+\[
+d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x} - \mathbf{y}\| = \sqrt{\langle \mathbf{x} - \mathbf{y}, \mathbf{x} - \mathbf{y} \rangle}.
+\]
+</div>
+
+Of course, this means that thd distance between two vectors depends on how you measure distance (your choice of inner product).
+
+<div class="example">
+Let  
+\[
+\mathbf{x} = \begin{bmatrix}1 \\ 2\end{bmatrix}, 
+\qquad
+\mathbf{y} = \begin{bmatrix}4 \\ -1\end{bmatrix}.
+\]
+
+We compute the distance \(d(\mathbf{x}, \mathbf{y})\) using two different inner products.  First, we find the distance between the vectors.  The difference vector is  
+\[
+\mathbf{x} - \mathbf{y} = \begin{bmatrix}-3 \\ 3\end{bmatrix}.
+\]
+
+**1. Standard Euclidean Inner Product**
+
+The standard inner product is  
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle 
+= u_1 v_1 + u_2 v_2.
+\]
+
+Distance:
+\[
+d_1(\mathbf{x}, \mathbf{y}) 
+= \|\mathbf{x} - \mathbf{y}\|
+= \sqrt{(-3)^2 + 3^2}
+= \sqrt{18}
+= 3\sqrt{2}.
+\]
+
+---
+
+**2. Weighted Inner Product with Matrix**  
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle_A 
+= \mathbf{u}^\top A \mathbf{v},
+\qquad
+A = 
+\begin{bmatrix}
+2 & 0 \\
+0 & 5
+\end{bmatrix}.
+\]
+Distance:
+\[
+d_2(\mathbf{x}, \mathbf{y}) 
+= \sqrt{(\mathbf{x}-\mathbf{y})^\top A (\mathbf{x}-\mathbf{y})}
+= \sqrt{63}.
+\]
+
+Thus,
+\[
+d_2(\mathbf{x}, \mathbf{y}) = \sqrt{63} = 3\sqrt{7}.
+\]
+</div>
+
+If the inner product is the standard dot product, \(d(\mathbf{x}, \mathbf{y})\) is the **Euclidean distance** (like the first part of the previous example).
+
+
+
+
+
+<div class="definition">
+A **metric** \(d: V \times V \to \mathbb{R}\) satisfies:
+
+1. **Positive definiteness:** \(d(\mathbf{x}, \mathbf{y}) \ge 0\) and \(d(\mathbf{x}, \mathbf{y}) = 0 \iff \mathbf{x} = \mathbf{y}\)  
+2. **Symmetry:** \(d(\mathbf{x}, \mathbf{y}) = d(\mathbf{y}, \mathbf{x})\)  
+3. **Triangle inequality:** \(d(\mathbf{x}, \mathbf{z}) \le d(\mathbf{x}, \mathbf{y}) + d(\mathbf{y}, \mathbf{z})\)  
+</div>
+
+
+<div class="example">
+Let \(X\) be any set. Define the **discrete metric** as \(d:X\times X\to\{0,1\}\) by
+\[
+d(\mathbf{x},\mathbf{y})=\begin{cases}
+0 & \text{if } \mathbf{x}=\mathbf{y},\\[4pt]
+1 & \text{if } \mathbf{x}\ne \mathbf{y}.
+\end{cases}
+\]
+We show \(d\) satisfies the three metric axioms.
+
+**1. Positive Definiteness**
+For all \(\mathbf{x},\mathbf{y}\in X\), \(d(\mathbf{x},\mathbf{y})\in\{0,1\}\), so \(d(\mathbf{x},\mathbf{y})\ge 0\).
+Moreover \(d(\mathbf{x},\mathbf{y})=0\) exactly when \(\mathbf{x}=\mathbf{y}\) by definition.  Thus this function is positive definite.
+
+**2. Symmetry**
+For any \(\mathbf{x},\mathbf{y}\in X\),
+\[
+d(\mathbf{x},\mathbf{y})=
+\begin{cases}
+0 & \mathbf{x}=\mathbf{y}\\
+1 & \mathbf{x}\ne \mathbf{y}
+\end{cases}
+=
+\begin{cases}
+0 & \mathbf{y}=\mathbf{x}\\
+1 & \mathbf{y}\ne \mathbf{x}
+\end{cases}
+= d(\mathbf{y},\mathbf{x}).
+\]
+So \(d(\mathbf{x},\mathbf{y})=d(\mathbf{y},\mathbf{x})\) for all \(\mathbf{x},\mathbf{y}\).
+
+**3. Triangle inequality**
+We must show for all \(\mathbf{x},\mathbf{y},\mathbf{z}\in X\),
+\[
+d(\mathbf{x},\mathbf{z})\le d(\mathbf{x},\mathbf{y})+d(\mathbf{y},\mathbf{z}).
+\]
+There are only a few cases to check (each value is 0 or 1).
+
+- If \(\mathbf{x}=\mathbf{z}\) then \(d(\mathbf{x},\mathbf{z})=0\). The right-hand side \(d(\mathbf{x},\mathbf{y})+d(\mathbf{y},\mathbf{z})\) is \(\ge 0\), so the inequality holds.  
+- If \(\mathbf{x}\ne \mathbf{z}\) then \(d(\mathbf{x},\mathbf{z})=1\). The only way the triangle inequality could fail is if \(d(\mathbf{x},\mathbf{y})+d(\mathbf{y},\mathbf{z})=0\). But \(d(\mathbf{x},\mathbf{y})+d(\mathbf{y},\mathbf{z})=0\) implies both \(d(\mathbf{x},\mathbf{y})=0\) and \(d(\mathbf{y},\mathbf{z})=0\), hence \(\mathbf{x}=\mathbf{y}\) and \(\mathbf{y}=\mathbf{z}\), so \(\mathbf{x}=\mathbf{z}\), contradicting \(\mathbf{x}\ne \mathbf{z}\). Therefore \(d(\mathbf{x},\mathbf{y})+d(\mathbf{y},\mathbf{z})\ge 1 = d(\mathbf{x},z)\), and the inequality holds.  
+
+Thus the triangle inequality is satisfied in all cases.
+
+Since all metric axioms hold, \(d\) is a metric on \(X\).  
+</div>
+
+Note that while inner products measure similarity, distances measure difference —  similar vectors have a large inner product but a small distance.
+
+---
+
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+Let $\mathbf{x} = \begin{bmatrix}2\\4 \end{bmatrix}$.  Compute $\|\mathbf{x}\|$ using the dot product as the inner product that induces the norm. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Let $\mathbf{x} = \begin{bmatrix}2\\4 \end{bmatrix}$.  Compute $\|\mathbf{x}\|$ using $\langle \mathbf{x} , \mathbf{y} \rangle = \mathbf{x}^T \begin{bmatrix} 2 & -1\\-1 &2 \end{bmatrix} \mathbf{y}$ as the inner product that induces the norm. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Compute the distance between $\begin{bmatrix} 1 \\ 2 \end{bmatrix}$ and $\begin{bmatrix}3\\-4 \end{bmatrix}$ using the dot product as the inner product that induces the norm. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Compute the distance between $\begin{bmatrix} 1 \\ 2 \end{bmatrix}$ and $\begin{bmatrix}3\\-4 \end{bmatrix}$ using $\langle \mathbf{x} , \mathbf{y} \rangle = \mathbf{x}^T \begin{bmatrix} 2 & -1\\-1 &2 \end{bmatrix} \mathbf{y}$ as the inner product that induces the norm. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Consider two numbers $x,y \in \mathbb{R}$.  Show that $d(x,y) = |x-y|$ is a distance metric.  Use this to extend to $\mathbf{x},\mathbf{y} \in \mathbb{R}^n$ with the absolute value of a vector taken as componentwise absolute values.
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Show that $\langle u+v, u-v \rangle = \|u\|^2 - \|v\|^2$ for all $u,v \in V$. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+The metric in this example (the discrete metric) is fairly strange. Although it is not very useful in applications, it is handy to know about as it is totally different from the metrics we've seen so far.  Let $X \not = \phi$.  Define: \[d(x,y) = \begin{cases}0 & x = y \\ 1 &x \not = y \end{cases}.\]  Prove that this is a metric. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+
+## Angles and Orthogonality
+
+Inner products also define **angles** between vectors.  
+
+<div class="lemma">
+For nonzero \(\mathbf{x}, \mathbf{y}\):
+\[
+\cos \omega = \frac{\langle \mathbf{x}, \mathbf{y} \rangle}{\|\mathbf{x}\| \|\mathbf{y}\|},
+\]
+where \(\omega \in [0, \pi]\) is the angle between \(\mathbf{x}\) and \(\mathbf{y}\).
+</div>
+
+When \(\omega = 0\), the vectors point in the same direction.  When \(\omega = \pi/2\), the vectors are **orthogonal** (perpendicular).
+
+
+<div class="example">
+Let \(\mathbf{u} = [1, 2]^\top\) and \(\mathbf{v} = [2, 1]^\top\). The angle \(\theta\) between them is given by
+\[
+\cos \theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\|\mathbf{u}\| \, \|\mathbf{v}\|}.
+\]
+
+Since
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle = 1\cdot 2 + 2 \cdot 1 = 4,
+\]
+and
+\[
+\|\mathbf{u}\| = \sqrt{1^2 + 2^2} = \sqrt{5}, \quad
+\|\mathbf{v}\| = \sqrt{2^2 + 1^2} = \sqrt{5},
+\]
+the angle between them is given by
+\[
+\cos \theta = \frac{4}{\sqrt{5}\cdot \sqrt{5}} = \frac{4}{5}.
+\]
+Therefore, the angle is
+\[
+\theta = \arccos\left(\frac{4}{5}\right) \approx 36.87^\circ.
+\]
+</div>
+
+
+<div class="definition">
+Two vectors \(\mathbf{x}\) and \(\mathbf{y}\) are **orthogonal** if:
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle = 0.
+\]
+If both vectors also have unit length (\(\|\mathbf{x}\| = \|\mathbf{y}\| = 1\)), they are **orthonormal**.
+</div>
+
+
+<div class="example">
+Consider the vectors:
+\[
+\mathbf{u} = [1, 0, 0]^\top, \quad \mathbf{v} = [0, 1, 0]^\top.
+\]
+
+The formula for the angle \(\theta\) between two vectors is:
+\[
+\cos \theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\|\mathbf{u}\| \, \|\mathbf{v}\|}.
+\]
+
+The inner product is
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle = 1\cdot 0 + 0 \cdot 1 + 0 \cdot 0 = 0,
+\]
+and the norms are
+\[
+\|\mathbf{u}\| = \sqrt{1^2 + 0^2 + 0^2} = 1, \quad
+\|\mathbf{v}\| = \sqrt{0^2 + 1^2 + 0^2} = 1.
+\]
+Thus:
+\[
+\cos \theta = \frac{0}{1 \cdot 1} = 0 \quad \implies \quad \theta = \arccos(0) = 90^\circ.
+\]
+Hence, the vectors are orthogonal (orthonormal, actually).
+</div>
+
+Orthogonality generalizes the geometric idea of perpendicularity to arbitrary inner products.  Vectors orthogonal under one inner product may not be orthogonal under another.
+
+
+<div class="example">
+Consider the same vectors:
+\[
+\mathbf{u} = [1, 0, 0]^\top, \quad \mathbf{v} = [0, 1, 0]^\top.
+\]
+Define a weighted inner product:
+\[
+\langle \mathbf{x}, \mathbf{y} \rangle_A = \mathbf{x}^\top \mathbf{A} \mathbf{y}, \quad 
+\mathbf{A} = \begin{bmatrix} 2 & 1 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 1 \end{bmatrix}.
+\]
+
+The inner product is
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle_A = [1,0,0] 
+\begin{bmatrix} 2 & 1 & 0 \\ 1 & 2 & 0 \\ 0 & 0 & 1 \end{bmatrix} 
+[0,1,0]^\top = [1,0,0] [1,2,0]^\top = 1.
+\]
+and the norms are
+\[
+\|\mathbf{u}\|_A = \sqrt{\mathbf{u}^\top \mathbf{A} \mathbf{u}} = \sqrt{[1,0,0] [2,1,0]^\top} = \sqrt{2},
+\]
+\[
+\|\mathbf{v}\|_A = \sqrt{\mathbf{v}^\top \mathbf{A} \mathbf{v}} = \sqrt{[0,1,0] [1,2,0]^\top} = \sqrt{2}.
+\]
+With this norm, the angle is given by:
+\[
+\cos \theta = \frac{\langle \mathbf{u}, \mathbf{v} \rangle_A}{\|\mathbf{u}\|_A \, \|\mathbf{v}\|_A} = \frac{1}{\sqrt{2} \cdot \sqrt{2}} = \frac{1}{2}.
+\]
+So,
+\[
+\theta = \arccos\left(\frac{1}{2}\right) = 60^\circ.
+\]
+
+Hence, under this inner product, the vectors form a \(60^\circ\) angle instead of \(90^\circ\).
+</div>
+
+
+---
+
+### Orthogonal Matrices
+
+<div class="definition">
+A square matrix \(\mathbf{A} \in \mathbb{R}^{n \times n}\) is **orthogonal** if:
+\[
+\mathbf{A}^\top \mathbf{A} = \mathbf{A}\mathbf{A}^\top = \mathbf{I}.
+\]
+This implies:
+\[
+\mathbf{A}^{-1} = \mathbf{A}^\top.
+\]
+</div>
+
+
+Orthogonal matrices preserve both **lengths** and **angles**:
+\[
+\|\mathbf{A}\mathbf{x}\| = \|\mathbf{x}\|, \quad \text{and} \quad \langle \mathbf{A}\mathbf{x}, \mathbf{A}\mathbf{y} \rangle = \langle \mathbf{x}, \mathbf{y} \rangle.
+\]
+Hence, they represent **rotations and reflections** in space.
+
+
+<div class="example">
+Consider the matrix
+\[
+\mathbf{R} = \begin{bmatrix}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta
+\end{bmatrix}.
+\]
+
+- This matrix is orthogonal because \(\mathbf{R}^\top \mathbf{R} = \mathbf{I}\).
+- It represents a rotation in 2D by angle \(\theta\) counterclockwise.
+
+Example with \(\theta = 90^\circ\):
+\[
+\mathbf{R} = \begin{bmatrix}0 & -1 \\ 1 & 0\end{bmatrix}.
+\]
+</div>
+
+
+
+<div class="example">
+Consider the matrix
+\[
+\mathbf{F} = \begin{bmatrix}
+1 & 0 \\
+0 & -1
+\end{bmatrix}.
+\]
+
+- This matrix is orthogonal because \(\mathbf{F}^\top \mathbf{F} = \mathbf{I}\).
+- It represents a reflection across the x-axis in 2D.
+</div>
+
+
+
+
+---
+
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+Prove that $|\langle \mathbf{x}, \mathbf{y} \rangle| \leq \|\mathbf{x}\| \|\mathbf{y} \|$
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Find the angle between $\begin{bmatrix}1\\3\end{bmatrix}$ and $\begin{bmatrix}-1\\4\end{bmatrix}$.
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Find the angle between $\begin{bmatrix}-2\\-2\end{bmatrix}$ and $\begin{bmatrix}-1\\3\end{bmatrix}$.
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Find the angle between $\begin{bmatrix}0\\2\end{bmatrix}$ and $\begin{bmatrix}-2\\1\end{bmatrix}$.\vfill 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Use the law of cosines to show that \[\cos \theta = \dfrac{\mathbf{x} \cdot \mathbf{y}}{\|\mathbf{x}\|\|\mathbf{y}\|}.\]
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Consider the orthogonal matrix $\mathbf{A} = \begin{bmatrix}-1 & 0 \\ 0 & 1 \end{bmatrix}$. Show that $\|\mathbf{A} \mathbf{x}\| = \|\mathbf{x}\|$ for $\mathbf{x} \in \mathbb{R}^2$.\vfill 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Prove that $\begin{bmatrix} \cos z & -\sin z\\ \sin z & \cos z \end{bmatrix}$ is an orthogonal matrix.  This is the rotation matrix - it rotates vectors counterclockwise by $z$ degrees.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Select any orthogonal matrices in $\mathbb{R}^2$ and $\mathbb{R}^3$ and show that $\mathbf{A}^T\mathbf{A} = \mathbf{I}$.\vfill 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Let $\mathbf{A}$ be an orthogonal matrix.  Show that $\|\mathbf{A} \mathbf{x}\|^2 = \|\mathbf{x}\|^2$ and that the angle between $\mathbf{A}\mathbf{x}$ and $\mathbf{A}\mathbf{y}$ is the same as the angle between $\mathbf{x}$ and $\mathbf{y}$.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+
+##  Orthonormal Basis
+
+
+<div class="definition">
+An **orthonormal basis (ONB)** in an \( n \)-dimensional vector space \( V \) consists of basis vectors \( \{\mathbf{b}_1, ..., \mathbf{b}_n\} \) that satisfy:
+\[
+\langle \mathbf{b}_i, \mathbf{b}_j \rangle = 0 \text{ for } i \neq j, \quad \langle \mathbf{b}_i, \mathbf{b}_i \rangle = 1.
+\]
+</div>
+
+
+If only the first condition holds, the basis is *orthogonal*.  The **Gram-Schmidt process** constructs an orthonormal basis from any set of linearly independent vectors.  
+
+
+
+<div class="example">
+In \( \mathbb{R}^2 \),
+\[
+\mathbf{b}_1 = \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix}, \quad 
+\mathbf{b}_2 = \frac{1}{\sqrt{2}}\begin{bmatrix}1 \\ -1\end{bmatrix}
+\]
+form an ONB because \( \mathbf{b}_1^T\mathbf{b}_2 = 0 \) and \( \|\mathbf{b}_1\| = \|\mathbf{b}_2\| = 1 \).
+</div>
+
+
+
+
+---
+
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+Show that $\left\{\begin{bmatrix}1\\0\end{bmatrix}, \begin{bmatrix}0\\1\end{bmatrix} \right\}$ is an orthonormal basis. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Show that $\left\{\frac{1}{\sqrt{2}}\begin{bmatrix}1\\1\end{bmatrix}, \frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}\right\}$ is an orthonormal basis.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Suppose I have 2 orthonormal basis vectors set up as columns of a matrix $Q$.  What is $Q^TQ$?  What does this result imply about $Q^T$?
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+## Orthogonal Complement
+
+
+
+<div class="definition">
+Given a subspace \( U \subseteq V \), the **orthogonal complement** \( U^\perp \) contains all vectors in \( V \) orthogonal to every vector in \( U \).  
+</div>
+
+
+It is easily shown that \( U \cap U^\perp = \{\mathbf{0}\} \), and \( \dim(U) + \dim(U^\perp) = \dim(V) \).  Furthermore, any vector \( \mathbf{x} \in V \) can be decomposed as:
+\[
+\mathbf{x} = \sum_{m=1}^{M} \lambda_m \mathbf{b}_m + \sum_{j=1}^{D-M} \psi_j \mathbf{b}_j^\perp.
+\]
+In \( \mathbb{R}^3 \), a plane and its normal vector illustrate the relationship between a subspace and its orthogonal complement.
+
+
+
+
+---
+
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+Show that $U \cap U^{\perp} = \{ \mathbf{0} \}$.
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Given a subspace \( U \subseteq V \), show that \( \dim(U) + \dim(U^\perp) = \dim(V) \).
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Find all vectors orthogonal to $\mathbf{v}_1 = \begin{bmatrix}1\\1\\-1 \end{bmatrix}$ and $\mathbf{v}_2 = \begin{bmatrix}1\\0\\2 \end{bmatrix}$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+What is $\text{Span}\left\{\begin{bmatrix}1\\1\\-1 \end{bmatrix}, \begin{bmatrix}1\\1\\1\\ \end{bmatrix} \right\}^{\perp}$? 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Write $\mathbf{v} = \begin{bmatrix} 3\\2\\1 \end{bmatrix}$ as a sum of vectors from $\text{Span} \left\{ \begin{bmatrix}1\\1\\0 \end{bmatrix} \right\}$ and $\text{Span}\left\{\begin{bmatrix}1\\1\\0 \end{bmatrix} \right\}^{\perp}$.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+<div class="exercise">
+Write $\mathbf{v} = \begin{bmatrix} 3\\-4\\6 \end{bmatrix}$ as a sum of vectors from $\text{Span}\left\{\begin{bmatrix}1\\-1\\2 \end{bmatrix},\begin{bmatrix}1\\0\\0 \end{bmatrix} \right\}$ and $\text{Span}\left\{\begin{bmatrix}1\\-1\\2 \end{bmatrix},\begin{bmatrix}1\\0\\0 \end{bmatrix}\right\}^{\perp}$.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+## Inner Product of Functions
+
+The concept of inner product extends from finite-dimensional vectors to functions.
+
+
+
+<div class="definition">
+For functions $u$ and $v$, we define the inner product of $u$ and $v$ as:
+\[
+\langle u, v \rangle = \int_a^b u(x)v(x) \, dx.
+\]
+</div>
+
+
+<div class="example">
+Consider the space of continuous functions on \([0,1]\), and define the inner product
+\[
+\langle f, g \rangle = \int_0^1 f(t) g(t) \, dt.
+\]
+
+Let \(f(t) = t\) and \(g(t) = t^2\). Then
+
+\[
+\langle f, g \rangle = \int_0^1 t \cdot t^2 \, dt = \int_0^1 t^3 \, dt = \frac{1}{4}.
+\]
+</div>
+
+
+If \( \langle u, v \rangle = 0 \), the functions are orthogonal. 
+
+
+<div class="example">
+Using this inner product, \( \sin(x) \) and \( \cos(x) \) are orthogonal on \([-\pi, \pi]\).  
+
+Any collection of functions from the set \( \{1, \cos(x), \cos(2x), \ldots\} \) also forms an orthogonal system on this interval.
+</div>
+
+
+---
+
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+
+##  Orthogonal Projections
+
+
+<div class="definition">
+A **projection** \( \pi: V \to U \) satisfies \( \pi^2 = \pi \).  The corresponding **projection matrix** \( \mathbf{P}_\pi \) also satisfies \( \mathbf{P}_\pi^2 = \mathbf{P}_\pi \).
+</div>
+
+Projections are linear transformations that map vectors in a vector space \( V \) onto a subspace \( U \subseteq V \).  Applying the projection twice does not change the result — once a vector has been projected, it already lies in the subspace.
+
+Formally, for any \( \mathbf{x} \in V \):
+\[
+\pi(\pi(\mathbf{x})) = \pi(\mathbf{x})
+\quad \text{or equivalently} \quad
+\mathbf{P}_\pi^2 = \mathbf{P}_\pi.
+\]
+
+
+<div class="example">
+**Example:**  
+Let \( \mathbf{B} = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \).  Then the projection $\mathbf{P}$, where
+\[
+\mathbf{P} = \mathbf{B}(\mathbf{B}^\top \mathbf{B})^{-1} \mathbf{B}^\top = 
+\begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix},
+\]
+projects any vector in \( \mathbb{R}^2 \) onto the x-axis.  For example:
+\[\mathbf{P}\begin{bmatrix} a \\ b \end{bmatrix} =\begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}\begin{bmatrix} a \\ b \end{bmatrix} = \begin{bmatrix} a \\ 0 \end{bmatrix}.\] Applying the projection twice leaves the result unchanged:
+\[\mathbf{P} \mathbf{P}\begin{bmatrix} a \\ b \end{bmatrix} = \mathbf{P} \begin{bmatrix} a \\ 0 \end{bmatrix}=  \begin{bmatrix} a \\ 0 \end{bmatrix}.\]
+</div>
+
+
+<div class="example">
+Let
+\[
+U = \text{span}\!\left(\begin{bmatrix} 1 \\ 1 \end{bmatrix}\right),
+\quad
+\mathbf{B} = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 1 \end{bmatrix}.
+\]
+Then
+\[
+\mathbf{P} = \mathbf{B} \mathbf{B}^\top = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}.
+\]
+For \( \mathbf{x} = \begin{bmatrix} 2 \\ 1 \end{bmatrix} \), we have
+\[
+\mathbf{P} \mathbf{x} = \frac{1}{2}\begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} 2 \\ 1 \end{bmatrix} =\frac{1}{2}\begin{bmatrix} 3 \\ 3 \end{bmatrix}
+= \begin{bmatrix} 1.5 \\ 1.5 \end{bmatrix}.
+\]
+Hence, \( \mathbf{P} \mathbf{x} \) is the orthogonal projection of \( \mathbf{x} \) onto the line \( \mathbf{y} = \mathbf{x} \).  Again notice that $\mathbf{P}\mathbf{P}\mathbf{x} = \mathbf{P}x$.
+</div>
+
+
+
+### Projection onto a Line
+
+
+<div class="definition">
+For a line \( U = \text{span}(\mathbf{b}) \), the projection of \( \mathbf{x} \in \mathbb{R}^n \) is:
+\[
+\pi_U(\mathbf{x}) = \frac{\mathbf{b}^T \mathbf{x}}{\mathbf{b}^T \mathbf{b}} \mathbf{b} = \frac{\mathbf{b}^T \mathbf{x}}{\|\mathbf{b}\|^2} \mathbf{b}= \frac{\langle \mathbf{b}, \mathbf{x} \rangle}{\|\mathbf{b}\|^2} \mathbf{b}
+\]
+\[
+P_\pi = \frac{\mathbf{b} \mathbf{b}^T}{\|\mathbf{b}\|^2}
+\]
+</div>
+
+There are many different notations people use for projections onto a line.  So, you may see any of the notations used in the definition.
+
+
+<div class="example">
+Let  
+\[
+\mathbf{u} = \begin{bmatrix} 3 \\ 4 \end{bmatrix}, 
+\qquad 
+\mathbf{v} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}.
+\]
+
+The projection of $\mathbf{u}$ onto $\mathbf{v}$ is:
+\[
+\pi_{\text{Span}(v)}(\mathbf{u}) = \text{proj}_{\mathbf{v}}(\mathbf{u}) 
+= \frac{\langle \mathbf{u}, \mathbf{v} \rangle}{\lVert \mathbf{v} \rVert^2} \mathbf{v}.
+\]
+We have
+\[
+\langle \mathbf{u},\mathbf{v}\rangle 
+= 3(1) + 4(2) 
+= 11,
+\]
+and
+\[
+\lVert \mathbf{v} \rVert^2 = 1^2 + 2^2 = 5.
+\]
+Therefore,
+\[
+\text{proj}_{\mathbf{v}}(\mathbf{u})
+= \frac{11}{5}
+\begin{bmatrix} 1 \\ 2 \end{bmatrix}
+=
+\begin{bmatrix}
+11/5 \\ 22/5
+\end{bmatrix}.
+\]
+
+</div>
+
+
+If \( \|\mathbf{b}\| = 1 \), then \( \pi_U(\mathbf{x}) = (\mathbf{b}^T \mathbf{x}) \mathbf{b} \).
+
+
+<div class="example">
+Let  
+\[
+\mathbf{u} = \begin{bmatrix} 6 \\ 2 \\ -1 \end{bmatrix}, 
+\qquad
+\mathbf{v} = \frac{1}{\sqrt{14}}
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}.
+\]
+Note that $\mathbf{v}$ is a unit vector.
+
+Since \( \mathbf{v} \) is a unit vector,
+
+\[
+\text{proj}_{\mathbf{v}}(\mathbf{u}) = \langle \mathbf{u}, \mathbf{v} \rangle \, \mathbf{v}.
+\]
+
+We know that
+\[
+\langle \mathbf{u}, \mathbf{v} \rangle
+=
+\left\langle 
+\begin{bmatrix} 6 \\ 2 \\ -1 \end{bmatrix},
+\frac{1}{\sqrt{14}}
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+\right\rangle
+=
+\frac{1}{\sqrt{14}}
+(6(1) + 2(2) - 1(3))
+\]
+
+\[
+= \frac{1}{\sqrt{14}} (6 + 4 - 3)
+= \frac{7}{\sqrt{14}},
+\]
+
+and
+\[
+\text{proj}_{\mathbf{v}}(\mathbf{u})
+=
+\frac{7}{\sqrt{14}}
+\cdot
+\frac{1}{\sqrt{14}}
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+=
+\frac{7}{14}
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}
+=
+\frac{1}{2}
+\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}.
+\]
+
+</div>
+
+
+---
+
+###  Projection onto General Subspaces
+
+For subspace \( U = \text{span}(\mathbf{b}_1, ..., \mathbf{b}_m) \) with \( \mathbf{B} = [\mathbf{b}_1, ..., \mathbf{b}_m] \):
+\[
+\pi_U(\mathbf{x}) = \mathbf{B}(\mathbf{B}^T \mathbf{B})^{-1} \mathbf{B}^T \mathbf{x}
+\]
+\[
+P_\pi = \mathbf{B}(\mathbf{B}^T \mathbf{B})^{-1} \mathbf{B}^T.
+\]
+The **normal equation** \( \mathbf{B}^T \mathbf{B} \mathbf{\lambda} = \mathbf{B}^T \mathbf{x} \) gives the coordinates \( \mathbf{\lambda} \). If \( \{\mathbf{b}_i\} \) form an **ONB**, the formula simplifies to:
+\[
+\pi_U(\mathbf{x}) = \mathbf{B} \mathbf{B}^T \mathbf{x}.
+\]
+This is computationally efficient since \( \mathbf{B}^T \mathbf{B} = \mathbf{I} \).
+
+<div class="example">
+Project the vector \(\mathbf{x} = \begin{bmatrix}6\\0\\0\end{bmatrix}\in\mathbb{R}^3\) onto the subspace
+\[
+U=\operatorname{span}\{\mathbf{b}_1,\mathbf{b}_2\},\qquad
+\mathbf{b}_1=\begin{bmatrix}1\\1\\1\end{bmatrix},\quad
+\mathbf{b}_2=\begin{bmatrix}0\\1\\2\end{bmatrix}.
+\]
+
+**Step 1 — form the basis matrix**
+
+\[
+\mathbf{B} = [\,\mathbf{b}_1\ \mathbf{b}_2\,] =
+\begin{bmatrix}
+1 & 0\\[4pt]
+1 & 1\\[4pt]
+1 & 2
+\end{bmatrix}\in\mathbb{R}^{3\times 2}.
+\]
+
+**Step 2 — normal equations \(\mathbf{B}^\top \mathbf{B} \mathbf{\lambda} = \mathbf{B}^\top \mathbf{x}\)**
+
+Compute
+\[
+\mathbf{B}^\top \mathbf{B} =
+\begin{bmatrix}
+1 & 1 & 1\\
+0 & 1 & 2
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0\\
+1 & 1\\
+1 & 2
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 & 3\\[4pt]
+3 & 5
+\end{bmatrix},
+\qquad
+B^\top \mathbf{x} =
+\begin{bmatrix}
+1 & 1 & 1\\
+0 & 1 & 2
+\end{bmatrix}
+\begin{bmatrix}6\\0\\0\end{bmatrix}
+=
+\begin{bmatrix}6\\0\end{bmatrix}.
+\]
+
+Solve \((\mathbf{B}^\top \mathbf{B}) \mathbf{\lambda} = \mathbf{B}^\top \mathbf{x}\):
+\[
+\begin{bmatrix}3 & 3\\[4pt]3 & 5\end{bmatrix}
+\begin{bmatrix}\lambda_1\\[4pt]\lambda_2\end{bmatrix}
+=
+\begin{bmatrix}6\\[4pt]0\end{bmatrix}.
+\]
+Compute inverse (or solve directly). The inverse is
+\[
+(\mathbf{B}^\top \mathbf{B})^{-1} = \frac{1}{(3)(5)-3\cdot3} \begin{bmatrix}5 & -3\\[4pt]-3 & 3\end{bmatrix}
+= \frac{1}{6}\begin{bmatrix}5 & -3\\[4pt]-3 & 3\end{bmatrix}.
+\]
+Thus
+\[
+\mathbf{\lambda} = (\mathbf{B}^\top \mathbf{B})^{-1}\mathbf{B}^\top \mathbf{x}
+= \frac{1}{6}\begin{bmatrix}5 & -3\\[4pt]-3 & 3\end{bmatrix}\begin{bmatrix}6\\[4pt]0\end{bmatrix}
+= \frac{1}{6}\begin{bmatrix}30\\[4pt]-18\end{bmatrix}
+=
+\begin{bmatrix}5\\[4pt]-3\end{bmatrix}.
+\]
+
+**Step 3 — projection point \(\pi_U(\mathbf{x}) = \mathbf{B}\mathbf{\lambda}\)**
+
+\[
+\pi_U(\mathbf{x}) = \mathbf{B} \mathbf{\lambda}
+=
+\begin{bmatrix}
+1 & 0\\[4pt]
+1 & 1\\[4pt]
+1 & 2
+\end{bmatrix}
+\begin{bmatrix}5\\[4pt]-3\end{bmatrix}
+=
+\begin{bmatrix}
+5\\[4pt]
+5+(-3)\\[4pt]
+5+2(-3)
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\[4pt]2\\[4pt]-1
+\end{bmatrix}.
+\]
+
+**Step 4 — projection matrix (optional)**
+
+The projection matrix onto \(U\) is
+\[
+\mathbf{P} = \mathbf{B}(\mathbf{B}^\top \mathbf{B})^{-1}\mathbf{B}^\top
+=
+\begin{bmatrix}
+1 & 0\\[4pt]
+1 & 1\\[4pt]
+1 & 2
+\end{bmatrix}
+\frac{1}{6}\begin{bmatrix}5 & -3\\[4pt]-3 & 3\end{bmatrix}
+\begin{bmatrix}
+1 & 1 & 1\\[4pt]
+0 & 1 & 2
+\end{bmatrix}\;=\; \frac{1}{6}
+\begin{bmatrix}
+5 & 2 & -1\\[6pt]
+2 & 2 & 2\\[6pt]
+-1 & 2 & 5
+\end{bmatrix},
+\]
+and one can verify \(\mathbf{P}\mathbf{x}=\pi_U(\mathbf{x})\).
+</div>
+
+---
+
+### Gram-Schmidt Orthogonalization
+
+The Gram-Schmidt algorithm is Used to construct an orthogonal (or orthonormal) basis from any basis \( \{\mathbf{b}_1, ..., \mathbf{b}_n\} \):
+\[
+\mathbf{u}_1 = \mathbf{b}_1, \quad
+\mathbf{u}_k = \mathbf{b}_k - \pi_{\text{span}(\mathbf{u}_1, ..., \mathbf{u}_{k-1})}(\mathbf{b}_k).
+\]
+After orthogonalization, normalize each \( \mathbf{u}_k \) to form an ONB.
+
+
+
+<div class="example">
+In \( \mathbb{R}^2 \), find an ONB given $\mathbf{b}_1 = \begin{bmatrix}2 \\ 0\end{bmatrix}$ and, $\mathbf{b}_2 = \begin{bmatrix}1 \\ 1\end{bmatrix}$.
+
+Set $\mathbf{u}_1 = \mathbf{b}_1$.  Then
+\[
+\mathbf{u}_2 = \mathbf{b}_2 - \text{proj}_{\mathbf{u_1}}(\mathbf{b}_2) = \dfrac{\langle \mathbf{u}_1, \mathbf{b}_2 \rangle}{\|\mathbf{u}_1 \|^2} \mathbf{u}_1 = \begin{bmatrix}1 \\ 1\end{bmatrix} - \dfrac{1}{2} \begin{bmatrix}2 \\ 0\end{bmatrix} = \begin{bmatrix}0 \\ 1\end{bmatrix}.
+\]
+We normalize to find the ONB:
+\[\mathbf{v}_1 = \dfrac{1}{2}\begin{bmatrix}2 \\ 0\end{bmatrix} = \begin{bmatrix}1 \\ 0\end{bmatrix} \qquad \mathbf{v}_2 =  \begin{bmatrix}0 \\ 1 \end{bmatrix}.\]
+</div>
+
+<div class="example">
+Put example here
+</div>
+
+
+---
+
+### Projection onto Affine Subspaces
+
+For an **affine subspace** \( L = \mathbf{x}_0 + U \):
+\[
+\pi_L(\mathbf{x}) = \mathbf{x}_0 + \pi_U(\mathbf{x} - \mathbf{x}_0).
+\]
+The distance from \( \mathbf{x} \) to \( L \) equals the distance from \( \mathbf{x} - \mathbf{x}_0 \) to \( U \):
+\[
+d(\mathbf{x}, L) = \|\mathbf{x} - \pi_L(\mathbf{x})\| = \|\mathbf{x} - \mathbf{x}_0 - \pi_U(\mathbf{x} - \mathbf{x}_0)\|.
+\]
+This concept is fundamental to **support vector machines** and **hyperplane separation** in later chapters.
+
+
+
+
+
+---
+
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+Find the scalar projection (the component), vector projection and orthogonal projection of $\mathbf{u} = \begin{bmatrix}2\\-3\\1 \end{bmatrix}$ onto $\mathbf{d} =\begin{bmatrix}1 \\ -2 \\ 3\end{bmatrix}$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Find the scalar projection (the component), vector projection and orthogonal projection of $\mathbf{u} = \begin{bmatrix}3\\-4\\5 \end{bmatrix}$ onto $\mathbf{d} =\begin{bmatrix}1 \\ 0 \\ 3\end{bmatrix}$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Find the scalar projection (the component), vector projection and orthogonal projection of $\mathbf{u} = \begin{bmatrix}5\\7\\1 \end{bmatrix}$ onto $\mathbf{d} = \begin{bmatrix}2\\-1\\3\end{bmatrix}$.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Find the scalar projection (the component), vector projection and orthogonal projection of $\mathbf{u} = \begin{bmatrix}3\\-2\\1 \end{bmatrix}$ onto $\mathbf{d} = \begin{bmatrix}4\\1\\1\end{bmatrix}$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Find the shortest Euclidean distance from the point $P(1,3,-2)$ to the line through $P_0(2,0,-1)$ with direction $\mathbf{d} = \begin{bmatrix}1\\-1\\0\end{bmatrix}$ 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+<div class="exercise">
+Given $B=\{\mathbf{u}_1,\mathbf{u}_2\}$, where $\mathbf{u}_1=\begin{bmatrix} 1\\1\end{bmatrix}$, and  $\mathbf{u}_2=\begin{bmatrix}2\\1\end{bmatrix}$, use the Gram-Schmidt procedure to find a corresponding orthonormal basis.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Given $B=\{\mathbf{u}_1,\mathbf{u}_2\}$, where $\mathbf{u}_1=\begin{bmatrix} 1\\0\end{bmatrix}$, and  $\mathbf{u}_2=\begin{bmatrix}1\\1\end{bmatrix}$, use the Gram-Schmidt procedure to find a corresponding orthonormal basis. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Given $B=\{\mathbf{u}_1,\mathbf{u}_2,\mathbf{u}_3\}$, where $\mathbf{u}_1=\begin{bmatrix} 1\\2\\0\end{bmatrix}, \mathbf{u}_2=\begin{bmatrix}8\\1\\-6\end{bmatrix}$ and $\mathbf{u}_3 =\begin{bmatrix}0\\0\\1\end{bmatrix}$, use the Gram-Schmidt procedure to find a corresponding orthonormal basis.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Given $B=\{\mathbf{u}_1,\mathbf{u}_2, \mathbf{u}_3\}$, where $\mathbf{u}_1=\begin{bmatrix} 1\\1\\1\\1\end{bmatrix}, \mathbf{u}_2=\begin{bmatrix}1\\1\\-1\\-1\end{bmatrix}$ and $\mathbf{u}_3 =\begin{bmatrix}0\\-1\\2\\1\end{bmatrix}$, use the Gram-Schmidt procedure to find a corresponding orthonormal basis.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+<div class="exercise">
+Verify that $\{\begin{bmatrix} -2\\1\\3\\0\end{bmatrix},\begin{bmatrix}0\\-3\\1\\-6\end{bmatrix}, \begin{bmatrix}-2\\-4\\0\\2\end{bmatrix}\}$ is an orthogonal set of vectors in $\mathbb{R}^4$, and use it to construct an orthonormal basis in $\mathbb{R}^4$. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Obtain an orthonormal basis for the subspace of $\mathbb{R}^4$ spanned by $\{\begin{bmatrix}1\\0\\1\\0\end{bmatrix},\begin{bmatrix}1\\1\\1\\1\end{bmatrix}, \begin{bmatrix}-1\\2\\0\\1\end{bmatrix}\}$. 
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+<!-- NEW SECTION --><!-- NEW SECTION --><!-- NEW SECTION -->
+
+
+
+
+
+
+
+
+
+
+
+
+## Rotations
+
+Rotations are linear mappings that preserve both lengths and angles (as discussed in Section 3.4).  They are represented by orthogonal matrices, where the transformation rotates vectors through a given angle \( \theta \) around the origin.  Rotations are important in fields such as **computer graphics** and **robotics**, where objects or coordinate systems must be rotated precisely in space.
+
+---
+
+### Rotations in \( \mathbb{R}^2 \)
+
+In \( \mathbb{R}^2 \), a rotation by angle \( \theta \) about the origin is defined as:
+\[
+\mathbf{R}(\theta) =
+\begin{bmatrix}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta
+\end{bmatrix}.
+\]
+This matrix transforms the standard basis vectors as follows:
+\[
+\Phi(\mathbf{e}_1) =
+\begin{bmatrix}
+\cos \theta \\ \sin \theta
+\end{bmatrix},
+\quad
+\Phi(\mathbf{e}_2) =
+\begin{bmatrix}
+-\sin \theta \\ \cos \theta
+\end{bmatrix}.
+\]
+The transformation is **counterclockwise** for \( \theta > 0 \).  Rotations in \( \mathbb{R}^2 \) are **commutative**, meaning \( \mathbf{R}(\phi)\mathbf{R}(\theta) = \mathbf{R}(\theta)\mathbf{R}(\phi) \).  The rotation matrix represents a **basis change** in the plane.
+
+
+
+<div class="example">
+Let
+\[
+\mathbf{v}=\begin{bmatrix}1\\[4pt]2\end{bmatrix}\in\mathbb{R}^2.
+\]
+We want to rotate this vector 90 degrees.  
+
+The rotation matrix by angle \(\theta\) is
+\[
+\mathbf{R}(\theta)=\begin{bmatrix}
+\cos\theta & -\sin\theta\\[4pt]
+\sin\theta & \cos\theta
+\end{bmatrix} =
+\begin{bmatrix}
+\cos(\tfrac{\pi}{2}) & -\sin(\tfrac{\pi}{2})\\[4pt]
+\sin(\tfrac{\pi}{2}) & \cos(\tfrac{\pi}{2})
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & -1\\[4pt]
+1 & 0
+\end{bmatrix}.
+\]
+
+Apply this to \(\mathbf{v}\):
+\[
+\mathbf{v}' = \mathbf{R}\!\big(\tfrac{\pi}{2}\big)\mathbf{v}
+=
+\begin{bmatrix}0 & -1\\[4pt]1 & 0\end{bmatrix}
+\begin{bmatrix}1\\[4pt]2\end{bmatrix}
+=
+\begin{bmatrix}-2\\[4pt]1\end{bmatrix}.
+\]
+
+Now verify the rotation by checking the dot product between the original and the twice-rotated vector:
+\[
+\mathbf{v}\cdot\mathbf{v}' = 
+\begin{bmatrix}1 & 2\end{bmatrix}
+\begin{bmatrix}-2\\[4pt]1\end{bmatrix}
+= 1\cdot(-2) + 2\cdot 1 = -2 + 2 = 0.
+\]
+
+Because the dot product is zero, \(\mathbf{v}\) and \(\mathbf{v}'\) are orthogonal.
+</div>
+
+---
+
+### Rotations in \( \mathbb{R}^3 \)
+
+In \( \mathbb{R}^3 \), a rotation occurs in a **two-dimensional plane** about a one-dimensional axis.  We define three fundamental rotation matrices corresponding to the standard coordinate axes.
+
+**1. Rotation about the \( e_1 \)-axis:**
+\[
+\mathbf{R}_1(\theta) =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos \theta & -\sin \theta \\
+0 & \sin \theta & \cos \theta
+\end{bmatrix}.
+\]
+
+**2. Rotation about the \( e_2 \)-axis:**
+\[
+\mathbf{R}_2(\theta) =
+\begin{bmatrix}
+\cos \theta & 0 & \sin \theta \\
+0 & 1 & 0 \\
+-\sin \theta & 0 & \cos \theta
+\end{bmatrix}.
+\]
+
+**3. Rotation about the \( e_3 \)-axis:**
+\[
+\mathbf{R}_3(\theta) =
+\begin{bmatrix}
+\cos \theta & -\sin \theta & 0 \\
+\sin \theta & \cos \theta & 0 \\
+0 & 0 & 1
+\end{bmatrix}.
+\]
+
+
+
+<div class="example">
+We will rotate a vector \(30^\circ\) about the \(z\)-axis.
+
+The rotation matrix about the \(z\)-axis is:
+\[
+\mathbf{R}_z(30^\circ)
+=
+\begin{bmatrix}
+\cos 30^\circ & -\sin 30^\circ & 0 \\
+\sin 30^\circ & \cos 30^\circ & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{\sqrt{3}}{2} & -\frac{1}{2} & 0 \\
+\frac{1}{2} & \frac{\sqrt{3}}{2} & 0 \\
+0 & 0 & 1
+\end{bmatrix}.
+\]
+
+Let the vector be
+\[
+\mathbf{v} =
+\begin{bmatrix}
+2 \\ 1 \\ 3
+\end{bmatrix}.
+\]
+
+After rotating \(\mathbf{v}\) by \(30^\circ\) about the \(z\)-axis, we compute:
+\[
+\mathbf{v}' = \mathbf{R}_z(30^\circ)\mathbf{v}.
+\]
+
+So,
+\[
+\mathbf{v}' =
+\begin{bmatrix}
+\frac{\sqrt{3}}{2} & -\frac{1}{2} & 0 \\
+\frac{1}{2} & \frac{\sqrt{3}}{2} & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ 1 \\ 3
+\end{bmatrix}
+=
+\begin{bmatrix}
+\sqrt{3} - \frac{1}{2} \\
+1 + \frac{\sqrt{3}}{2} \\
+3
+\end{bmatrix}.
+\]
+
+
+The \(z\)-coordinate remains the same, while the \((x,y)\)-components are rotated \(30^\circ\) counterclockwise in the \(xy\)-plane.
+</div>
+
+A rotation is considered counterclockwise when viewed along the axis toward the origin. In \( \mathbb{R}^3 \), rotations do not commute; the order of rotations matters.
+
+---
+
+### Rotations in \( n \) Dimensions
+
+In \( n \)-dimensional Euclidean space, rotations generalize to two-dimensional planes within \( \mathbb{R}^n \).  All other \( n-2 \) dimensions remain fixed.
+
+
+
+<div class="definition">
+A **Givens rotation** \( \mathbf{R}_{ij}(\theta) \in \mathbb{R}^{n \times n} \) is defined as:
+\[
+\mathbf{R}_{ij}(\theta) =
+\begin{bmatrix}
+I_{i-1} & & & & \\
+& \cos \theta & & -\sin \theta & \\
+& & I_{j-i-1} & & \\
+& \sin \theta & & \cos \theta & \\
+& & & & I_{n-j}
+\end{bmatrix},
+\]
+for \( 1 \leq i < j \leq n \) and \( \theta \in \mathbb{R} \).  
+</div>
+
+This means:
+\[
+r_{ii} = \cos \theta, \quad
+r_{ij} = -\sin \theta, \quad
+r_{ji} = \sin \theta, \quad
+r_{jj} = \cos \theta.
+\]
+In 2D, this reduces to the familiar matrix \( \mathbf{R}(\theta) \).  Givens rotations are especially useful in numerical linear algebra for zeroing specific elements (e.g., QR decomposition).
+
+
+
+
+<div class="example">
+In \(\mathbb{R}^4\), rotate the given vector in the \(x\text{–}z\) plane, while leaving the \(y\) and \(w\) coordinates unchanged.  Let
+\[
+\mathbf{v} =
+\begin{bmatrix}
+2 \\ 1 \\ 0 \\ 4
+\end{bmatrix}.
+\]
+
+
+The rotation matrix in the \(x\text{–}z\) plane by \(60^\circ\) is:
+\[
+\mathbf{R}_y(60^\circ) =
+\begin{bmatrix}
+\cos 60^\circ & 0 & -\sin 60^\circ & 0 \\
+0 & 1 & 0 & 0 \\
+\sin 60^\circ & 0 & \cos 60^\circ & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\frac{1}{2} & 0 & -\frac{\sqrt{3}}{2} & 0 \\
+0 & 1 & 0 & 0 \\
+\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}.
+\]
+
+Now, we rotate the vector and
+\[
+\mathbf{v}' = \mathbf{R}_y(60^\circ)\mathbf{v} =
+\begin{bmatrix}
+\frac{1}{2} & 0 & -\frac{\sqrt{3}}{2} & 0 \\
+0 & 1 & 0 & 0 \\
+\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} & 0 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 \\ 1 \\ 0 \\ 4
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \\ 1 \\ \sqrt{3} \\ 4
+\end{bmatrix}.
+\]
+Thus,
+\[
+\mathbf{v}' =
+\begin{bmatrix}
+1 \\
+1 \\
+\sqrt{3} \\
+4
+\end{bmatrix}.
+\]
+
+Notice that only the \(x\) and \(z\) coordinates change due to the rotation; the \(y\) and \(w\) components remain fixed.
+</div>
+
+---
+
+### Properties of Rotations
+
+Rotations have several key properties derived from their orthogonality:
+
+1. **Distance Preservation:**  
+   Rotations do not alter the distance between any two points.
+   \[
+   \|\mathbf{x} - \mathbf{y}\| = \|\mathbf{R}_\theta(\mathbf{x}) - \mathbf{R}_\theta(\mathbf{y})\|.
+   \]
+
+2. **Angle Preservation:**  
+   The angle between \( \mathbf{x} \) and \( \mathbf{y} \) equals the angle between \( \mathbf{R}_\theta \mathbf{x} \) and \( \mathbf{R}_\theta \mathbf{y} \).
+
+3. **Non-Commutativity (in 3D or higher):**  
+   The composition of rotations depends on their order:  
+   \[
+   \mathbf{R}_i(\phi)\mathbf{R}_j(\theta) \neq \mathbf{R}_j(\theta)\mathbf{R}_i(\phi).
+   \]
+   Only in 2D do rotations commute and form an **Abelian group**.
+
+
+
+
+
+---
+
+
+
+### Exercises {.unnumbered .unlisted}
+
+
+
+
+
+
+<div class="exercise">
+Prove that rotations do not alter the distance between any two points.
+   \[
+   \|\mathbf{x} - \mathbf{y}\| = \|\mathbf{R}_\theta(\mathbf{x}) - \mathbf{R}_\theta(\mathbf{y})\|.
+   \]
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+<div class="exercise">
+Prove that the angle between \( \mathbf{x} \) and \( \mathbf{y} \) equals the angle between \( \mathbf{R}_\theta \mathbf{x} \) and \( \mathbf{R}_\theta \mathbf{y} \).
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Find an example that demonstrates that the composition of rotations depends on their order:  
+   \[
+   \mathbf{R}_i(\phi)\mathbf{R}_j(\theta) \neq \mathbf{R}_j(\theta)\mathbf{R}_i(\phi).
+   \]
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Rotate the standard basis in $\bbR^2$ $45^o$ counterclockwise.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+
+
+
+<div class="exercise">
+Rotate the standard basis in $\bbR^3$ $45^o$ counterclockwise with respect to the $z$-axis. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+
+<div class="exercise">
+A diamond is formed by attaching the ends of the vectors $\begin{bmatrix}1\\0 \end{bmatrix},\begin{bmatrix}-1\\0 \end{bmatrix}, \begin{bmatrix}0\\2 \end{bmatrix}, \begin{bmatrix}0\\-2 \end{bmatrix}$.  Rotate this $90^0$ counterclockwise.  Draw the pictures.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+A trapezoid is formed by attaching the ends of the vectors $\begin{bmatrix}1\\0 \end{bmatrix},\begin{bmatrix}-2\\0 \end{bmatrix}, \begin{bmatrix}0\\3 \end{bmatrix}, \begin{bmatrix}0\\-4 \end{bmatrix}$.  Rotate this $270^0$ counterclockwise.  Draw the pictures.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Consider a vector $v = \begin{bmatrix}2\\3 \end{bmatrix}$ with respect to the basis $B=\set{\begin{bmatrix}-1\\1 \end{bmatrix},\begin{bmatrix}-1\\-1 \end{bmatrix}}$.  Convert the vector into standard the standard basis, rotate it $45^o$ counterclockwise, then change it back to the original basis.
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+Consider a vector $v = \begin{bmatrix}-2\\1 \end{bmatrix}$ with respect to the basis $B=\set{\begin{bmatrix}-1\\0 \end{bmatrix},\begin{bmatrix}1\\-1 \end{bmatrix}}$.  Convert the vector into standard the standard basis, rotate it $90^o$ counterclockwise, then change it back to the original basis. 
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+<div class="exercise">
+
+<div style="text-align: right;">
+[Solution]( )
+</div> 
+</div>
+
+

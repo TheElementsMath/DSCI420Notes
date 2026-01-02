@@ -1,0 +1,51 @@
+h1:linear-algebra Linear Algebra
+h2:vectors  Vectors
+h3:vector-spaces Vector Spaces
+h3:closure Closure
+h3:other-properties-of-vectors Other Properties of Vectors
+h3:geometric-interpretation-of-a-vector Geometric Interpretation of a Vector
+h3:exercises Exercises
+h2:systems-of-linear-equations Systems of Linear Equations
+h3:solutions-to-systems-of-linear-equations Solutions to Systems of Linear Equations
+h3:geometric-interpretation Geometric Interpretation
+h3:matrix-formulation Matrix Formulation
+h3:exercises-1 Exercises
+h2:matrices Matrices
+h3:matrix-addition Matrix Addition
+h3:matrix-multiplication Matrix Multiplication
+h3:identity-matrix Identity Matrix
+h3:matrix-properties Matrix Properties
+h3:matrix-inverse Matrix Inverse
+h3:matrix-transpose Matrix Transpose
+h3:symmetric-matrices Symmetric Matrices
+h3:scalar-multiplication Scalar Multiplication
+h3:compact-form-of-linear-systems Compact Form of Linear Systems
+h3:exercises-2 Exercises
+h2:solving-systems-of-equations Solving Systems of Equations
+h3:particular-and-general-solutions Particular and General Solutions
+h3:elementary-transformations Elementary Transformations
+h3:the-minus-1-trick The Minus-1 Trick
+h3:calculating-an-inverse-matrix-via-gaussian-elimination Calculating an Inverse Matrix via Gaussian Elimination
+h3:algorithms-for-solving-a-system-of-linear-equations Algorithms for Solving a System of Linear Equations
+h3:exercises-3 Exercises
+h2:vector-spaces-1 Vector Spaces
+h3:groups Groups
+h3:vector-subspaces Vector Subspaces
+h3:exercises-4 Exercises
+h2:linear-independence Linear Independence
+h3:gaussian-elimination-method Gaussian Elimination Method
+h3:exercises-5 Exercises
+h2:basis-and-rank Basis and Rank
+h3:generating-set-and-basis Generating Set and Basis
+h3:rank Rank
+h3:exercises-6 Exercises
+h2:linear-mappings Linear Mappings
+h3:matrix-representation-of-linear-mappings Matrix Representation of Linear Mappings
+h3:coordinate-systems-and-bases Coordinate Systems and Bases
+h3:basis-change-and-equivalence Basis Change and Equivalence
+h3:image-and-kernel-of-a-linear-mapping Image and Kernel of a Linear Mapping
+h3:exercises-7 Exercises
+h2:affine-spaces Affine Spaces
+h3:relation-to-linear-equations Relation to Linear Equations
+h3:affine-mappings Affine Mappings
+

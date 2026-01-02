@@ -1,0 +1,20 @@
+h1:continuous-optimization Continuous Optimization
+h2:optimization-using-gradient-descent Optimization Using Gradient Descent
+h3:step-size-selection Step-size Selection
+h3:gradient-descent-with-momentum Gradient Descent with Momentum
+h3:stochastic-gradient-descent-sgd Stochastic Gradient Descent (SGD)
+h3:exercises Exercises
+h2:constrained-optimization-and-lagrange-multipliers Constrained Optimization and Lagrange Multipliers
+h3:from-constraints-to-the-lagrangian From Constraints to the Lagrangian
+h4:lagrangian-duality Lagrangian Duality
+h4:weak-duality-and-the-minimax-inequality Weak Duality and the Minimax Inequality
+h4:equality-constraints Equality Constraints
+h3:exercises-1 Exercises
+h2:convex-optimization Convex Optimization
+h3:convex-sets-and-functions Convex Sets and Functions
+h3:general-convex-optimization-problem General Convex Optimization Problem
+h3:quadratic-programming Quadratic Programming
+h3:legendrefenchel-transform-and-convex-conjugate Legendre–Fenchel Transform and Convex Conjugate
+h3:connection-to-duality Connection to Duality
+h3:exercises-2 Exercises
+

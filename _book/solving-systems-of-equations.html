@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.3 Solving Systems of Equations | DSCI 420: Mathematics for Machine Learning</title>
+  <meta name="description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.3 Solving Systems of Equations | DSCI 420: Mathematics for Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.3 Solving Systems of Equations | DSCI 420: Mathematics for Machine Learning" />
+  
+  <meta name="twitter:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+<meta name="author" content="D420 Faculty Team" />
+
+
+<meta name="date" content="2025-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="matrices.html"/>
+<link rel="next" href="vector-spaces-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">D420: Mathematics for Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html"><i class="fa fa-check"></i>Table of Symbols</a>
+<ul>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#important-symbols-and-where-to-find-them"><i class="fa fa-check"></i>Important Symbols and Where to Find Them:</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#table-of-abbreviations-and-acronyms"><i class="fa fa-check"></i>Table of Abbreviations and Acronyms</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-motivation.html"><a href="introduction-and-motivation.html"><i class="fa fa-check"></i><b>1</b> Introduction and Motivation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="finding-words-for-intuitions.html"><a href="finding-words-for-intuitions.html"><i class="fa fa-check"></i><b>1.1</b> Finding Words for Intuitions</a></li>
+<li class="chapter" data-level="1.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html"><i class="fa fa-check"></i><b>1.2</b> Two Ways to Read This Book</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-i-mathematical-foundations"><i class="fa fa-check"></i><b>1.2.1</b> Part I: Mathematical Foundations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-ii-machine-learning-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II: Machine Learning Applications</a></li>
+<li class="chapter" data-level="1.2.3" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#learning-path"><i class="fa fa-check"></i><b>1.2.3</b> Learning Path</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="exercises-and-feedback.html"><a href="exercises-and-feedback.html"><i class="fa fa-check"></i><b>1.3</b> Exercises and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="linear-algebra.html"><a href="linear-algebra.html"><i class="fa fa-check"></i><b>2</b> Linear Algebra</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><strong>2.0</strong> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="vectors.html"><a href="vectors.html#vector-spaces"><i class="fa fa-check"></i><b>2.0.1</b> Vector Spaces</a></li>
+<li class="chapter" data-level="2.0.2" data-path="vectors.html"><a href="vectors.html#closure"><i class="fa fa-check"></i><b>2.0.2</b> Closure</a></li>
+<li class="chapter" data-level="2.0.3" data-path="vectors.html"><a href="vectors.html#other-properties-of-vectors"><i class="fa fa-check"></i><b>2.0.3</b> Other Properties of Vectors</a></li>
+<li class="chapter" data-level="2.0.4" data-path="vectors.html"><a href="vectors.html#geometric-interpretation-of-a-vector"><i class="fa fa-check"></i><b>2.0.4</b> Geometric Interpretation of a Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html"><i class="fa fa-check"></i><b>2.1</b> Systems of Linear Equations</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#solutions-to-systems-of-linear-equations"><i class="fa fa-check"></i><b>2.1.1</b> Solutions to Systems of Linear Equations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#geometric-interpretation"><i class="fa fa-check"></i><b>2.1.2</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#matrix-formulation"><i class="fa fa-check"></i><b>2.1.3</b> Matrix Formulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>2.2</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="matrices.html"><a href="matrices.html#matrix-addition"><i class="fa fa-check"></i><b>2.2.1</b> Matrix Addition</a></li>
+<li class="chapter" data-level="2.2.2" data-path="matrices.html"><a href="matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.2.2</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2.3" data-path="matrices.html"><a href="matrices.html#identity-matrix"><i class="fa fa-check"></i><b>2.2.3</b> Identity Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="matrices.html"><a href="matrices.html#matrix-properties"><i class="fa fa-check"></i><b>2.2.4</b> Matrix Properties</a></li>
+<li class="chapter" data-level="2.2.5" data-path="matrices.html"><a href="matrices.html#matrix-inverse"><i class="fa fa-check"></i><b>2.2.5</b> Matrix Inverse</a></li>
+<li class="chapter" data-level="2.2.6" data-path="matrices.html"><a href="matrices.html#matrix-transpose"><i class="fa fa-check"></i><b>2.2.6</b> Matrix Transpose</a></li>
+<li class="chapter" data-level="2.2.7" data-path="matrices.html"><a href="matrices.html#symmetric-matrices"><i class="fa fa-check"></i><b>2.2.7</b> Symmetric Matrices</a></li>
+<li class="chapter" data-level="2.2.8" data-path="matrices.html"><a href="matrices.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.2.8</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.2.9" data-path="matrices.html"><a href="matrices.html#compact-form-of-linear-systems"><i class="fa fa-check"></i><b>2.2.9</b> Compact Form of Linear Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html"><i class="fa fa-check"></i><b>2.3</b> Solving Systems of Equations</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#particular-and-general-solutions"><i class="fa fa-check"></i><b>2.3.1</b> Particular and General Solutions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#elementary-transformations"><i class="fa fa-check"></i><b>2.3.2</b> Elementary Transformations</a></li>
+<li class="chapter" data-level="2.3.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#the-minus-1-trick"><i class="fa fa-check"></i><b>2.3.3</b> The Minus-1 Trick</a></li>
+<li class="chapter" data-level="2.3.4" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#calculating-an-inverse-matrix-via-gaussian-elimination"><i class="fa fa-check"></i><b>2.3.4</b> Calculating an Inverse Matrix via Gaussian Elimination</a></li>
+<li class="chapter" data-level="2.3.5" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#algorithms-for-solving-a-system-of-linear-equations"><i class="fa fa-check"></i><b>2.3.5</b> Algorithms for Solving a System of Linear Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html"><i class="fa fa-check"></i><b>2.4</b> Vector Spaces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#groups"><i class="fa fa-check"></i><b>2.4.1</b> Groups</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#vector-subspaces"><i class="fa fa-check"></i><b>2.4.2</b> Vector Subspaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="linear-independence.html"><a href="linear-independence.html"><i class="fa fa-check"></i><b>2.5</b> Linear Independence</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="linear-independence.html"><a href="linear-independence.html#gaussian-elimination-method"><i class="fa fa-check"></i><b>2.5.1</b> Gaussian Elimination Method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="basis-and-rank.html"><a href="basis-and-rank.html"><i class="fa fa-check"></i><b>2.6</b> Basis and Rank</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="basis-and-rank.html"><a href="basis-and-rank.html#generating-set-and-basis"><i class="fa fa-check"></i><b>2.6.1</b> Generating Set and Basis</a></li>
+<li class="chapter" data-level="2.6.2" data-path="basis-and-rank.html"><a href="basis-and-rank.html#rank"><i class="fa fa-check"></i><b>2.6.2</b> Rank</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="linear-mappings.html"><a href="linear-mappings.html"><i class="fa fa-check"></i><b>2.7</b> Linear Mappings</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
+<li class="chapter" data-level="2.7.2" data-path="linear-mappings.html"><a href="linear-mappings.html#coordinate-systems-and-bases"><i class="fa fa-check"></i><b>2.7.2</b> Coordinate Systems and Bases</a></li>
+<li class="chapter" data-level="2.7.3" data-path="linear-mappings.html"><a href="linear-mappings.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.7.3</b> Basis Change and Equivalence</a></li>
+<li class="chapter" data-level="2.7.6" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.6</b> Image and Kernel of a Linear Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.8</b> Affine Spaces</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="affine-spaces.html"><a href="affine-spaces.html#relation-to-linear-equations"><i class="fa fa-check"></i><b>2.8.1</b> Relation to Linear Equations</a></li>
+<li class="chapter" data-level="2.8.2" data-path="affine-spaces.html"><a href="affine-spaces.html#affine-mappings"><i class="fa fa-check"></i><b>2.8.2</b> Affine Mappings</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSCI 420: Mathematics for Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="solving-systems-of-equations" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Solving Systems of Equations<a href="solving-systems-of-equations.html#solving-systems-of-equations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can represent a system of linear equations as</p>
+<p><span class="math display">\[
+\begin{aligned}
+a_{11}x_1 + \dots + a_{1n}x_n &amp;= b_1 \\
+\vdots \quad\quad \quad\quad \quad\quad \vdots \quad &amp; \quad \vdots \\
+a_{m1}x_1 + \dots + a_{mn}x_n &amp;= b_m
+\end{aligned}
+\]</span>
+where <span class="math inline">\(a_{ij}, b_i \in \mathbb{R}\)</span> are known constants and <span class="math inline">\(x_j\)</span> are unknowns. This can be written compactly in matrix form as<br />
+<span class="math display">\[
+\mathbf{A}\mathbf{x} = \mathbf{b}.
+\]</span></p>
+<p>Matrices allow for a compact representation and straightforward manipulation of linear systems. Next, we focus on finding solutions to these systems and introduce the idea of a <strong>matrix inverse</strong>.</p>
+<hr />
+<div id="particular-and-general-solutions" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Particular and General Solutions<a href="solving-systems-of-equations.html#particular-and-general-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Consider a system with fewer equations than unknowns. Such systems often have infinitely many solutions. To solve such a system of equations, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Find a particular solution to <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span>.<br />
+</li>
+<li>Find all homogeneous solutions to <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span>.<br />
+</li>
+<li>Combine the results:<br />
+<span class="math display">\[
+\mathbf{x} = \mathbf{x}_p + \mathbf{x}_h.
+\]</span>
+Neither the particular solution nor the general solution is unique.</li>
+</ol>
+<div class="example">
+<p><span id="exm:unlabeled-div-90" class="example"><strong>Example 2.35  </strong></span><span class="math display">\[
+\begin{bmatrix}
+1 &amp; 0 &amp; 8 &amp; -4 \\
+0 &amp; 1 &amp; 2 &amp; 12
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3 \\ x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+42 \\ 8
+\end{bmatrix}.
+\]</span></p>
+<p>From inspection, we can find one <strong>particular solution</strong>:
+<span class="math display">\[
+\mathbf{x}_p =
+\begin{bmatrix}
+42 \\ 8 \\ 0 \\ 0
+\end{bmatrix}.
+\]</span></p>
+<p>To find all possible solutions, we add all <strong>non-trivial combinations</strong> that satisfy <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span>. Let <span class="math inline">\(c_i\)</span> represent column <span class="math inline">\(i\)</span>. Then <span class="math display">\[c_3 = 8\begin{bmatrix}1\\0 \end{bmatrix} + 2\begin{bmatrix}0 \\ 1 \end{bmatrix} = 8c_1 + 2 c_2,\]</span> or rather
+<span class="math display">\[
+\begin{aligned}
+8c_1 + 2c_2 - c_3 &amp;= 0, \\
+-4c_1 + 12c_2 - c_4 &amp;= 0,
+\end{aligned}
+\]</span>
+which yield two <strong>homogeneous solutions</strong>:
+<span class="math display">\[
+\mathbf{x}_1 =
+\begin{bmatrix}
+8 \\ 2 \\ -1 \\ 0
+\end{bmatrix},
+\quad
+\mathbf{x}_2 =
+\begin{bmatrix}
+-4 \\ 12 \\ 0 \\ -1
+\end{bmatrix}.
+\]</span></p>
+<p>Thus, the <strong>general solution</strong> is
+<span class="math display">\[
+\mathbf{x} =
+\begin{bmatrix}
+42 \\ 8 \\ 0 \\ 0
+\end{bmatrix}
++ \lambda_1
+\begin{bmatrix}
+8 \\ 2 \\ -1 \\ 0
+\end{bmatrix}
++ \lambda_2
+\begin{bmatrix}
+-4 \\ 12 \\ 0 \\ -1
+\end{bmatrix},
+\quad
+\lambda_1, \lambda_2 \in \mathbb{R}.
+\]</span></p>
+</div>
+<p>In general, systems of equations are not as simple as the example above. To solve any linear system, we can use <strong>Gaussian elimination</strong>, an algorithmic procedure that:</p>
+<ul>
+<li>Applies <strong>elementary row transformations</strong> to simplify the system, and<br />
+</li>
+<li>Transforms it into a form where the three steps above can be applied directly.</li>
+</ul>
+<p>This provides a systematic way to find all solutions to <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span>.</p>
+<hr />
+</div>
+<div id="elementary-transformations" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Elementary Transformations<a href="solving-systems-of-equations.html#elementary-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-91" class="definition"><strong>Definition 2.17  </strong></span><strong>Elementary transformations</strong> are operations that simplify a system of linear equations without changing its solution set.</p>
+<p>These are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Row exchange:</strong> Swap two equations (rows).<br />
+</li>
+<li><strong>Row scaling:</strong> Multiply an equation (row) by a nonzero scalar <span class="math inline">\(\lambda \in \mathbb{R} \setminus \{0\}\)</span>.<br />
+</li>
+<li><strong>Row addition:</strong> Add a multiple of one equation (row) to another.</li>
+</ol>
+</div>
+<p>These operations are key to transforming a system into simpler forms, such as row-echelon form (REF) or reduced row-echelon form (RREF).</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-92" class="example"><strong>Example 2.36  </strong></span>Given a system of equations,
+<span class="math display">\[\begin{align*}
+-2x_1 + 4x_2 - 2x_3 - x_4 + 4x_5 &amp;= 3\\
+4x_1 - 8x_2 + 3x_3 - 3x_4 + x_5 &amp;= 2\\
+x_1 - 2x_2 + x_3 - x_4 + x_5 &amp;= 0\\
+x_1 - 2x_2 - 3x_4 + 4x_5 &amp;= a\\
+\end{align*}\]</span>
+we write it in <strong>augmented matrix form</strong>:
+<span class="math display">\[
+[\mathbf{A} | \mathbf{b}] =
+\begin{bmatrix}
+-2 &amp; 4 &amp; -2 &amp; -1 &amp; 4 &amp; -3 \\
+4 &amp; -8 &amp; 3 &amp; -3 &amp; 1 &amp; 2 \\
+1 &amp; -2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\
+1 &amp; -2 &amp; 0 &amp; -3 &amp; 4 &amp; a
+\end{bmatrix}
+\]</span></p>
+<p>By applying elementary row operations, we obtain a simpler (row-echelon) form:
+<span class="math display">\[
+\begin{bmatrix}
+1 &amp; -2 &amp; 1 &amp; -1 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; -1 &amp; 3 &amp; -2 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; -2 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; a + 1
+\end{bmatrix}
+\]</span></p>
+<p>The resulting equations are:
+<span class="math display">\[
+\begin{aligned}
+x_1 - 2x_2 + x_3 - x_4 + x_5 &amp;= 0 \\
+x_3 - x_4 + 3x_5 &amp;= -2 \\
+x_4 - 2x_5 &amp;= 1 \\
+0 &amp;= a + 1
+\end{aligned}
+\]</span></p>
+<p>A <strong>particular solution</strong> exists only when <span class="math inline">\(a = -1\)</span>:
+<span class="math display">\[
+\mathbf{x}_p =
+\begin{bmatrix}
+2 \\ 0 \\ -1 \\ 1 \\ 0
+\end{bmatrix}
+\]</span></p>
+<p>The <strong>general solution</strong> is:
+<span class="math display">\[
+\mathbf{x} =
+\begin{bmatrix}
+2 \\ 0 \\ -1 \\ 1 \\ 0
+\end{bmatrix}
++ \lambda_1
+\begin{bmatrix}
+2 \\ 1 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
++ \lambda_2
+\begin{bmatrix}
+2 \\ 0 \\ -1 \\ 2 \\ 1
+\end{bmatrix}, \quad \lambda_1, \lambda_2 \in \mathbb{R}.
+\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-93" class="definition"><strong>Definition 2.18  </strong></span>A matrix is in <strong>row-echelon form</strong> if:</p>
+<ol style="list-style-type: decimal">
+<li>All-zero rows are at the bottom.<br />
+</li>
+<li>Each pivot (first nonzero entry from the left) is strictly to the right of the pivot in the row above.<br />
+</li>
+</ol>
+</div>
+<p>This produces a <em>“staircase” structure</em>.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-94" class="definition"><strong>Definition 2.19  </strong></span><strong>Basic variables</strong> correspond to pivot columns. <strong>Free variables</strong> correspond to non-pivot columns.</p>
+</div>
+<p>In the previous example: <span class="math inline">\(x_1, x_3, x_4\)</span> are basic; <span class="math inline">\(x_2, x_5\)</span> are free.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-95" class="definition"><strong>Definition 2.20  </strong></span>A system is in <strong>reduced row-echelon form</strong> if:</p>
+<ol style="list-style-type: decimal">
+<li>It is in REF.<br />
+</li>
+<li>Each pivot is 1.<br />
+</li>
+<li>Each pivot is the only nonzero entry in its column.</li>
+</ol>
+</div>
+<p>RREF makes it easy to:</p>
+<ul>
+<li>Identify basic and free variables.<br />
+</li>
+<li>Read off particular and general solutions.</li>
+</ul>
+<div class="note">
+<p><strong>Gaussian elimination</strong> is a process that systematically applies elementary transformations to bring a matrix to RREF.</p>
+</div>
+<p>Gaussian elimination allows direct solution of <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span> or <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-96" class="example"><strong>Example 2.37  </strong></span><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; -4
+\end{bmatrix}
+\]</span></p>
+<p>Pivot columns: 1, 3, and 4 (basic variables).<br />
+Non-pivot columns: 2 and 5 (free variables).</p>
+<p>The general solution to <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span> is:
+<span class="math display">\[
+\mathbf{x} =
+\lambda_1
+\begin{bmatrix}
+3 \\ -1 \\ 0 \\ 0 \\ 0
+\end{bmatrix}
++
+\lambda_2
+\begin{bmatrix}
+3 \\ 0 \\ 9 \\ -4 \\ -1
+\end{bmatrix}, \quad
+\lambda_1, \lambda_2 \in \mathbb{R}.
+\]</span></p>
+</div>
+<hr />
+</div>
+<div id="the-minus-1-trick" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> The Minus-1 Trick<a href="solving-systems-of-equations.html#the-minus-1-trick" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a homogeneous system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span> in RREF:</p>
+<ol style="list-style-type: decimal">
+<li>Extend <span class="math inline">\(\mathbf{A}\)</span> to an <span class="math inline">\(n \times n\)</span> matrix <span class="math inline">\(\tilde{\mathbf{A}}\)</span> by adding rows with a single <strong>−1</strong> where pivots are missing.<br />
+</li>
+<li>The columns of <span class="math inline">\(\tilde{\mathbf{A}}\)</span> containing <strong>−1</strong> entries form a basis for the solution space (kernel/null space).</li>
+</ol>
+<div class="example">
+<p><span id="exm:unlabeled-div-97" class="example"><strong>Example 2.38  </strong></span>For <span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; -4
+\end{bmatrix},
+\]</span>
+we use the -1 trick to get
+<span class="math display">\[
+\tilde{\mathbf{A}} =
+\begin{bmatrix}
+1 &amp; 3 &amp; 0 &amp; 0 &amp; 3 \\
+0 &amp; -1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 9 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; -4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; -1
+\end{bmatrix}.
+\]</span>
+Columns 2 and 5 are exactly the solutions for the homogeneous equation.</p>
+</div>
+<p>The columns with −1 yield the same solution vectors as before.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-98" class="example"><strong>Example 2.39  </strong></span>Consider the homogeneous system:
+<span class="math display">\[
+\begin{cases}
+x + 2y - z = 0 \\
+2x + 4y - 2z = 0.
+\end{cases}
+\]</span>
+We can write this as an augmented matrix:
+<span class="math display">\[
+\left[\begin{array}{ccc|c}
+1 &amp; 2 &amp; -1 &amp; 0 \\
+2 &amp; 4 &amp; -2 &amp; 0
+\end{array}\right].
+\]</span>
+Row reduction gives us
+<span class="math display">\[
+\left[\begin{array}{ccc|c}
+1 &amp; 2 &amp; -1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0
+\end{array}\right]
+\]</span>
+We rewrite with the -1 trick:
+<span class="math display">\[
+\left[\begin{array}{ccc|c}
+1 &amp; 2 &amp; -1 &amp; 0 \\
+0 &amp; -1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; -1 &amp; 0\\
+\end{array}\right]
+\]</span>
+Hence the general (homogeneous) solution is:</p>
+<p><span class="math display">\[
+\mathbf{x} = s\begin{bmatrix} 2 \\ -1 \\ 0 \end{bmatrix} +
+t\begin{bmatrix} -1 \\ 0 \\ -1 \end{bmatrix}, \quad s,t \in \mathbb{R}.
+\]</span></p>
+</div>
+<hr />
+</div>
+<div id="calculating-an-inverse-matrix-via-gaussian-elimination" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Calculating an Inverse Matrix via Gaussian Elimination<a href="solving-systems-of-equations.html#calculating-an-inverse-matrix-via-gaussian-elimination" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-99" class="lemma"><strong>Lemma 2.6  </strong></span>To find <span class="math inline">\(\mathbf{A}^{-1}\)</span> for <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>, use Gaussian elimination to transform:
+<span class="math display">\[
+[\mathbf{A} | \mathbf{I}_n] \;\Rightarrow\; [\mathbf{I}_n | \mathbf{A}^{-1}].
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-100" class="example"><strong>Example 2.40  </strong></span><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 0 &amp; 2 &amp; 0 \\
+1 &amp; 1 &amp; 0 &amp; 0 \\
+1 &amp; 2 &amp; 0 &amp; 1 \\
+1 &amp; 1 &amp; 1 &amp; 1
+\end{bmatrix}.
+\]</span>
+Append the identity matrix.
+<span class="math display">\[
+[\mathbf{A}|\mathbf{I}_4] =
+\begin{bmatrix}
+1 &amp; 0 &amp; 2 &amp; 0 &amp;1&amp;0&amp;0&amp;0\\
+1 &amp; 1 &amp; 0 &amp; 0 &amp;0&amp;1&amp;0&amp;0\\
+1 &amp; 2 &amp; 0 &amp; 1 &amp;0&amp;0&amp;1&amp;0\\
+1 &amp; 1 &amp; 1 &amp; 1 &amp;0&amp;0&amp;0&amp;1
+\end{bmatrix}.
+\]</span></p>
+<p>After elimination:
+<span class="math display">\[
+[\mathbf{I}_4|\mathbf{A}^{-1}] =
+\begin{bmatrix}
+1&amp;0&amp;0&amp;0&amp;  -1 &amp; 2 &amp; -2 &amp; 2 \\
+0&amp;1&amp;0&amp;0&amp;  1 &amp; -1 &amp; 2 &amp; -2 \\
+0&amp;0&amp;1&amp;0&amp;  1 &amp; -1 &amp; 1 &amp; -1 \\
+0&amp;0&amp;0&amp;1&amp;  -1 &amp; 0 &amp; -1 &amp; 2
+\end{bmatrix}.
+\]</span>
+<span class="math display">\[
+\mathbf{A}^{-1} =
+\begin{bmatrix}
+-1 &amp; 2 &amp; -2 &amp; 2 \\
+1 &amp; -1 &amp; 2 &amp; -2 \\
+1 &amp; -1 &amp; 1 &amp; -1 \\
+-1 &amp; 0 &amp; -1 &amp; 2
+\end{bmatrix}.
+\]</span></p>
+<p>Verification: You should check that
+<span class="math display">\[
+\mathbf{A} \mathbf{A}^{-1} = \mathbf{I}_4.
+\]</span></p>
+</div>
+</div>
+<div id="algorithms-for-solving-a-system-of-linear-equations" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Algorithms for Solving a System of Linear Equations<a href="solving-systems-of-equations.html#algorithms-for-solving-a-system-of-linear-equations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When solving a system of linear equations <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span>, we typically assume that a solution exists. If not, approximate methods such as <strong>linear regression</strong> (see Chapter 9) are used.</p>
+<p>In special cases where <span class="math inline">\(\mathbf{A}\)</span> is square and invertible, the exact solution can be written as<br />
+<span class="math display">\[
+\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}.
+\]</span>
+However, this is often not feasible, so we use the <strong>Moore–Penrose pseudo-inverse</strong>:
+<span class="math display">\[
+\mathbf{x} = (\mathbf{A}^{\top}\mathbf{A})^{-1}\mathbf{A}^{\top}\mathbf{b},
+\]</span>
+which provides the minimum-norm least-squares solution. Despite being conceptually simple, this approach is computationally expensive and numerically unstable, so it is rarely used in practice.</p>
+<p>For large-scale systems, we use <strong>iterative methods</strong>, which gradually improve an approximate solution. These methods include:</p>
+<ul>
+<li><strong>Stationary iterative methods:</strong> Richardson, Jacobi, Gauss–Seidel, and successive over-relaxation.</li>
+<li><strong>Krylov subspace methods:</strong> Conjugate gradients, generalized minimal residual (GMRES), and biconjugate gradients.</li>
+</ul>
+<p>These methods iteratively update the estimate of the solution according to<br />
+<span class="math display">\[
+\mathbf{x}^{(k+1)} = \mathbf{C}\mathbf{x}^{(k)} + \mathbf{d},
+\]</span>
+reducing the residual error <span class="math inline">\(\|\mathbf{x}^{(k+1)} - \mathbf{x}^*\|\)</span> at each step until convergence to the true solution <span class="math inline">\(\mathbf{x}^*\)</span>.</p>
+</div>
+<div id="exercises-4" class="section level3 unnumbered unlisted hasAnchor">
+<h3>Exercises<a href="solving-systems-of-equations.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-101" class="exercise"><strong>Exercise 2.34  </strong></span>Particular/ General solution example.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-102" class="exercise"><strong>Exercise 2.35  </strong></span>Gaussian Elimination example.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-103" class="exercise"><strong>Exercise 2.36  </strong></span>-1 trick example.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-104" class="exercise"><strong>Exercise 2.37  </strong></span>Find the inverse of <span class="math inline">\(\begin{bmatrix}1&amp;2&amp;3\\2&amp;3&amp;0\\3&amp;0&amp;1\end{bmatrix}\)</span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-105" class="exercise"><strong>Exercise 2.38  </strong></span>Moore-Penrose pseudo inverse example.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-106" class="exercise"><strong>Exercise 2.39  </strong></span>Solve the system of equations <span class="math display">\[\begin{align*}2x + 5y + 2z &amp; =  - 38\\ 3x - 2y + 4z &amp; = 17\\ - 6x + y - 7z &amp; =  - 12\end{align*}\]</span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-107" class="exercise"><strong>Exercise 2.40  </strong></span>Solve the system of equations <span class="math display">\[\begin{align*}2x - 4y + 5z &amp; =  - 33\\ 4x - y &amp; =  - 5\\  - 2x + 2y - 3z &amp; = 19\end{align*}\]</span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-108" class="exercise"><strong>Exercise 2.41  </strong></span>Solve the system of equations <span class="math display">\[\begin{align*}x - y &amp; = 6\\  - 2x + 2y &amp; = 1\end{align*}\]</span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-109" class="exercise"><strong>Exercise 2.42  </strong></span>Solve the system of equations <span class="math display">\[\begin{align*}2x + 5y &amp; =  - 1\\  - 10x - 25y &amp; = 5\end{align*}\]</span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-110" class="exercise"><strong>Exercise 2.43  </strong></span>Find the inverse of <span class="math inline">\(\begin{bmatrix}1&amp;0&amp;2&amp;3\\2&amp;3&amp;0&amp;1\\0&amp;3&amp;0&amp;1\\1&amp;0&amp;0&amp;1\end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-111" class="exercise"><strong>Exercise 2.44  </strong></span>Consider a <span class="math inline">\(4 \times 4\)</span> matrix. How many operations does Gaussian Elimination require? What about for an <span class="math inline">\(n \times n\)</span> matrix?</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="matrices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vector-spaces-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["D420-Book.pdf", "D420-Book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+h1:classification-with-support-vector-machines-svms Classification with Support Vector Machines (SVMs)
+h2:separating-hyperplanes Separating Hyperplanes
+h3:classification-rule Classification Rule
+h3:training-objective Training Objective
+h3:geometric-interpretation Geometric Interpretation
+h3:exercises Exercises
+h2:primal-support-vector-machine Primal Support Vector Machine
+h3:traditional-derivation-of-the-margin Traditional Derivation of the Margin
+h3:why-we-can-set-the-margin-to-1 Why We Can Set the Margin to 1?
+h3:soft-margin-svm-geometric-view Soft Margin SVM: Geometric View
+h3:soft-margin-svm-loss-function-view Soft Margin SVM: Loss Function View
+h3:exercises-1 Exercises
+h2:dual-support-vector-machine Dual Support Vector Machine
+h3:convex-duality-via-lagrange-multipliers Convex Duality via Lagrange Multipliers
+h3:dual-optimization-problem Dual Optimization Problem
+h3:dual-svm-convex-hull-view Dual SVM: Convex Hull View
+h3:exercises-2 Exercises
+h2:kernels Kernels
+h3:feature-representations-and-kernels Feature Representations and Kernels
+h3:the-kernel-function-and-rkhs The Kernel Function and RKHS
+h3:common-kernels Common Kernels
+h3:practical-aspects Practical Aspects
+h3:terminology-note Terminology Note
+h3:exercises-3 Exercises
+

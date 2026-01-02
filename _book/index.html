@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>DSCI 420: Mathematics for Machine Learning</title>
+  <meta name="description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="DSCI 420: Mathematics for Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="DSCI 420: Mathematics for Machine Learning" />
+  
+  <meta name="twitter:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+<meta name="author" content="D420 Faculty Team" />
+
+
+<meta name="date" content="2025-11-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="table-of-symbols.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">D420: Mathematics for Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html"><i class="fa fa-check"></i>Table of Symbols</a>
+<ul>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#important-symbols-and-where-to-find-them"><i class="fa fa-check"></i>Important Symbols and Where to Find Them:</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#table-of-abbreviations-and-acronyms"><i class="fa fa-check"></i>Table of Abbreviations and Acronyms</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-motivation.html"><a href="introduction-and-motivation.html"><i class="fa fa-check"></i><b>1</b> Introduction and Motivation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="finding-words-for-intuitions.html"><a href="finding-words-for-intuitions.html"><i class="fa fa-check"></i><b>1.1</b> Finding Words for Intuitions</a></li>
+<li class="chapter" data-level="1.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html"><i class="fa fa-check"></i><b>1.2</b> Two Ways to Read This Book</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-i-mathematical-foundations"><i class="fa fa-check"></i><b>1.2.1</b> Part I: Mathematical Foundations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-ii-machine-learning-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II: Machine Learning Applications</a></li>
+<li class="chapter" data-level="1.2.3" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#learning-path"><i class="fa fa-check"></i><b>1.2.3</b> Learning Path</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="exercises-and-feedback.html"><a href="exercises-and-feedback.html"><i class="fa fa-check"></i><b>1.3</b> Exercises and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="linear-algebra.html"><a href="linear-algebra.html"><i class="fa fa-check"></i><b>2</b> Linear Algebra</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><strong>2.0</strong> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="vectors.html"><a href="vectors.html#vector-spaces"><i class="fa fa-check"></i><b>2.0.1</b> Vector Spaces</a></li>
+<li class="chapter" data-level="2.0.2" data-path="vectors.html"><a href="vectors.html#closure"><i class="fa fa-check"></i><b>2.0.2</b> Closure</a></li>
+<li class="chapter" data-level="2.0.3" data-path="vectors.html"><a href="vectors.html#other-properties-of-vectors"><i class="fa fa-check"></i><b>2.0.3</b> Other Properties of Vectors</a></li>
+<li class="chapter" data-level="2.0.4" data-path="vectors.html"><a href="vectors.html#geometric-interpretation-of-a-vector"><i class="fa fa-check"></i><b>2.0.4</b> Geometric Interpretation of a Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html"><i class="fa fa-check"></i><b>2.1</b> Systems of Linear Equations</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#solutions-to-systems-of-linear-equations"><i class="fa fa-check"></i><b>2.1.1</b> Solutions to Systems of Linear Equations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#geometric-interpretation"><i class="fa fa-check"></i><b>2.1.2</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#matrix-formulation"><i class="fa fa-check"></i><b>2.1.3</b> Matrix Formulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>2.2</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="matrices.html"><a href="matrices.html#matrix-addition"><i class="fa fa-check"></i><b>2.2.1</b> Matrix Addition</a></li>
+<li class="chapter" data-level="2.2.2" data-path="matrices.html"><a href="matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.2.2</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2.3" data-path="matrices.html"><a href="matrices.html#identity-matrix"><i class="fa fa-check"></i><b>2.2.3</b> Identity Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="matrices.html"><a href="matrices.html#matrix-properties"><i class="fa fa-check"></i><b>2.2.4</b> Matrix Properties</a></li>
+<li class="chapter" data-level="2.2.5" data-path="matrices.html"><a href="matrices.html#matrix-inverse"><i class="fa fa-check"></i><b>2.2.5</b> Matrix Inverse</a></li>
+<li class="chapter" data-level="2.2.6" data-path="matrices.html"><a href="matrices.html#matrix-transpose"><i class="fa fa-check"></i><b>2.2.6</b> Matrix Transpose</a></li>
+<li class="chapter" data-level="2.2.7" data-path="matrices.html"><a href="matrices.html#symmetric-matrices"><i class="fa fa-check"></i><b>2.2.7</b> Symmetric Matrices</a></li>
+<li class="chapter" data-level="2.2.8" data-path="matrices.html"><a href="matrices.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.2.8</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.2.9" data-path="matrices.html"><a href="matrices.html#compact-form-of-linear-systems"><i class="fa fa-check"></i><b>2.2.9</b> Compact Form of Linear Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html"><i class="fa fa-check"></i><b>2.3</b> Solving Systems of Equations</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#particular-and-general-solutions"><i class="fa fa-check"></i><b>2.3.1</b> Particular and General Solutions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#elementary-transformations"><i class="fa fa-check"></i><b>2.3.2</b> Elementary Transformations</a></li>
+<li class="chapter" data-level="2.3.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#the-minus-1-trick"><i class="fa fa-check"></i><b>2.3.3</b> The Minus-1 Trick</a></li>
+<li class="chapter" data-level="2.3.4" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#calculating-an-inverse-matrix-via-gaussian-elimination"><i class="fa fa-check"></i><b>2.3.4</b> Calculating an Inverse Matrix via Gaussian Elimination</a></li>
+<li class="chapter" data-level="2.3.5" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#algorithms-for-solving-a-system-of-linear-equations"><i class="fa fa-check"></i><b>2.3.5</b> Algorithms for Solving a System of Linear Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html"><i class="fa fa-check"></i><b>2.4</b> Vector Spaces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#groups"><i class="fa fa-check"></i><b>2.4.1</b> Groups</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#vector-subspaces"><i class="fa fa-check"></i><b>2.4.2</b> Vector Subspaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="linear-independence.html"><a href="linear-independence.html"><i class="fa fa-check"></i><b>2.5</b> Linear Independence</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="linear-independence.html"><a href="linear-independence.html#gaussian-elimination-method"><i class="fa fa-check"></i><b>2.5.1</b> Gaussian Elimination Method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="basis-and-rank.html"><a href="basis-and-rank.html"><i class="fa fa-check"></i><b>2.6</b> Basis and Rank</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="basis-and-rank.html"><a href="basis-and-rank.html#generating-set-and-basis"><i class="fa fa-check"></i><b>2.6.1</b> Generating Set and Basis</a></li>
+<li class="chapter" data-level="2.6.2" data-path="basis-and-rank.html"><a href="basis-and-rank.html#rank"><i class="fa fa-check"></i><b>2.6.2</b> Rank</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="linear-mappings.html"><a href="linear-mappings.html"><i class="fa fa-check"></i><b>2.7</b> Linear Mappings</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
+<li class="chapter" data-level="2.7.2" data-path="linear-mappings.html"><a href="linear-mappings.html#coordinate-systems-and-bases"><i class="fa fa-check"></i><b>2.7.2</b> Coordinate Systems and Bases</a></li>
+<li class="chapter" data-level="2.7.3" data-path="linear-mappings.html"><a href="linear-mappings.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.7.3</b> Basis Change and Equivalence</a></li>
+<li class="chapter" data-level="2.7.4" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.4</b> Image and Kernel of a Linear Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.8</b> Affine Spaces</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="affine-spaces.html"><a href="affine-spaces.html#relation-to-linear-equations"><i class="fa fa-check"></i><b>2.8.1</b> Relation to Linear Equations</a></li>
+<li class="chapter" data-level="2.8.2" data-path="affine-spaces.html"><a href="affine-spaces.html#affine-mappings"><i class="fa fa-check"></i><b>2.8.2</b> Affine Mappings</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="analytic-geometry.html"><a href="analytic-geometry.html"><i class="fa fa-check"></i><b>3</b> Analytic Geometry</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="norms.html"><a href="norms.html"><i class="fa fa-check"></i><b>3.1</b> Norms</a></li>
+<li class="chapter" data-level="3.2" data-path="inner-products.html"><a href="inner-products.html"><i class="fa fa-check"></i><b>3.2</b> Inner Products</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="inner-products.html"><a href="inner-products.html#symmetric-positive-definite-matrices"><i class="fa fa-check"></i><b>3.2.1</b> Symmetric, Positive Definite Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="lengths-and-distances.html"><a href="lengths-and-distances.html"><i class="fa fa-check"></i><b>3.3</b> Lengths and Distances</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="lengths-and-distances.html"><a href="lengths-and-distances.html#distance-and-metrics"><i class="fa fa-check"></i><b>3.3.1</b> Distance and Metrics</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="angles-and-orthogonality.html"><a href="angles-and-orthogonality.html"><i class="fa fa-check"></i><b>3.4</b> Angles and Orthogonality</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="angles-and-orthogonality.html"><a href="angles-and-orthogonality.html#orthogonal-matrices"><i class="fa fa-check"></i><b>3.4.1</b> Orthogonal Matrices</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="orthonormal-basis.html"><a href="orthonormal-basis.html"><i class="fa fa-check"></i><b>3.5</b> Orthonormal Basis</a></li>
+<li class="chapter" data-level="3.6" data-path="orthogonal-complement.html"><a href="orthogonal-complement.html"><i class="fa fa-check"></i><b>3.6</b> Orthogonal Complement</a></li>
+<li class="chapter" data-level="3.7" data-path="inner-product-of-functions.html"><a href="inner-product-of-functions.html"><i class="fa fa-check"></i><b>3.7</b> Inner Product of Functions</a></li>
+<li class="chapter" data-level="3.8" data-path="orthogonal-projections.html"><a href="orthogonal-projections.html"><i class="fa fa-check"></i><b>3.8</b> Orthogonal Projections</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="orthogonal-projections.html"><a href="orthogonal-projections.html#projection-onto-a-line"><i class="fa fa-check"></i><b>3.8.1</b> Projection onto a Line</a></li>
+<li class="chapter" data-level="3.8.2" data-path="orthogonal-projections.html"><a href="orthogonal-projections.html#projection-onto-general-subspaces"><i class="fa fa-check"></i><b>3.8.2</b> Projection onto General Subspaces</a></li>
+<li class="chapter" data-level="3.8.3" data-path="orthogonal-projections.html"><a href="orthogonal-projections.html#gram-schmidt-orthogonalization"><i class="fa fa-check"></i><b>3.8.3</b> Gram-Schmidt Orthogonalization</a></li>
+<li class="chapter" data-level="3.8.4" data-path="orthogonal-projections.html"><a href="orthogonal-projections.html#projection-onto-affine-subspaces"><i class="fa fa-check"></i><b>3.8.4</b> Projection onto Affine Subspaces</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="rotations.html"><a href="rotations.html"><i class="fa fa-check"></i><b>3.9</b> Rotations</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="rotations.html"><a href="rotations.html#rotations-in-mathbbr2"><i class="fa fa-check"></i><b>3.9.1</b> Rotations in <span class="math inline">\(\mathbb{R}^2\)</span></a></li>
+<li class="chapter" data-level="3.9.2" data-path="rotations.html"><a href="rotations.html#rotations-in-mathbbr3"><i class="fa fa-check"></i><b>3.9.2</b> Rotations in <span class="math inline">\(\mathbb{R}^3\)</span></a></li>
+<li class="chapter" data-level="3.9.3" data-path="rotations.html"><a href="rotations.html#rotations-in-n-dimensions"><i class="fa fa-check"></i><b>3.9.3</b> Rotations in <span class="math inline">\(n\)</span> Dimensions</a></li>
+<li class="chapter" data-level="3.9.4" data-path="rotations.html"><a href="rotations.html#properties-of-rotations"><i class="fa fa-check"></i><b>3.9.4</b> Properties of Rotations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="matrix-decompositions.html"><a href="matrix-decompositions.html"><i class="fa fa-check"></i><b>4</b> Matrix Decompositions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="determinant-and-trace.html"><a href="determinant-and-trace.html"><i class="fa fa-check"></i><b>4.1</b> Determinant and Trace</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="determinant-and-trace.html"><a href="determinant-and-trace.html#geometric-interpretation-1"><i class="fa fa-check"></i><b>4.1.1</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="determinant-and-trace.html"><a href="determinant-and-trace.html#properties-of-the-determinant"><i class="fa fa-check"></i><b>4.1.2</b> Properties of the Determinant</a></li>
+<li class="chapter" data-level="4.1.3" data-path="determinant-and-trace.html"><a href="determinant-and-trace.html#trace"><i class="fa fa-check"></i><b>4.1.3</b> Trace</a></li>
+<li class="chapter" data-level="4.1.4" data-path="determinant-and-trace.html"><a href="determinant-and-trace.html#characteristic-polynomial"><i class="fa fa-check"></i><b>4.1.4</b> Characteristic Polynomial</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html"><i class="fa fa-check"></i><b>4.2</b> Eigenvalues and Eigenvectors</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html#key-properties"><i class="fa fa-check"></i><b>4.2.1</b> Key Properties</a></li>
+<li class="chapter" data-level="4.2.2" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html#relations-to-determinant-and-trace"><i class="fa fa-check"></i><b>4.2.2</b> Relations to Determinant and Trace</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="cholesky-decomposition.html"><a href="cholesky-decomposition.html"><i class="fa fa-check"></i><b>4.3</b> Cholesky Decomposition</a></li>
+<li class="chapter" data-level="4.4" data-path="eigendecomposition-and-diagonalization.html"><a href="eigendecomposition-and-diagonalization.html"><i class="fa fa-check"></i><b>4.4</b> Eigendecomposition and Diagonalization</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="eigendecomposition-and-diagonalization.html"><a href="eigendecomposition-and-diagonalization.html#diagonalizable-matrices"><i class="fa fa-check"></i><b>4.4.1</b> Diagonalizable Matrices</a></li>
+<li class="chapter" data-level="4.4.2" data-path="eigendecomposition-and-diagonalization.html"><a href="eigendecomposition-and-diagonalization.html#eigendecomposition-theorems"><i class="fa fa-check"></i><b>4.4.2</b> Eigendecomposition Theorems</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="singular-value-decomposition-svd.html"><a href="singular-value-decomposition-svd.html"><i class="fa fa-check"></i><b>4.5</b> Singular Value Decomposition (SVD)</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="singular-value-decomposition-svd.html"><a href="singular-value-decomposition-svd.html#geometric-intuition"><i class="fa fa-check"></i><b>4.5.1</b> Geometric Intuition</a></li>
+<li class="chapter" data-level="4.5.2" data-path="singular-value-decomposition-svd.html"><a href="singular-value-decomposition-svd.html#construction-of-the-svd"><i class="fa fa-check"></i><b>4.5.2</b> Construction of the SVD</a></li>
+<li class="chapter" data-level="4.5.3" data-path="singular-value-decomposition-svd.html"><a href="singular-value-decomposition-svd.html#comparison-eigenvalue-decomposition-vs-svd"><i class="fa fa-check"></i><b>4.5.3</b> Comparison: Eigenvalue Decomposition vs SVD</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="matrix-approximation-via-svd.html"><a href="matrix-approximation-via-svd.html"><i class="fa fa-check"></i><b>4.6</b> Matrix Approximation via SVD</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="matrix-approximation-via-svd.html"><a href="matrix-approximation-via-svd.html#error-measurement"><i class="fa fa-check"></i><b>4.6.1</b> Error Measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="matrix-phylogeny-overview.html"><a href="matrix-phylogeny-overview.html"><i class="fa fa-check"></i><b>4.7</b> 4.7 Matrix Phylogeny (Overview)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="vector-calculus.html"><a href="vector-calculus.html"><i class="fa fa-check"></i><b>5</b> Vector Calculus</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="differentiation-of-univariate-functions.html"><a href="differentiation-of-univariate-functions.html"><i class="fa fa-check"></i><b>5.1</b> Differentiation of Univariate Functions</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="differentiation-of-univariate-functions.html"><a href="differentiation-of-univariate-functions.html#taylor-series-and-polynomial-approximation"><i class="fa fa-check"></i><b>5.1.1</b> Taylor Series and Polynomial Approximation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="differentiation-of-univariate-functions.html"><a href="differentiation-of-univariate-functions.html#differentiation-rules"><i class="fa fa-check"></i><b>5.1.2</b> Differentiation Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="partial-differentiation-and-gradients.html"><a href="partial-differentiation-and-gradients.html"><i class="fa fa-check"></i><b>5.2</b> Partial Differentiation and Gradients</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="partial-differentiation-and-gradients.html"><a href="partial-differentiation-and-gradients.html#basic-rules-of-partial-differentiation"><i class="fa fa-check"></i><b>5.2.1</b> Basic Rules of Partial Differentiation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="partial-differentiation-and-gradients.html"><a href="partial-differentiation-and-gradients.html#multivariate-chain-rule-matrix-form"><i class="fa fa-check"></i><b>5.2.2</b> Multivariate Chain Rule (Matrix Form)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="gradients-of-vector-valued-functions.html"><a href="gradients-of-vector-valued-functions.html"><i class="fa fa-check"></i><b>5.3</b> Gradients of Vector-Valued Functions</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="gradients-of-vector-valued-functions.html"><a href="gradients-of-vector-valued-functions.html#dimensional-summary-of-derivatives"><i class="fa fa-check"></i><b>5.3.1</b> Dimensional Summary of Derivatives</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="gradients-of-matrices.html"><a href="gradients-of-matrices.html"><i class="fa fa-check"></i><b>5.4</b> Gradients of Matrices</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="gradients-of-matrices.html"><a href="gradients-of-matrices.html#gradients-as-tensors"><i class="fa fa-check"></i><b>5.4.1</b> Gradients as Tensors</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="useful-identities-for-computing-gradients.html"><a href="useful-identities-for-computing-gradients.html"><i class="fa fa-check"></i><b>5.5</b> Useful Identities for Computing Gradients</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="probability-and-distributions.html"><a href="probability-and-distributions.html"><i class="fa fa-check"></i><b>6</b> Probability and Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="construction-of-a-probability-space.html"><a href="construction-of-a-probability-space.html"><i class="fa fa-check"></i><b>6.1</b> Construction of a Probability Space</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="construction-of-a-probability-space.html"><a href="construction-of-a-probability-space.html#philosophical-issues"><i class="fa fa-check"></i><b>6.1.1</b> Philosophical Issues</a></li>
+<li class="chapter" data-level="6.1.2" data-path="construction-of-a-probability-space.html"><a href="construction-of-a-probability-space.html#bayesian-vs.-frequentist-interpretations"><i class="fa fa-check"></i><b>6.1.2</b> Bayesian vs. Frequentist Interpretations</a></li>
+<li class="chapter" data-level="6.1.3" data-path="construction-of-a-probability-space.html"><a href="construction-of-a-probability-space.html#probability-and-random-variables"><i class="fa fa-check"></i><b>6.1.3</b> Probability and Random Variables</a></li>
+<li class="chapter" data-level="6.1.4" data-path="construction-of-a-probability-space.html"><a href="construction-of-a-probability-space.html#statistics"><i class="fa fa-check"></i><b>6.1.4</b> Statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="discrete-and-continuous-probabilities.html"><a href="discrete-and-continuous-probabilities.html"><i class="fa fa-check"></i><b>6.2</b> Discrete and Continuous Probabilities</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="discrete-and-continuous-probabilities.html"><a href="discrete-and-continuous-probabilities.html#discrete-probabilities"><i class="fa fa-check"></i><b>6.2.1</b> Discrete Probabilities</a></li>
+<li class="chapter" data-level="6.2.2" data-path="discrete-and-continuous-probabilities.html"><a href="discrete-and-continuous-probabilities.html#continuous-probabilities"><i class="fa fa-check"></i><b>6.2.2</b> Continuous Probabilities</a></li>
+<li class="chapter" data-level="6.2.3" data-path="discrete-and-continuous-probabilities.html"><a href="discrete-and-continuous-probabilities.html#contrasting-discrete-and-continuous-distributions"><i class="fa fa-check"></i><b>6.2.3</b> Contrasting Discrete and Continuous Distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="sum-rule-product-rule-and-bayes-theorem.html"><a href="sum-rule-product-rule-and-bayes-theorem.html"><i class="fa fa-check"></i><b>6.3</b> Sum Rule, Product Rule, and Bayes’ Theorem</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="sum-rule-product-rule-and-bayes-theorem.html"><a href="sum-rule-product-rule-and-bayes-theorem.html#the-sum-rule-marginalization-property"><i class="fa fa-check"></i><b>6.3.1</b> The Sum Rule (Marginalization Property)</a></li>
+<li class="chapter" data-level="6.3.2" data-path="sum-rule-product-rule-and-bayes-theorem.html"><a href="sum-rule-product-rule-and-bayes-theorem.html#the-product-rule-factorization-property"><i class="fa fa-check"></i><b>6.3.2</b> The Product Rule (Factorization Property)</a></li>
+<li class="chapter" data-level="6.3.3" data-path="sum-rule-product-rule-and-bayes-theorem.html"><a href="sum-rule-product-rule-and-bayes-theorem.html#bayes-theorem-probabilistic-inversion"><i class="fa fa-check"></i><b>6.3.3</b> Bayes’ Theorem (Probabilistic Inversion)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="summary-statistics-and-independence.html"><a href="summary-statistics-and-independence.html"><i class="fa fa-check"></i><b>6.4</b> Summary Statistics and Independence</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="summary-statistics-and-independence.html"><a href="summary-statistics-and-independence.html#empirical-statistics"><i class="fa fa-check"></i><b>6.4.1</b> <strong>Empirical Statistics</strong></a></li>
+<li class="chapter" data-level="6.4.2" data-path="summary-statistics-and-independence.html"><a href="summary-statistics-and-independence.html#sums-and-transformations-of-random-variables"><i class="fa fa-check"></i><b>6.4.2</b> <strong>Sums and Transformations of Random Variables</strong></a></li>
+<li class="chapter" data-level="6.4.3" data-path="summary-statistics-and-independence.html"><a href="summary-statistics-and-independence.html#independence-and-conditional-independence"><i class="fa fa-check"></i><b>6.4.3</b> <strong>Independence and Conditional Independence</strong></a></li>
+<li class="chapter" data-level="6.4.4" data-path="summary-statistics-and-independence.html"><a href="summary-statistics-and-independence.html#inner-products-and-geometry-of-random-variables"><i class="fa fa-check"></i><b>6.4.4</b> <strong>Inner Products and Geometry of Random Variables</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="gaussian-distribution.html"><a href="gaussian-distribution.html"><i class="fa fa-check"></i><b>6.5</b> Gaussian Distribution</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="gaussian-distribution.html"><a href="gaussian-distribution.html#joint-marginal-and-conditional-gaussians"><i class="fa fa-check"></i><b>6.5.1</b> Joint, Marginal, and Conditional Gaussians</a></li>
+<li class="chapter" data-level="6.5.2" data-path="gaussian-distribution.html"><a href="gaussian-distribution.html#product-of-gaussian-densities"><i class="fa fa-check"></i><b>6.5.2</b> Product of Gaussian Densities</a></li>
+<li class="chapter" data-level="6.5.3" data-path="gaussian-distribution.html"><a href="gaussian-distribution.html#mixtures-of-gaussians"><i class="fa fa-check"></i><b>6.5.3</b> Mixtures of Gaussians</a></li>
+<li class="chapter" data-level="6.5.4" data-path="gaussian-distribution.html"><a href="gaussian-distribution.html#linear-and-affine-transformations-of-gaussians"><i class="fa fa-check"></i><b>6.5.4</b> Linear and Affine Transformations of Gaussians</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="continuous-optimization.html"><a href="continuous-optimization.html"><i class="fa fa-check"></i><b>7</b> Continuous Optimization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="optimization-using-gradient-descent.html"><a href="optimization-using-gradient-descent.html"><i class="fa fa-check"></i><b>7.1</b> Optimization Using Gradient Descent</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="optimization-using-gradient-descent.html"><a href="optimization-using-gradient-descent.html#step-size-selection"><i class="fa fa-check"></i><b>7.1.1</b> Step-size Selection</a></li>
+<li class="chapter" data-level="7.1.2" data-path="optimization-using-gradient-descent.html"><a href="optimization-using-gradient-descent.html#gradient-descent-with-momentum"><i class="fa fa-check"></i><b>7.1.2</b> Gradient Descent with Momentum</a></li>
+<li class="chapter" data-level="7.1.3" data-path="optimization-using-gradient-descent.html"><a href="optimization-using-gradient-descent.html#stochastic-gradient-descent-sgd"><i class="fa fa-check"></i><b>7.1.3</b> Stochastic Gradient Descent (SGD)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="constrained-optimization-and-lagrange-multipliers.html"><a href="constrained-optimization-and-lagrange-multipliers.html"><i class="fa fa-check"></i><b>7.2</b> Constrained Optimization and Lagrange Multipliers</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="constrained-optimization-and-lagrange-multipliers.html"><a href="constrained-optimization-and-lagrange-multipliers.html#from-constraints-to-the-lagrangian"><i class="fa fa-check"></i><b>7.2.1</b> From Constraints to the Lagrangian</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="convex-optimization.html"><a href="convex-optimization.html"><i class="fa fa-check"></i><b>7.3</b> Convex Optimization</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="convex-optimization.html"><a href="convex-optimization.html#convex-sets-and-functions"><i class="fa fa-check"></i><b>7.3.1</b> Convex Sets and Functions</a></li>
+<li class="chapter" data-level="7.3.2" data-path="convex-optimization.html"><a href="convex-optimization.html#general-convex-optimization-problem"><i class="fa fa-check"></i><b>7.3.2</b> General Convex Optimization Problem</a></li>
+<li class="chapter" data-level="7.3.3" data-path="convex-optimization.html"><a href="convex-optimization.html#quadratic-programming"><i class="fa fa-check"></i><b>7.3.3</b> Quadratic Programming</a></li>
+<li class="chapter" data-level="7.3.4" data-path="convex-optimization.html"><a href="convex-optimization.html#legendrefenchel-transform-and-convex-conjugate"><i class="fa fa-check"></i><b>7.3.4</b> Legendre–Fenchel Transform and Convex Conjugate</a></li>
+<li class="chapter" data-level="7.3.5" data-path="convex-optimization.html"><a href="convex-optimization.html#connection-to-duality"><i class="fa fa-check"></i><b>7.3.5</b> Connection to Duality</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-models-and-learning.html"><a href="data-models-and-learning.html"><i class="fa fa-check"></i><b>8</b> Data, Models, and Learning</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="the-three-components-of-machine-learning.html"><a href="the-three-components-of-machine-learning.html"><i class="fa fa-check"></i><b>8.1</b> The Three Components of Machine Learning</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="the-three-components-of-machine-learning.html"><a href="the-three-components-of-machine-learning.html#data-as-vectors"><i class="fa fa-check"></i><b>8.1.1</b> Data as Vectors</a></li>
+<li class="chapter" data-level="8.1.2" data-path="the-three-components-of-machine-learning.html"><a href="the-three-components-of-machine-learning.html#models-as-functions"><i class="fa fa-check"></i><b>8.1.2</b> Models as Functions</a></li>
+<li class="chapter" data-level="8.1.3" data-path="the-three-components-of-machine-learning.html"><a href="the-three-components-of-machine-learning.html#models-as-probability-distributions"><i class="fa fa-check"></i><b>8.1.3</b> Models as Probability Distributions</a></li>
+<li class="chapter" data-level="8.1.4" data-path="the-three-components-of-machine-learning.html"><a href="the-three-components-of-machine-learning.html#learning-as-finding-parameters"><i class="fa fa-check"></i><b>8.1.4</b> Learning as Finding Parameters</a></li>
+<li class="chapter" data-level="8.1.5" data-path="the-three-components-of-machine-learning.html"><a href="the-three-components-of-machine-learning.html#regularization-and-model-complexity"><i class="fa fa-check"></i><b>8.1.5</b> Regularization and Model Complexity</a></li>
+<li class="chapter" data-level="8.1.6" data-path="the-three-components-of-machine-learning.html"><a href="the-three-components-of-machine-learning.html#model-selection-and-hyperparameters"><i class="fa fa-check"></i><b>8.1.6</b> Model Selection and Hyperparameters</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="empirical-risk-minimization.html"><a href="empirical-risk-minimization.html"><i class="fa fa-check"></i><b>8.2</b> Empirical Risk Minimization</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="empirical-risk-minimization.html"><a href="empirical-risk-minimization.html#hypothesis-class-of-functions"><i class="fa fa-check"></i><b>8.2.1</b> Hypothesis Class of Functions</a></li>
+<li class="chapter" data-level="8.2.2" data-path="empirical-risk-minimization.html"><a href="empirical-risk-minimization.html#loss-function-for-training"><i class="fa fa-check"></i><b>8.2.2</b> Loss Function for Training</a></li>
+<li class="chapter" data-level="8.2.3" data-path="empirical-risk-minimization.html"><a href="empirical-risk-minimization.html#regularization-to-reduce-overfitting"><i class="fa fa-check"></i><b>8.2.3</b> Regularization to Reduce Overfitting</a></li>
+<li class="chapter" data-level="8.2.4" data-path="empirical-risk-minimization.html"><a href="empirical-risk-minimization.html#cross-validation-to-assess-generalization"><i class="fa fa-check"></i><b>8.2.4</b> Cross-Validation to Assess Generalization</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="parameter-estimation.html"><a href="parameter-estimation.html"><i class="fa fa-check"></i><b>8.3</b> Parameter Estimation</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="parameter-estimation.html"><a href="parameter-estimation.html#maximum-likelihood-estimation-mle"><i class="fa fa-check"></i><b>8.3.1</b> 8.3.1 Maximum Likelihood Estimation (MLE)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="parameter-estimation.html"><a href="parameter-estimation.html#maximum-a-posteriori-map-estimation"><i class="fa fa-check"></i><b>8.3.2</b> Maximum A Posteriori (MAP) Estimation</a></li>
+<li class="chapter" data-level="8.3.3" data-path="parameter-estimation.html"><a href="parameter-estimation.html#model-fitting"><i class="fa fa-check"></i><b>8.3.3</b> Model Fitting</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilistic-modeling-and-inference.html"><a href="probabilistic-modeling-and-inference.html"><i class="fa fa-check"></i><b>8.4</b> Probabilistic Modeling and Inference</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="probabilistic-modeling-and-inference.html"><a href="probabilistic-modeling-and-inference.html#probabilistic-models"><i class="fa fa-check"></i><b>8.4.1</b> Probabilistic Models</a></li>
+<li class="chapter" data-level="8.4.2" data-path="probabilistic-modeling-and-inference.html"><a href="probabilistic-modeling-and-inference.html#bayesian-inference"><i class="fa fa-check"></i><b>8.4.2</b> Bayesian Inference</a></li>
+<li class="chapter" data-level="8.4.3" data-path="probabilistic-modeling-and-inference.html"><a href="probabilistic-modeling-and-inference.html#latent-variable-models"><i class="fa fa-check"></i><b>8.4.3</b> Latent-Variable Models</a></li>
+<li class="chapter" data-level="8.4.4" data-path="probabilistic-modeling-and-inference.html"><a href="probabilistic-modeling-and-inference.html#examples-of-latent-variable-models"><i class="fa fa-check"></i><b>8.4.4</b> Examples of Latent-Variable Models</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="directed-graphical-models.html"><a href="directed-graphical-models.html"><i class="fa fa-check"></i><b>8.5</b> Directed Graphical Models</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="directed-graphical-models.html"><a href="directed-graphical-models.html#graph-semantics"><i class="fa fa-check"></i><b>8.5.1</b> Graph Semantics</a></li>
+<li class="chapter" data-level="8.5.2" data-path="directed-graphical-models.html"><a href="directed-graphical-models.html#conditional-independence-and-d-separation"><i class="fa fa-check"></i><b>8.5.2</b> Conditional Independence and d-Separation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>8.6</b> Model Selection</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="model-selection.html"><a href="model-selection.html#nested-cross-validation"><i class="fa fa-check"></i><b>8.6.1</b> Nested Cross-Validation</a></li>
+<li class="chapter" data-level="8.6.2" data-path="model-selection.html"><a href="model-selection.html#bayesian-model-selection"><i class="fa fa-check"></i><b>8.6.2</b> Bayesian Model Selection</a></li>
+<li class="chapter" data-level="8.6.3" data-path="model-selection.html"><a href="model-selection.html#bayes-factors-for-model-comparison"><i class="fa fa-check"></i><b>8.6.3</b> Bayes Factors for Model Comparison</a></li>
+<li class="chapter" data-level="8.6.4" data-path="model-selection.html"><a href="model-selection.html#computing-the-marginal-likelihood"><i class="fa fa-check"></i><b>8.6.4</b> Computing the Marginal Likelihood</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="linear-regression.html"><a href="linear-regression.html"><i class="fa fa-check"></i><b>9</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="problem-formulation.html"><a href="problem-formulation.html"><i class="fa fa-check"></i><b>9.1</b> Problem Formulation</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="problem-formulation.html"><a href="problem-formulation.html#parametric-models"><i class="fa fa-check"></i><b>9.1.1</b> Parametric Models</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html"><i class="fa fa-check"></i><b>9.2</b> Parameter Estimation</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html#maximum-likelihood-estimation-mle-1"><i class="fa fa-check"></i><b>9.2.1</b> Maximum Likelihood Estimation (MLE)</a></li>
+<li class="chapter" data-level="9.2.2" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html#mle-with-nonlinear-features"><i class="fa fa-check"></i><b>9.2.2</b> MLE with Nonlinear Features</a></li>
+<li class="chapter" data-level="9.2.3" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html#overfitting-in-linear-regression"><i class="fa fa-check"></i><b>9.2.3</b> Overfitting in Linear Regression</a></li>
+<li class="chapter" data-level="9.2.4" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html#maximum-a-posteriori-map-estimation-1"><i class="fa fa-check"></i><b>9.2.4</b> Maximum A Posteriori (MAP) Estimation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html#optimization"><i class="fa fa-check"></i><b>9.2.5</b> Optimization</a></li>
+<li class="chapter" data-level="9.2.6" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html#comparison-to-mle"><i class="fa fa-check"></i><b>9.2.6</b> Comparison to MLE</a></li>
+<li class="chapter" data-level="9.2.7" data-path="parameter-estimation-1.html"><a href="parameter-estimation-1.html#map-estimation-as-regularization"><i class="fa fa-check"></i><b>9.2.7</b> MAP Estimation as Regularization</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="bayesian-linear-regression.html"><a href="bayesian-linear-regression.html"><i class="fa fa-check"></i><b>9.3</b> Bayesian Linear Regression</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="bayesian-linear-regression.html"><a href="bayesian-linear-regression.html#the-model"><i class="fa fa-check"></i><b>9.3.1</b> The Model</a></li>
+<li class="chapter" data-level="9.3.2" data-path="bayesian-linear-regression.html"><a href="bayesian-linear-regression.html#posterior-distribution"><i class="fa fa-check"></i><b>9.3.2</b> Posterior Distribution</a></li>
+<li class="chapter" data-level="9.3.3" data-path="bayesian-linear-regression.html"><a href="bayesian-linear-regression.html#posterior-predictions"><i class="fa fa-check"></i><b>9.3.3</b> Posterior Predictions</a></li>
+<li class="chapter" data-level="9.3.4" data-path="bayesian-linear-regression.html"><a href="bayesian-linear-regression.html#marginal-likelihood"><i class="fa fa-check"></i><b>9.3.4</b> Marginal Likelihood</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="maximum-likelihood-as-orthogonal-projection.html"><a href="maximum-likelihood-as-orthogonal-projection.html"><i class="fa fa-check"></i><b>9.4</b> Maximum Likelihood as Orthogonal Projection</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="maximum-likelihood-as-orthogonal-projection.html"><a href="maximum-likelihood-as-orthogonal-projection.html#simple-linear-regression-case"><i class="fa fa-check"></i><b>9.4.1</b> Simple Linear Regression Case</a></li>
+<li class="chapter" data-level="9.4.2" data-path="maximum-likelihood-as-orthogonal-projection.html"><a href="maximum-likelihood-as-orthogonal-projection.html#general-linear-regression-case"><i class="fa fa-check"></i><b>9.4.2</b> General Linear Regression Case</a></li>
+<li class="chapter" data-level="9.4.3" data-path="maximum-likelihood-as-orthogonal-projection.html"><a href="maximum-likelihood-as-orthogonal-projection.html#special-case-orthonormal-basis"><i class="fa fa-check"></i><b>9.4.3</b> Special Case: Orthonormal Basis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="dimensionality-reduction-with-principal-component-analysis-pca.html"><a href="dimensionality-reduction-with-principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>10</b> Dimensionality Reduction with Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>10.1</b> Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html#compression-interpretation"><i class="fa fa-check"></i><b>10.1.1</b> Compression Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="maximum-variance-perspective.html"><a href="maximum-variance-perspective.html"><i class="fa fa-check"></i><b>10.2</b> Maximum Variance Perspective</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="maximum-variance-perspective.html"><a href="maximum-variance-perspective.html#direction-with-maximal-variance"><i class="fa fa-check"></i><b>10.2.1</b> Direction with Maximal Variance</a></li>
+<li class="chapter" data-level="10.2.2" data-path="maximum-variance-perspective.html"><a href="maximum-variance-perspective.html#m-dimensional-subspace-with-maximal-variance"><i class="fa fa-check"></i><b>10.2.2</b> M-Dimensional Subspace with Maximal Variance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="projection-perspective.html"><a href="projection-perspective.html"><i class="fa fa-check"></i><b>10.3</b> Projection Perspective</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="projection-perspective.html"><a href="projection-perspective.html#setting-and-objective"><i class="fa fa-check"></i><b>10.3.1</b> Setting and Objective</a></li>
+<li class="chapter" data-level="10.3.2" data-path="projection-perspective.html"><a href="projection-perspective.html#finding-optimal-coordinates"><i class="fa fa-check"></i><b>10.3.2</b> Finding Optimal Coordinates</a></li>
+<li class="chapter" data-level="10.3.3" data-path="projection-perspective.html"><a href="projection-perspective.html#finding-the-basis-of-the-principal-subspace"><i class="fa fa-check"></i><b>10.3.3</b> Finding the Basis of the Principal Subspace</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="eigenvector-computation-and-low-rank-approximations.html"><a href="eigenvector-computation-and-low-rank-approximations.html"><i class="fa fa-check"></i><b>10.4</b> Eigenvector Computation and Low-Rank Approximations</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="eigenvector-computation-and-low-rank-approximations.html"><a href="eigenvector-computation-and-low-rank-approximations.html#computing-eigenvectors-via-covariance-and-svd"><i class="fa fa-check"></i><b>10.4.1</b> Computing Eigenvectors via Covariance and SVD</a></li>
+<li class="chapter" data-level="10.4.2" data-path="eigenvector-computation-and-low-rank-approximations.html"><a href="eigenvector-computation-and-low-rank-approximations.html#pca-via-low-rank-matrix-approximations"><i class="fa fa-check"></i><b>10.4.2</b> PCA via Low-Rank Matrix Approximations</a></li>
+<li class="chapter" data-level="10.4.3" data-path="eigenvector-computation-and-low-rank-approximations.html"><a href="eigenvector-computation-and-low-rank-approximations.html#practical-aspects-of-eigenvalue-computation"><i class="fa fa-check"></i><b>10.4.3</b> Practical Aspects of Eigenvalue Computation</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="pca-in-high-dimensions.html"><a href="pca-in-high-dimensions.html"><i class="fa fa-check"></i><b>10.5</b> PCA in High Dimensions</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="pca-in-high-dimensions.html"><a href="pca-in-high-dimensions.html#dimensionality-reduction-trick-for-n-ll-d"><i class="fa fa-check"></i><b>10.5.1</b> Dimensionality Reduction Trick for <span class="math inline">\(N \ll D\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="key-steps-of-pca-in-practice.html"><a href="key-steps-of-pca-in-practice.html"><i class="fa fa-check"></i><b>10.6</b> Key Steps of PCA in Practice</a></li>
+<li class="chapter" data-level="10.7" data-path="latent-variable-perspective.html"><a href="latent-variable-perspective.html"><i class="fa fa-check"></i><b>10.7</b> Latent Variable Perspective</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="latent-variable-perspective.html"><a href="latent-variable-perspective.html#probabilistic-pca-ppca"><i class="fa fa-check"></i><b>10.7.1</b> Probabilistic PCA (PPCA)</a></li>
+<li class="chapter" data-level="10.7.2" data-path="latent-variable-perspective.html"><a href="latent-variable-perspective.html#likelihood-and-covariance-structure"><i class="fa fa-check"></i><b>10.7.2</b> Likelihood and Covariance Structure</a></li>
+<li class="chapter" data-level="10.7.3" data-path="latent-variable-perspective.html"><a href="latent-variable-perspective.html#posterior-distribution-1"><i class="fa fa-check"></i><b>10.7.3</b> Posterior Distribution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="density-estimation-with-gaussian-mixture-models.html"><a href="density-estimation-with-gaussian-mixture-models.html"><i class="fa fa-check"></i><b>11</b> Density Estimation with Gaussian Mixture Models</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="gaussian-mixture-models-gmms.html"><a href="gaussian-mixture-models-gmms.html"><i class="fa fa-check"></i><b>11.1</b> Gaussian Mixture Models (GMMs)</a></li>
+<li class="chapter" data-level="11.2" data-path="parameter-learning-via-maximum-likelihood.html"><a href="parameter-learning-via-maximum-likelihood.html"><i class="fa fa-check"></i><b>11.2</b> Parameter Learning via Maximum Likelihood</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="parameter-learning-via-maximum-likelihood.html"><a href="parameter-learning-via-maximum-likelihood.html#likelihood-and-log-likelihood"><i class="fa fa-check"></i><b>11.2.1</b> Likelihood and Log-Likelihood</a></li>
+<li class="chapter" data-level="11.2.2" data-path="parameter-learning-via-maximum-likelihood.html"><a href="parameter-learning-via-maximum-likelihood.html#responsibilities"><i class="fa fa-check"></i><b>11.2.2</b> Responsibilities</a></li>
+<li class="chapter" data-level="11.2.3" data-path="parameter-learning-via-maximum-likelihood.html"><a href="parameter-learning-via-maximum-likelihood.html#updating-parameters"><i class="fa fa-check"></i><b>11.2.3</b> Updating Parameters</a></li>
+<li class="chapter" data-level="11.2.4" data-path="parameter-learning-via-maximum-likelihood.html"><a href="parameter-learning-via-maximum-likelihood.html#interpretation"><i class="fa fa-check"></i><b>11.2.4</b> Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="expectation-maximization-em-algorithm.html"><a href="expectation-maximization-em-algorithm.html"><i class="fa fa-check"></i><b>11.3</b> Expectation-Maximization (EM) Algorithm</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="expectation-maximization-em-algorithm.html"><a href="expectation-maximization-em-algorithm.html#algorithm-steps"><i class="fa fa-check"></i><b>11.3.1</b> Algorithm Steps</a></li>
+<li class="chapter" data-level="11.3.2" data-path="expectation-maximization-em-algorithm.html"><a href="expectation-maximization-em-algorithm.html#example-gmm-fit"><i class="fa fa-check"></i><b>11.3.2</b> Example: GMM Fit</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="latent-variable-perspective-1.html"><a href="latent-variable-perspective-1.html"><i class="fa fa-check"></i><b>11.4</b> Latent-Variable Perspective</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="latent-variable-perspective-1.html"><a href="latent-variable-perspective-1.html#generative-model"><i class="fa fa-check"></i><b>11.4.1</b> Generative Model</a></li>
+<li class="chapter" data-level="11.4.2" data-path="latent-variable-perspective-1.html"><a href="latent-variable-perspective-1.html#likelihood"><i class="fa fa-check"></i><b>11.4.2</b> Likelihood</a></li>
+<li class="chapter" data-level="11.4.3" data-path="latent-variable-perspective-1.html"><a href="latent-variable-perspective-1.html#posterior-distribution-2"><i class="fa fa-check"></i><b>11.4.3</b> Posterior Distribution</a></li>
+<li class="chapter" data-level="11.4.4" data-path="latent-variable-perspective-1.html"><a href="latent-variable-perspective-1.html#extension-to-full-dataset"><i class="fa fa-check"></i><b>11.4.4</b> Extension to Full Dataset</a></li>
+<li class="chapter" data-level="11.4.5" data-path="latent-variable-perspective-1.html"><a href="latent-variable-perspective-1.html#em-algorithm-revisited"><i class="fa fa-check"></i><b>11.4.5</b> EM Algorithm Revisited</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="classification-with-support-vector-machines-svms.html"><a href="classification-with-support-vector-machines-svms.html"><i class="fa fa-check"></i><b>12</b> Classification with Support Vector Machines (SVMs)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="separating-hyperplanes.html"><a href="separating-hyperplanes.html"><i class="fa fa-check"></i><b>12.1</b> Separating Hyperplanes</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="separating-hyperplanes.html"><a href="separating-hyperplanes.html#classification-rule"><i class="fa fa-check"></i><b>12.1.1</b> Classification Rule</a></li>
+<li class="chapter" data-level="12.1.2" data-path="separating-hyperplanes.html"><a href="separating-hyperplanes.html#training-objective"><i class="fa fa-check"></i><b>12.1.2</b> Training Objective</a></li>
+<li class="chapter" data-level="12.1.3" data-path="separating-hyperplanes.html"><a href="separating-hyperplanes.html#geometric-interpretation-2"><i class="fa fa-check"></i><b>12.1.3</b> Geometric Interpretation</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="primal-support-vector-machine.html"><a href="primal-support-vector-machine.html"><i class="fa fa-check"></i><b>12.2</b> Primal Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="primal-support-vector-machine.html"><a href="primal-support-vector-machine.html#traditional-derivation-of-the-margin"><i class="fa fa-check"></i><b>12.2.1</b> Traditional Derivation of the Margin</a></li>
+<li class="chapter" data-level="12.2.2" data-path="primal-support-vector-machine.html"><a href="primal-support-vector-machine.html#why-we-can-set-the-margin-to-1"><i class="fa fa-check"></i><b>12.2.2</b> Why We Can Set the Margin to 1?</a></li>
+<li class="chapter" data-level="12.2.3" data-path="primal-support-vector-machine.html"><a href="primal-support-vector-machine.html#soft-margin-svm-geometric-view"><i class="fa fa-check"></i><b>12.2.3</b> Soft Margin SVM: Geometric View</a></li>
+<li class="chapter" data-level="12.2.4" data-path="primal-support-vector-machine.html"><a href="primal-support-vector-machine.html#soft-margin-svm-loss-function-view"><i class="fa fa-check"></i><b>12.2.4</b> Soft Margin SVM: Loss Function View</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="dual-support-vector-machine.html"><a href="dual-support-vector-machine.html"><i class="fa fa-check"></i><b>12.3</b> Dual Support Vector Machine</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="dual-support-vector-machine.html"><a href="dual-support-vector-machine.html#convex-duality-via-lagrange-multipliers"><i class="fa fa-check"></i><b>12.3.1</b> Convex Duality via Lagrange Multipliers</a></li>
+<li class="chapter" data-level="12.3.2" data-path="dual-support-vector-machine.html"><a href="dual-support-vector-machine.html#dual-optimization-problem"><i class="fa fa-check"></i><b>12.3.2</b> Dual Optimization Problem</a></li>
+<li class="chapter" data-level="12.3.3" data-path="dual-support-vector-machine.html"><a href="dual-support-vector-machine.html#dual-svm-convex-hull-view"><i class="fa fa-check"></i><b>12.3.3</b> Dual SVM: Convex Hull View</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="kernels.html"><a href="kernels.html"><i class="fa fa-check"></i><b>12.4</b> Kernels</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="kernels.html"><a href="kernels.html#feature-representations-and-kernels"><i class="fa fa-check"></i><b>12.4.1</b> Feature Representations and Kernels</a></li>
+<li class="chapter" data-level="12.4.2" data-path="kernels.html"><a href="kernels.html#the-kernel-function-and-rkhs"><i class="fa fa-check"></i><b>12.4.2</b> The Kernel Function and RKHS</a></li>
+<li class="chapter" data-level="12.4.3" data-path="kernels.html"><a href="kernels.html#common-kernels"><i class="fa fa-check"></i><b>12.4.3</b> Common Kernels</a></li>
+<li class="chapter" data-level="12.4.4" data-path="kernels.html"><a href="kernels.html#practical-aspects"><i class="fa fa-check"></i><b>12.4.4</b> Practical Aspects</a></li>
+<li class="chapter" data-level="12.4.5" data-path="kernels.html"><a href="kernels.html#terminology-note"><i class="fa fa-check"></i><b>12.4.5</b> Terminology Note</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSCI 420: Mathematics for Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">DSCI 420: Mathematics for Machine Learning</h1>
+<h2 class="subtitle"><em>A Bookdown Companion to the Original Text</em></h2>
+<p class="author"><em>D420 Faculty Team</em></p>
+<p class="date"><em>2025-11-30</em></p>
+</div>
+<div id="welcome" class="section level1 unnumbered hasAnchor">
+<h1>Welcome<a href="index.html#welcome" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This online book expands on the concepts introduced in <em>Mathematics for Machine Learning</em> by Marc Deisenroth, A. Faisal, and C. Ong.</p>
+<p>You’ll find:</p>
+<ul>
+<li>Step-by-step theory walkthroughs<br />
+</li>
+<li>Worked examples and visualizations<br />
+</li>
+<li>Embedded video explanations<br />
+</li>
+<li>Subsection-level problem sets</li>
+</ul>
+<p>The aim here is not to replace the textbook; but rather, we wish to provide additional supports for a more novice reader. The ideas contained in the textbook, in our opinion, are accessible to a very wide audience - specifically one that lacks a strong mathematical foundation. By providing additional examples and exercises and by breaking down the notation, we hope to expand the audience to a wider audience. To read this book, the audience should begin with a very basic understanding of calculus (perhaps at a first year level).</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="table-of-symbols.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["D420-Book.pdf", "D420-Book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

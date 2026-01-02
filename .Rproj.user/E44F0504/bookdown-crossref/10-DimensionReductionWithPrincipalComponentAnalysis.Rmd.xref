@@ -1,0 +1,29 @@
+h1:dimensionality-reduction-with-principal-component-analysis-pca Dimensionality Reduction with Principal Component Analysis (PCA)
+h2:principal-component-analysis-pca Principal Component Analysis (PCA)
+h3:compression-interpretation Compression Interpretation
+h3:exercises Exercises
+h2:maximum-variance-perspective Maximum Variance Perspective
+h3:direction-with-maximal-variance Direction with Maximal Variance
+h3:m-dimensional-subspace-with-maximal-variance M-Dimensional Subspace with Maximal Variance
+h3:exercises-1 Exercises
+h2:projection-perspective Projection Perspective
+h3:setting-and-objective Setting and Objective
+h3:finding-optimal-coordinates Finding Optimal Coordinates
+h3:finding-the-basis-of-the-principal-subspace Finding the Basis of the Principal Subspace
+h3:exercises-2 Exercises
+h2:eigenvector-computation-and-low-rank-approximations Eigenvector Computation and Low-Rank Approximations
+h3:computing-eigenvectors-via-covariance-and-svd Computing Eigenvectors via Covariance and SVD
+h3:pca-via-low-rank-matrix-approximations PCA via Low-Rank Matrix Approximations
+h3:practical-aspects-of-eigenvalue-computation Practical Aspects of Eigenvalue Computation
+h3:exercises-3 Exercises
+h2:pca-in-high-dimensions PCA in High Dimensions
+h3:dimensionality-reduction-trick-for-n-ll-d Dimensionality Reduction Trick for 
+h3:exercises-4 Exercises
+h2:key-steps-of-pca-in-practice Key Steps of PCA in Practice
+h3:exercises-5 Exercises
+h2:latent-variable-perspective Latent Variable Perspective
+h3:probabilistic-pca-ppca Probabilistic PCA (PPCA)
+h3:likelihood-and-covariance-structure Likelihood and Covariance Structure
+h3:posterior-distribution Posterior Distribution
+h3:exercises-6 Exercises
+

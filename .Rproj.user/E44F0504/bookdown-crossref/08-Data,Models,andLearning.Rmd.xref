@@ -1,0 +1,44 @@
+h1:data-models-and-learning Data, Models, and Learning
+h2:the-three-components-of-machine-learning The Three Components of Machine Learning
+h3:data-as-vectors Data as Vectors
+h3:models-as-functions Models as Functions
+h3:models-as-probability-distributions Models as Probability Distributions
+h3:learning-as-finding-parameters Learning as Finding Parameters
+h3:regularization-and-model-complexity Regularization and Model Complexity
+h3:model-selection-and-hyperparameters Model Selection and Hyperparameters
+h3:exercises Exercises
+h2:empirical-risk-minimization Empirical Risk Minimization
+h3:hypothesis-class-of-functions Hypothesis Class of Functions
+h3:loss-function-for-training Loss Function for Training
+h3:regularization-to-reduce-overfitting Regularization to Reduce Overfitting
+h3:cross-validation-to-assess-generalization Cross-Validation to Assess Generalization
+h4:the-challenge-of-estimating-generalization The Challenge of Estimating Generalization
+h4:the-idea-of-cross-validation The Idea of Cross-Validation
+h4:k-fold-cross-validation K-Fold Cross-Validation
+h4:choosing-k Choosing ( K )
+h3:exercises-1 Exercises
+h2:parameter-estimation Parameter Estimation
+h3:maximum-likelihood-estimation-mle 8.3.1 Maximum Likelihood Estimation (MLE)
+h3:maximum-a-posteriori-map-estimation Maximum A Posteriori (MAP) Estimation
+h3:model-fitting Model Fitting
+h3:exercises-2 Exercises
+h2:probabilistic-modeling-and-inference Probabilistic Modeling and Inference
+h3:probabilistic-models Probabilistic Models
+h3:bayesian-inference Bayesian Inference
+h4:comparison-with-parameter-estimation Comparison with Parameter Estimation:
+h3:latent-variable-models Latent-Variable Models
+h3:examples-of-latent-variable-models Examples of Latent-Variable Models
+h3:exercises-3 Exercises
+h2:directed-graphical-models Directed Graphical Models
+h3:graph-semantics Graph Semantics
+h4:general-rule-for-constructing-graphs General Rule for Constructing Graphs
+h4:general-form-of-the-joint-distribution General Form of the Joint Distribution
+h3:conditional-independence-and-d-separation Conditional Independence and d-Separation
+h3:exercises-4 Exercises
+h2:model-selection Model Selection
+h3:nested-cross-validation Nested Cross-Validation
+h3:bayesian-model-selection Bayesian Model Selection
+h3:bayes-factors-for-model-comparison Bayes Factors for Model Comparison
+h3:computing-the-marginal-likelihood Computing the Marginal Likelihood
+h3:exercises-5 Exercises
+
