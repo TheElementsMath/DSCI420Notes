@@ -2,6 +2,8 @@
 
 
 
+
+
 Matrices provide a compact way to represent linear mappings and data, where rows often correspond to observations and columns correspond to features. This chapter focuses on three central questions about matrices:
 
 1. How to summarize a matrix with key numerical characteristics.   
