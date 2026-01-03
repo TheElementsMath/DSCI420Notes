@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.2 Matrices | DSCI 420: Mathematics for Machine Learning</title>
+  <meta name="description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.2 Matrices | DSCI 420: Mathematics for Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.2 Matrices | DSCI 420: Mathematics for Machine Learning" />
+  
+  <meta name="twitter:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+<meta name="author" content="D420 Faculty Team" />
+
+
+<meta name="date" content="2025-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="systems-of-linear-equations.html"/>
+<link rel="next" href="solving-systems-of-equations.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">D420: Mathematics for Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html"><i class="fa fa-check"></i>Table of Symbols</a>
+<ul>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#important-symbols-and-where-to-find-them"><i class="fa fa-check"></i>Important Symbols and Where to Find Them:</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#table-of-abbreviations-and-acronyms"><i class="fa fa-check"></i>Table of Abbreviations and Acronyms</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-motivation.html"><a href="introduction-and-motivation.html"><i class="fa fa-check"></i><b>1</b> Introduction and Motivation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="finding-words-for-intuitions.html"><a href="finding-words-for-intuitions.html"><i class="fa fa-check"></i><b>1.1</b> Finding Words for Intuitions</a></li>
+<li class="chapter" data-level="1.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html"><i class="fa fa-check"></i><b>1.2</b> Two Ways to Read This Book</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-i-mathematical-foundations"><i class="fa fa-check"></i><b>1.2.1</b> Part I: Mathematical Foundations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-ii-machine-learning-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II: Machine Learning Applications</a></li>
+<li class="chapter" data-level="1.2.3" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#learning-path"><i class="fa fa-check"></i><b>1.2.3</b> Learning Path</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="exercises-and-feedback.html"><a href="exercises-and-feedback.html"><i class="fa fa-check"></i><b>1.3</b> Exercises and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="linear-algebra.html"><a href="linear-algebra.html"><i class="fa fa-check"></i><b>2</b> Linear Algebra</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><strong>2.0</strong> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="vectors.html"><a href="vectors.html#vector-spaces"><i class="fa fa-check"></i><b>2.0.1</b> Vector Spaces</a></li>
+<li class="chapter" data-level="2.0.2" data-path="vectors.html"><a href="vectors.html#closure"><i class="fa fa-check"></i><b>2.0.2</b> Closure</a></li>
+<li class="chapter" data-level="2.0.3" data-path="vectors.html"><a href="vectors.html#other-properties-of-vectors"><i class="fa fa-check"></i><b>2.0.3</b> Other Properties of Vectors</a></li>
+<li class="chapter" data-level="2.0.4" data-path="vectors.html"><a href="vectors.html#geometric-interpretation-of-a-vector"><i class="fa fa-check"></i><b>2.0.4</b> Geometric Interpretation of a Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html"><i class="fa fa-check"></i><b>2.1</b> Systems of Linear Equations</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#solutions-to-systems-of-linear-equations"><i class="fa fa-check"></i><b>2.1.1</b> Solutions to Systems of Linear Equations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#geometric-interpretation"><i class="fa fa-check"></i><b>2.1.2</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#matrix-formulation"><i class="fa fa-check"></i><b>2.1.3</b> Matrix Formulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>2.2</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="matrices.html"><a href="matrices.html#matrix-addition"><i class="fa fa-check"></i><b>2.2.1</b> Matrix Addition</a></li>
+<li class="chapter" data-level="2.2.2" data-path="matrices.html"><a href="matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.2.2</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2.3" data-path="matrices.html"><a href="matrices.html#identity-matrix"><i class="fa fa-check"></i><b>2.2.3</b> Identity Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="matrices.html"><a href="matrices.html#matrix-properties"><i class="fa fa-check"></i><b>2.2.4</b> Matrix Properties</a></li>
+<li class="chapter" data-level="2.2.5" data-path="matrices.html"><a href="matrices.html#matrix-inverse"><i class="fa fa-check"></i><b>2.2.5</b> Matrix Inverse</a></li>
+<li class="chapter" data-level="2.2.6" data-path="matrices.html"><a href="matrices.html#matrix-transpose"><i class="fa fa-check"></i><b>2.2.6</b> Matrix Transpose</a></li>
+<li class="chapter" data-level="2.2.7" data-path="matrices.html"><a href="matrices.html#symmetric-matrices"><i class="fa fa-check"></i><b>2.2.7</b> Symmetric Matrices</a></li>
+<li class="chapter" data-level="2.2.8" data-path="matrices.html"><a href="matrices.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.2.8</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.2.9" data-path="matrices.html"><a href="matrices.html#compact-form-of-linear-systems"><i class="fa fa-check"></i><b>2.2.9</b> Compact Form of Linear Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html"><i class="fa fa-check"></i><b>2.3</b> Solving Systems of Equations</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#particular-and-general-solutions"><i class="fa fa-check"></i><b>2.3.1</b> Particular and General Solutions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#elementary-transformations"><i class="fa fa-check"></i><b>2.3.2</b> Elementary Transformations</a></li>
+<li class="chapter" data-level="2.3.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#the-minus-1-trick"><i class="fa fa-check"></i><b>2.3.3</b> The Minus-1 Trick</a></li>
+<li class="chapter" data-level="2.3.4" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#calculating-an-inverse-matrix-via-gaussian-elimination"><i class="fa fa-check"></i><b>2.3.4</b> Calculating an Inverse Matrix via Gaussian Elimination</a></li>
+<li class="chapter" data-level="2.3.5" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#algorithms-for-solving-a-system-of-linear-equations"><i class="fa fa-check"></i><b>2.3.5</b> Algorithms for Solving a System of Linear Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html"><i class="fa fa-check"></i><b>2.4</b> Vector Spaces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#groups"><i class="fa fa-check"></i><b>2.4.1</b> Groups</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#vector-subspaces"><i class="fa fa-check"></i><b>2.4.2</b> Vector Subspaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="linear-independence.html"><a href="linear-independence.html"><i class="fa fa-check"></i><b>2.5</b> Linear Independence</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="linear-independence.html"><a href="linear-independence.html#gaussian-elimination-method"><i class="fa fa-check"></i><b>2.5.1</b> Gaussian Elimination Method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="basis-and-rank.html"><a href="basis-and-rank.html"><i class="fa fa-check"></i><b>2.6</b> Basis and Rank</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="basis-and-rank.html"><a href="basis-and-rank.html#generating-set-and-basis"><i class="fa fa-check"></i><b>2.6.1</b> Generating Set and Basis</a></li>
+<li class="chapter" data-level="2.6.2" data-path="basis-and-rank.html"><a href="basis-and-rank.html#rank"><i class="fa fa-check"></i><b>2.6.2</b> Rank</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="linear-mappings.html"><a href="linear-mappings.html"><i class="fa fa-check"></i><b>2.7</b> Linear Mappings</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
+<li class="chapter" data-level="2.7.2" data-path="linear-mappings.html"><a href="linear-mappings.html#coordinate-systems-and-bases"><i class="fa fa-check"></i><b>2.7.2</b> Coordinate Systems and Bases</a></li>
+<li class="chapter" data-level="2.7.3" data-path="linear-mappings.html"><a href="linear-mappings.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.7.3</b> Basis Change and Equivalence</a></li>
+<li class="chapter" data-level="2.7.6" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.6</b> Image and Kernel of a Linear Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.8</b> Affine Spaces</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="affine-spaces.html"><a href="affine-spaces.html#relation-to-linear-equations"><i class="fa fa-check"></i><b>2.8.1</b> Relation to Linear Equations</a></li>
+<li class="chapter" data-level="2.8.2" data-path="affine-spaces.html"><a href="affine-spaces.html#affine-mappings"><i class="fa fa-check"></i><b>2.8.2</b> Affine Mappings</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSCI 420: Mathematics for Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="matrices" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Matrices<a href="matrices.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Matrices play a central role in linear algebra. They provide a compact way to represent <em>systems of linear equations</em> and also serve as representations of linear functions (or mappings).</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-46" class="definition"><strong>Definition 2.9  </strong></span>A <strong>matrix</strong> is a rectangular array of numbers arranged in <span class="math inline">\(m\)</span> rows and <span class="math inline">\(n\)</span> columns.<br />
+Formally, a real-valued matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> is:</p>
+<p><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \dots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \dots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \dots &amp; a_{mn}
+\end{bmatrix}
+\]</span></p>
+</div>
+<p>The notation <span class="math inline">\((\mathbf{A})_{ij}\)</span> refers to the <span class="math inline">\(ij^{th}\)</span> element of <span class="math inline">\(\mathbf{A}\)</span>. So, <span class="math inline">\((\mathbf{A})_{ij} = a_{ij}\)</span>. For example, if <span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+2 &amp; 4 \\
+1 &amp; 3
+\end{bmatrix},
+\]</span>
+Then <span class="math inline">\(\mathbf{A}_{11} = 2, \mathbf{A}_{12} = 4, \mathbf{A}_{21} = 1\)</span> and <span class="math inline">\(\mathbf{A}_{22} = 3\)</span>.</p>
+<p>Matrices with one row are called <strong>row vectors</strong>, and those with one column are <strong>column vectors</strong>.</p>
+<hr />
+<div id="matrix-addition" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Matrix Addition<a href="matrices.html#matrix-addition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-47" class="definition"><strong>Definition 2.10  </strong></span>For two matrices <span class="math inline">\(\mathbf{A}, \mathbf{B} \in \mathbb{R}^{m \times n}\)</span>, their sum and difference are defined element-wise:
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})_{ij} = a_{ij} + b_{ij} \;\;\;\;\;\;\;\;\; (\mathbf{A} - \mathbf{B})_{ij} = a_{ij} - b_{ij}
+\]</span></p>
+</div>
+<p>The result of matrix addition is another <span class="math inline">\(m \times n\)</span> matrix.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-48" class="example"><strong>Example 2.21  </strong></span>Let:
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+2 &amp; 4 \\
+1 &amp; 3
+\end{bmatrix},
+\quad
+\mathbf{B} =
+\begin{bmatrix}
+5 &amp; 0 \\
+-2 &amp; 1
+\end{bmatrix}.
+\]</span>
+Then <span class="math display">\[
+\mathbf{A} + \mathbf{B} =
+\begin{bmatrix}
+2 + 5 &amp; 4 + 0 \\
+1 + (-2) &amp; 3 + 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+7 &amp; 4 \\
+-1 &amp; 4
+\end{bmatrix}
+\]</span>
+<span class="math display">\[
+\mathbf{A} - \mathbf{B} =
+\begin{bmatrix}
+2 - 5 &amp; 4 - 0 \\
+1 - (-2) &amp; 3 - 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+-3 &amp; 4 \\
+3 &amp; 2
+\end{bmatrix}.
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-49" class="example"><strong>Example 2.22  </strong></span>In the previous example, we can see that <span class="math display">\[(\mathbf{A}+\mathbf{B})_{21} = -1 \quad \text{and} \quad (\mathbf{A}-\mathbf{B})_{22} = 2.\]</span></p>
+</div>
+<hr />
+</div>
+<div id="matrix-multiplication" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Matrix Multiplication<a href="matrices.html#matrix-multiplication" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-50" class="definition"><strong>Definition 2.11  </strong></span>For matrices <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> and <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{n \times k}\)</span>, their product <span class="math inline">\(\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times k}\)</span> is defined as:
+<span class="math display">\[
+c_{ij} = \sum_{l=1}^{n} a_{il} b_{lj}
+\]</span></p>
+</div>
+<p>That is, each element of <span class="math inline">\(\mathbf{C}\)</span> is obtained by taking the dot product of the corresponding row of <span class="math inline">\(\mathbf{A}\)</span> and column of <span class="math inline">\(\mathbf{B}\)</span>.</p>
+<div class="note">
+<p>Matrix multiplication is only defined when the inner dimensions match (the number of columns of <span class="math inline">\(\mathbf{A}\)</span> equals the number of rows of <span class="math inline">\(\mathbf{B}\)</span>).</p>
+</div>
+<div class="note">
+<p>Matrix multiplication is <strong>not commutative</strong>, meaning <span class="math inline">\(\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}\)</span> in general.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-51" class="example"><strong>Example 2.23  </strong></span>Let
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix},
+\quad
+\mathbf{B} =
+\begin{bmatrix}
+2 &amp; 0 \\
+1 &amp; 2
+\end{bmatrix}.
+\]</span></p>
+<p>Then
+<span class="math display">\[
+\mathbf{A} \mathbf{B} =
+\begin{bmatrix}
+1(2) + 2(1) &amp; 1(0) + 2(2) \\
+3(2) + 4(1) &amp; 3(0) + 4(2)
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 &amp; 4 \\
+10 &amp; 8
+\end{bmatrix}.
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-52" class="example"><strong>Example 2.24  </strong></span>Let
+<span class="math display">\[
+\mathbf{C} =
+\begin{bmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{bmatrix},
+\quad
+\mathbf{D} =
+\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4 \\
+5 &amp; 6
+\end{bmatrix}.
+\]</span></p>
+<p>Then
+<span class="math display">\[
+\mathbf{C} \mathbf{D} =
+\begin{bmatrix}
+1(1) + 2(3) + 3(5) &amp; 1(2) + 2(4) + 3(6) \\
+4(1) + 5(3) + 6(5) &amp; 4(2) + 5(4) + 6(6)
+\end{bmatrix}
+=
+\begin{bmatrix}
+22 &amp; 28 \\
+49 &amp; 64
+\end{bmatrix}.
+\]</span></p>
+</div>
+<hr />
+</div>
+<div id="identity-matrix" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Identity Matrix<a href="matrices.html#identity-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-53" class="definition"><strong>Definition 2.12  </strong></span>The <strong>identity matrix</strong> <span class="math inline">\(\mathbf{I}_n \in \mathbb{R}^{n \times n}\)</span> is a square matrix with 1’s on the diagonal and 0’s elsewhere:
+<span class="math display">\[
+\mathbf{I}_n =
+\begin{bmatrix}
+1 &amp; 0 &amp; \dots &amp; 0 \\
+0 &amp; 1 &amp; \dots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \dots &amp; 1
+\end{bmatrix}
+\]</span></p>
+</div>
+<p>The identity matrix satisfies:
+<span class="math display">\[
+\mathbf{I}_m \mathbf{A} = \mathbf{A} \mathbf{I}_n = \mathbf{A}
+\]</span> for any matrix <span class="math inline">\(\mathbf{A}\)</span> (with the appropriate dimensions).</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-54" class="example"><strong>Example 2.25  </strong></span>Let
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix}
+.\]</span>
+Then <span class="math display">\[\mathbf{A}\mathbf{I} = \begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix}
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}=
+\begin{bmatrix}
+1(1) + 2(0) &amp; 1(0) + 2(1) \\
+3(1) + 4(0) &amp; 3(0) + 4(1)
+\end{bmatrix}=
+\begin{bmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{bmatrix}.\]</span></p>
+</div>
+<hr />
+</div>
+<div id="matrix-properties" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Matrix Properties<a href="matrices.html#matrix-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are several important properties of matrices.</p>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-55" class="lemma"><strong>Lemma 2.2  </strong></span>For any matrices <span class="math inline">\(\mathbf{A}, \mathbf{B}\)</span>, and <span class="math inline">\(\mathbf{C}\)</span> with appropriate dimensions for addition/ multiplication, the following properties hold.</p>
+<ul>
+<li><strong>Associativity:</strong><br />
+<span class="math display">\[
+(\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})
+\]</span><br />
+</li>
+<li><strong>Distributivity:</strong><br />
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})\mathbf{C} = \mathbf{A}\mathbf{C} + \mathbf{B}\mathbf{C}, \quad \mathbf{A}(\mathbf{C} + \mathbf{D}) = \mathbf{A}\mathbf{C} + \mathbf{A}\mathbf{D}
+\]</span><br />
+</li>
+<li><strong>Identity Property:</strong><br />
+<span class="math display">\[
+\mathbf{I}_m \mathbf{A} = \mathbf{A} \mathbf{I}_n = \mathbf{A}
+\]</span><br />
+</li>
+</ul>
+</div>
+<div class="note">
+<p>Matrix multiplication is <strong>not element-wise</strong>. When multiplication is performed element by element, it is called the <strong>Hadamard product</strong>.</p>
+</div>
+<hr />
+</div>
+<div id="matrix-inverse" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Matrix Inverse<a href="matrices.html#matrix-inverse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-56" class="definition"><strong>Definition 2.13  </strong></span>A square matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> is <strong>invertible</strong> (or <strong>nonsingular</strong>) if there exists a matrix <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{n \times n}\)</span> such that <span class="math display">\[ \mathbf{A}\mathbf{B} = \mathbf{I}_n = \mathbf{B}\mathbf{A} .\]</span><br />
+In this case, <span class="math inline">\(\mathbf{B}\)</span> is called the <strong>inverse</strong> of <span class="math inline">\(\mathbf{A}\)</span> and is denoted <span class="math inline">\(\mathbf{A}^{-1}\)</span>.</p>
+</div>
+<p>If no such matrix exists, <span class="math inline">\(\mathbf{A}\)</span> is <strong>singular</strong> or <strong>noninvertible</strong>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 2.26  </strong></span>Let
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+2 &amp; 1 \\
+7 &amp; 4
+\end{bmatrix},
+\quad
+\mathbf{B} =
+\begin{bmatrix}
+4 &amp; -1 \\
+-7 &amp; 2
+\end{bmatrix}.
+\]</span>
+We will show that <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> are inverses of each other by verifying that:
+<span class="math display">\[
+\mathbf{A} \mathbf{B} = \mathbf{B} \mathbf{A} = \mathbf{I}
+\]</span>
+Notice that
+<span class="math display">\[
+\mathbf{A} \mathbf{B} =
+\begin{bmatrix}
+2 &amp; 1 \\
+7 &amp; 4
+\end{bmatrix}
+\begin{bmatrix}
+4 &amp; -1 \\
+-7 &amp; 2
+\end{bmatrix}
+=
+\begin{bmatrix}
+(2)(4) + (1)(-7) &amp; (2)(-1) + (1)(2) \\
+(7)(4) + (4)(-7) &amp; (7)(-1) + (4)(2)
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}.
+\]</span>
+A similar calculation shows that <span class="math inline">\(\mathbf{B}\mathbf{A} = \mathbf{I}\)</span>.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-58" class="theorem"><strong>Theorem 2.1  </strong></span>The inverse of a matrix <span class="math inline">\(\mathbf{A}\)</span>, when it exists, is <strong>unique</strong>.</p>
+</div>
+<p>For a 2×2 matrix<br />
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+a_{11} &amp; a_{12} \\
+a_{21} &amp; a_{22}
+\end{bmatrix},
+\]</span>
+the inverse is<br />
+<span class="math display">\[
+\mathbf{A}^{-1} = \frac{1}{a_{11}a_{22} - a_{12}a_{21}}
+\begin{bmatrix}
+a_{22} &amp; -a_{12} \\
+-a_{21} &amp; a_{11}
+\end{bmatrix},
+\]</span>
+provided <span class="math inline">\(a_{11}a_{22} - a_{12}a_{21} \neq 0\)</span>. The term <span class="math inline">\(a_{11}a_{22} - a_{12}a_{21}\)</span> is the <strong>determinant</strong> of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-59" class="example"><strong>Example 2.27  </strong></span>Let<br />
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+4 &amp; 3 \\
+2 &amp; 1
+\end{bmatrix}.
+\]</span>
+The determinant is:
+<span class="math display">\[
+\det(\mathbf{A}) = (4)(1) - (3)(2) = 4 - 6 = -2.
+\]</span>
+Applying the formula gives us the inverse of <span class="math inline">\(\mathbf{A}\)</span>:
+<span class="math display">\[
+\mathbf{A}^{-1} = \frac{1}{-2}
+\begin{bmatrix}
+1 &amp; -3 \\
+-2 &amp; 4
+\end{bmatrix}
+=
+\begin{bmatrix}
+-\tfrac{1}{2} &amp; \tfrac{3}{2} \\
+1 &amp; -2
+\end{bmatrix}.
+\]</span></p>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-60" class="lemma"><strong>Lemma 2.3  </strong></span>For a square non-singular matrix <span class="math inline">\(\mathbf{A}\)</span>, the following are true:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathbf{A}\mathbf{A}^{-1} = \mathbf{I} = \mathbf{A}^{-1}\mathbf{A}\)</span>,<br />
+</li>
+<li><span class="math inline">\((\mathbf{A}\mathbf{B})^{-1} = \mathbf{B}^{-1}\mathbf{A}^{-1}\)</span>,<br />
+</li>
+<li><span class="math inline">\((\mathbf{A} + \mathbf{B})^{-1} \neq \mathbf{A}^{-1} + \mathbf{B}^{-1}\)</span><br />
+</li>
+</ol>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 2.28  </strong></span>Let
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; 2
+\end{bmatrix},
+\quad
+\mathbf{B} =
+\begin{bmatrix}
+2 &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\]</span>
+Then, using the definition of the 2x2 inverse,
+<span class="math display">\[
+\mathbf{A}^{-1} =
+\begin{bmatrix}
+1 &amp; 0 \\
+0 &amp; \tfrac{1}{2}
+\end{bmatrix},
+\quad
+\mathbf{B}^{-1} =
+\begin{bmatrix}
+\tfrac{1}{2} &amp; 0 \\
+0 &amp; 1
+\end{bmatrix}
+\]</span>
+So, their sum is
+<span class="math display">\[
+\mathbf{A}^{-1} + \mathbf{B}^{-1} =
+\begin{bmatrix}
+1 + \tfrac{1}{2} &amp; 0 \\
+0 &amp; \tfrac{1}{2} + 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\tfrac{3}{2} &amp; 0 \\
+0 &amp; \tfrac{3}{2}
+\end{bmatrix}
+\]</span></p>
+<p>On the other hand,
+<span class="math display">\[
+\mathbf{A} + \mathbf{B} =
+\begin{bmatrix}
+1 + 2 &amp; 0 \\
+0 &amp; 2 + 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 &amp; 0 \\
+0 &amp; 3
+\end{bmatrix}.
+\]</span>
+Using the definition of the inverse, we get:
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})^{-1} =
+\begin{bmatrix}
+\tfrac{1}{3} &amp; 0 \\
+0 &amp; \tfrac{1}{3}
+\end{bmatrix}
+\]</span>
+Comparing, we see
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})^{-1} =
+\begin{bmatrix}
+\tfrac{1}{3} &amp; 0 \\
+0 &amp; \tfrac{1}{3}
+\end{bmatrix}
+\quad \text{vs.} \quad
+\mathbf{A}^{-1} + \mathbf{B}^{-1} =
+\begin{bmatrix}
+\tfrac{3}{2} &amp; 0 \\
+0 &amp; \tfrac{3}{2}
+\end{bmatrix}.
+\]</span>
+Clearly,
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})^{-1} \neq \mathbf{A}^{-1} + \mathbf{B}^{-1}.
+\]</span></p>
+</div>
+<hr />
+</div>
+<div id="matrix-transpose" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Matrix Transpose<a href="matrices.html#matrix-transpose" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-62" class="definition"><strong>Definition 2.14  </strong></span>The <strong>transpose</strong> of <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> is <span class="math inline">\(\mathbf{A}^\top \in \mathbb{R}^{n \times m}\)</span>, obtained by interchanging rows and columns.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 2.29  </strong></span>Let<br />
+<span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 4 &amp; 7 \\
+2 &amp; 5 &amp; 8
+\end{bmatrix}.
+\]</span>
+Matrix <span class="math inline">\(\mathbf{A}\)</span> is a <span class="math inline">\(2 \times 3\)</span> matrix (2 rows, 3 columns). The transpose of <span class="math inline">\(\mathbf{A}\)</span>, denoted <span class="math inline">\(\mathbf{A}^\top\)</span>, is formed by turning rows into columns:
+<span class="math display">\[
+\mathbf{A}^\top =
+\begin{bmatrix}
+1 &amp; 2 \\
+4 &amp; 5 \\
+7 &amp; 8
+\end{bmatrix}.
+\]</span>
+Now <span class="math inline">\(\mathbf{A}^\top\)</span> is a <span class="math inline">\(3 \times 2\)</span> matrix (3 rows, 2 columns).</p>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-64" class="lemma"><strong>Lemma 2.4  </strong></span>For <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> and <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{n \times p}\)</span>, the following properties hold:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\((\mathbf{A}^\top)^\top = \mathbf{A}\)</span>,<br />
+</li>
+<li><span class="math inline">\((\mathbf{A}\mathbf{B})^\top = \mathbf{B}^\top \mathbf{A}^\top\)</span>,<br />
+</li>
+<li><span class="math inline">\((\mathbf{A} + \mathbf{B})^\top = \mathbf{A}^\top + \mathbf{B}^\top\)</span>.</li>
+</ol>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-65" class="example"><strong>Example 2.30  </strong></span>Prove that for any two matrices <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span> of the same size,<br />
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})^\top = \mathbf{A}^\top + \mathbf{B}^\top.
+\]</span></p>
+<p><strong>Proof:</strong>
+Let <span class="math inline">\(\mathbf{A} = [a_{ij}]\)</span> and <span class="math inline">\(\mathbf{B} = [b_{ij}]\)</span> be <span class="math inline">\(m \times n\)</span> matrices.<br />
+Then the sum <span class="math inline">\(\mathbf{A} + \mathbf{B}\)</span> is defined elementwise as:
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})_{ij} = a_{ij} + b_{ij}.
+\]</span>
+The transpose of a matrix swaps its rows and columns. So, the <span class="math inline">\((i, j)\)</span>-th entry of <span class="math inline">\((\mathbf{A} + \mathbf{B})^\top\)</span> is:
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})^\top_{ij} = (\mathbf{A} + \mathbf{B})_{ji} = a_{ji} + b_{ji}.
+\]</span></p>
+<p>Now, consider <span class="math inline">\(\mathbf{A}^\top + \mathbf{B}^\top\)</span>. The <span class="math inline">\((i, j)\)</span>-th entry of this matrix is:
+<span class="math display">\[
+(\mathbf{A}^\top + \mathbf{B}^\top)_{ij} = \mathbf{A}^\top_{ij} + \mathbf{B}^\top_{ij} = a_{ji} + b_{ji}.
+\]</span></p>
+<p>Since the corresponding entries are equal for all <span class="math inline">\(i, j\)</span>,
+<span class="math display">\[
+(\mathbf{A} + \mathbf{B})^\top = \mathbf{A}^\top + \mathbf{B}^\top.
+\]</span></p>
+</div>
+<hr />
+</div>
+<div id="symmetric-matrices" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> Symmetric Matrices<a href="matrices.html#symmetric-matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-66" class="definition"><strong>Definition 2.15  </strong></span> matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> is <strong>symmetric</strong> if <span class="math inline">\(\mathbf{A} = \mathbf{A}^\top\)</span>.</p>
+</div>
+<p>Only square matrices can be symmetric. If <span class="math inline">\(\mathbf{A}\)</span> is invertible, then <span class="math inline">\(\mathbf{A}^\top\)</span> is also invertible and<br />
+<span class="math display">\[
+(\mathbf{A}^{-1})^\top = (\mathbf{A}^\top)^{-1}.
+\]</span>
+The sum of symmetric matrices is symmetric, but their product generally is not.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 2.31  </strong></span>Matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{4 \times 4}\)</span> is symmetric
+<span class="math display">\[
+\mathbf{A} =
+\begin{pmatrix}
+2 &amp; 1 &amp; 0 &amp; -1 \\
+1 &amp; 3 &amp; 4 &amp; 2 \\
+0 &amp; 4 &amp; 5 &amp; 3 \\
+-1 &amp; 2 &amp; 3 &amp; 6
+\end{pmatrix}.
+\]</span>
+Notice that since <span class="math inline">\(\mathbf{A}\)</span> is symmetric, we have <span class="math inline">\((\mathbf{A})_{ij} = (\mathbf{A})_{ji}\)</span>.</p>
+</div>
+<hr />
+</div>
+<div id="scalar-multiplication" class="section level3 hasAnchor" number="2.2.8">
+<h3><span class="header-section-number">2.2.8</span> Scalar Multiplication<a href="matrices.html#scalar-multiplication" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Matrices scale the same way that vectors do.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-68" class="definition"><strong>Definition 2.16  </strong></span>For <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span>, and <span class="math inline">\(\lambda \in \mathbb{R}\)</span>, <strong>scalar multiplication</strong> is defined componentwise as:
+<span class="math display">\[
+\lambda  (\mathbf{A})_{ij} = \lambda a_{ij}
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 2.32  </strong></span>Let
+<span class="math display">\[
+\mathbf{A} =
+\begin{pmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{pmatrix}, \quad \text{and let the scalar } k = 3.
+\]</span>
+Then the scalar multiplication <span class="math inline">\(k \cdot \mathbf{A}\)</span> is:
+<span class="math display">\[
+3 \cdot
+\begin{pmatrix}
+1 &amp; 2 \\
+3 &amp; 4
+\end{pmatrix} =
+\begin{pmatrix}
+3 &amp; 6 \\
+9 &amp; 12
+\end{pmatrix}.
+\]</span></p>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-70" class="lemma"><strong>Lemma 2.5  </strong></span>For <span class="math inline">\(\mathbf{A}, \mathbf{\mathbf{B}} \in \mathbb{R}^{m \times n}\)</span> and scalars <span class="math inline">\(\lambda, \psi \in \mathbb{R}\)</span>:
+<span class="math display">\[
+(\lambda + \psi)\mathbf{A} = \lambda \mathbf{A} + \psi \mathbf{A}, \quad
+\lambda(\mathbf{A} + \mathbf{\mathbf{B}}) = \lambda \mathbf{A} + \lambda \mathbf{\mathbf{B}}.
+\]</span></p>
+</div>
+<hr />
+</div>
+<div id="compact-form-of-linear-systems" class="section level3 hasAnchor" number="2.2.9">
+<h3><span class="header-section-number">2.2.9</span> Compact Form of Linear Systems<a href="matrices.html#compact-form-of-linear-systems" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A system of linear equations such as
+<span class="math display">\[
+\begin{aligned}
+2x_1 + 3x_2 + 5x_3 &amp;= 1 \\
+4x_1 - 2x_2 - 7x_3 &amp;= 8 \\
+9x_1 + 5x_2 - 3x_3 &amp;= 2
+\end{aligned}
+\]</span>
+can be written in matrix form as<br />
+<span class="math display">\[
+\mathbf{A}\mathbf{x} = \mathbf{b},
+\quad \text{where} \quad
+\mathbf{A} =
+\begin{bmatrix}
+2 &amp; 3 &amp; 5 \\
+4 &amp; -2 &amp; -7 \\
+9 &amp; 5 &amp; -3
+\end{bmatrix},
+\quad
+\mathbf{x} =
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix},
+\quad
+\mathbf{b} =
+\begin{bmatrix}
+1 \\ 8 \\ 2
+\end{bmatrix}.
+\]</span>
+This expresses the system as a linear combination of the columns of <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 2.33  </strong></span>Consider the system of equations:
+<span class="math display">\[
+\begin{cases}
+2x + 3y = 5 \\
+4x - y = 1
+\end{cases}.
+\]</span>
+We can write this in matrix form as:
+<span class="math display">\[
+\begin{pmatrix}
+2 &amp; 3 \\
+4 &amp; -1
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y
+\end{pmatrix}
+=
+\begin{pmatrix}
+5 \\ 1
+\end{pmatrix}.
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-72" class="example"><strong>Example 2.34  </strong></span>Consider the matrix equation:
+<span class="math display">\[
+\begin{pmatrix}
+1 &amp; 2 &amp; -1 \\
+3 &amp; 0 &amp; 4
+\end{pmatrix}
+\begin{pmatrix}
+x \\ y \\ z
+\end{pmatrix}
+=
+\begin{pmatrix}
+7 \\ 5
+\end{pmatrix}.
+\]</span>
+This corresponds to the system of equations:
+<span class="math display">\[
+\begin{cases}
+x + 2y - z = 7 \\
+3x + 0 \cdot y + 4z = 5
+\end{cases}.
+\]</span></p>
+</div>
+</div>
+<div id="exercises-3" class="section level3 unnumbered unlisted hasAnchor">
+<h3>Exercises<a href="matrices.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-73" class="exercise"><strong>Exercise 2.17  </strong></span>Compute <span class="math inline">\(\begin{bmatrix} 2 &amp; -3\\ 1 &amp; 0 \\ -1 &amp; 3\end{bmatrix} + \begin{bmatrix} 9 &amp; -5 \\ 0 &amp; 13 \\ -1 &amp; 3\end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-74" class="exercise"><strong>Exercise 2.18  </strong></span>Compute <span class="math inline">\(\begin{bmatrix} 2 &amp; -3\\ 1 &amp; 0 \\ -1 &amp; 3\end{bmatrix} - \begin{bmatrix} 9 &amp; -5 \\ 0 &amp; 13 \\ -1 &amp; 3\end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-75" class="exercise"><strong>Exercise 2.19  </strong></span>Compute <span class="math inline">\(\begin{bmatrix} 3 &amp; 6\\2 &amp; 4\end{bmatrix} \begin{bmatrix} 1 &amp; 3\\0 &amp; 2\end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-76" class="exercise"><strong>Exercise 2.20  </strong></span>Compute <span class="math inline">\(\begin{bmatrix} 1&amp;2&amp;3\\4&amp;3&amp;2\end{bmatrix} \begin{bmatrix} 2&amp;3\\3&amp;4\\1&amp;2\end{bmatrix}\)</span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-77" class="exercise"><strong>Exercise 2.21  </strong></span>The textbook talks about <span class="math inline">\(\mathbf{A}\mathbf{B} = \mathbf{C}\)</span>, where <span class="math inline">\(c_{ij} = \sum_{l=1}^n a_{il}b_{lj}\)</span>. Use this definition to find <span class="math inline">\(c_{12}\)</span> using this definition if <span class="math inline">\(\mathbf{A} = \begin{bmatrix} 1&amp;2&amp;3\\4&amp;3&amp;2\end{bmatrix}\)</span> and <span class="math inline">\(\mathbf{B} = \begin{bmatrix} 2&amp;3\\3&amp;4\\1&amp;2\end{bmatrix}\)</span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-78" class="exercise"><strong>Exercise 2.22  </strong></span>Is <span class="math inline">\(\begin{bmatrix} 1&amp;-2\\2&amp;5\end{bmatrix}\)</span> the inverse of <span class="math inline">\(\begin{bmatrix} 5&amp;-2\\2&amp;-1\end{bmatrix}\)</span>?</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-79" class="exercise"><strong>Exercise 2.23  </strong></span>Prove that the inverse of a matrix <span class="math inline">\(\mathbf{A}\)</span> is unique (if it exists).</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-80" class="exercise"><strong>Exercise 2.24  </strong></span>Show that if <span class="math inline">\(\mathbf{A}^{-1}\)</span> exists, then <span class="math inline">\(\det(\mathbf{A}) \neq 0\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-81" class="exercise"><strong>Exercise 2.25  </strong></span>Find <span class="math inline">\(\mathbf{A}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}^T\)</span> for <span class="math inline">\(\begin{bmatrix} 2&amp;-1\\-4&amp;3\end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-82" class="exercise"><strong>Exercise 2.26  </strong></span>Find <span class="math inline">\(\mathbf{A}^{-1}\)</span> and <span class="math inline">\(\mathbf{A}^T\)</span> for <span class="math inline">\(\begin{bmatrix} 3&amp;4/3\\-3&amp;-1\end{bmatrix}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-83" class="exercise"><strong>Exercise 2.27  </strong></span>Show that, for a 2 x 2 matrix, that <span class="math inline">\((\mathbf{A}^T)^{-1} = (\mathbf{A}^{-1})^T\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-84" class="exercise"><strong>Exercise 2.28  </strong></span>Show that the sum of symmetric matrices is symmetric.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-85" class="exercise"><strong>Exercise 2.29  </strong></span>Find an example where the product of symmetric matrices is not symmetric.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-86" class="exercise"><strong>Exercise 2.30  </strong></span>Prove that if <span class="math inline">\(\mathbf{A}\mathbf{B} = \mathbf{I}\)</span>, then <span class="math inline">\(\mathbf{B}\mathbf{A} = \mathbf{I}\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-87" class="exercise"><strong>Exercise 2.31  </strong></span>Prove Lemma 2.3</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-88" class="exercise"><strong>Exercise 2.32  </strong></span>Prove Lemma 2.4</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-89" class="exercise"><strong>Exercise 2.33  </strong></span>Prove Lemma 2.5</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="systems-of-linear-equations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="solving-systems-of-equations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["D420-Book.pdf", "D420-Book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.4 Vector Spaces | DSCI 420: Mathematics for Machine Learning</title>
+  <meta name="description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.4 Vector Spaces | DSCI 420: Mathematics for Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.4 Vector Spaces | DSCI 420: Mathematics for Machine Learning" />
+  
+  <meta name="twitter:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+<meta name="author" content="D420 Faculty Team" />
+
+
+<meta name="date" content="2025-11-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="solving-systems-of-equations.html"/>
+<link rel="next" href="linear-independence.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">D420: Mathematics for Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html"><i class="fa fa-check"></i>Table of Symbols</a>
+<ul>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#important-symbols-and-where-to-find-them"><i class="fa fa-check"></i>Important Symbols and Where to Find Them:</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#table-of-abbreviations-and-acronyms"><i class="fa fa-check"></i>Table of Abbreviations and Acronyms</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-motivation.html"><a href="introduction-and-motivation.html"><i class="fa fa-check"></i><b>1</b> Introduction and Motivation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="finding-words-for-intuitions.html"><a href="finding-words-for-intuitions.html"><i class="fa fa-check"></i><b>1.1</b> Finding Words for Intuitions</a></li>
+<li class="chapter" data-level="1.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html"><i class="fa fa-check"></i><b>1.2</b> Two Ways to Read This Book</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-i-mathematical-foundations"><i class="fa fa-check"></i><b>1.2.1</b> Part I: Mathematical Foundations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-ii-machine-learning-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II: Machine Learning Applications</a></li>
+<li class="chapter" data-level="1.2.3" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#learning-path"><i class="fa fa-check"></i><b>1.2.3</b> Learning Path</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="exercises-and-feedback.html"><a href="exercises-and-feedback.html"><i class="fa fa-check"></i><b>1.3</b> Exercises and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="linear-algebra.html"><a href="linear-algebra.html"><i class="fa fa-check"></i><b>2</b> Linear Algebra</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><strong>2.0</strong> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="vectors.html"><a href="vectors.html#vector-spaces"><i class="fa fa-check"></i><b>2.0.1</b> Vector Spaces</a></li>
+<li class="chapter" data-level="2.0.2" data-path="vectors.html"><a href="vectors.html#closure"><i class="fa fa-check"></i><b>2.0.2</b> Closure</a></li>
+<li class="chapter" data-level="2.0.3" data-path="vectors.html"><a href="vectors.html#other-properties-of-vectors"><i class="fa fa-check"></i><b>2.0.3</b> Other Properties of Vectors</a></li>
+<li class="chapter" data-level="2.0.4" data-path="vectors.html"><a href="vectors.html#geometric-interpretation-of-a-vector"><i class="fa fa-check"></i><b>2.0.4</b> Geometric Interpretation of a Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html"><i class="fa fa-check"></i><b>2.1</b> Systems of Linear Equations</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#solutions-to-systems-of-linear-equations"><i class="fa fa-check"></i><b>2.1.1</b> Solutions to Systems of Linear Equations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#geometric-interpretation"><i class="fa fa-check"></i><b>2.1.2</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#matrix-formulation"><i class="fa fa-check"></i><b>2.1.3</b> Matrix Formulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>2.2</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="matrices.html"><a href="matrices.html#matrix-addition"><i class="fa fa-check"></i><b>2.2.1</b> Matrix Addition</a></li>
+<li class="chapter" data-level="2.2.2" data-path="matrices.html"><a href="matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.2.2</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2.3" data-path="matrices.html"><a href="matrices.html#identity-matrix"><i class="fa fa-check"></i><b>2.2.3</b> Identity Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="matrices.html"><a href="matrices.html#matrix-properties"><i class="fa fa-check"></i><b>2.2.4</b> Matrix Properties</a></li>
+<li class="chapter" data-level="2.2.5" data-path="matrices.html"><a href="matrices.html#matrix-inverse"><i class="fa fa-check"></i><b>2.2.5</b> Matrix Inverse</a></li>
+<li class="chapter" data-level="2.2.6" data-path="matrices.html"><a href="matrices.html#matrix-transpose"><i class="fa fa-check"></i><b>2.2.6</b> Matrix Transpose</a></li>
+<li class="chapter" data-level="2.2.7" data-path="matrices.html"><a href="matrices.html#symmetric-matrices"><i class="fa fa-check"></i><b>2.2.7</b> Symmetric Matrices</a></li>
+<li class="chapter" data-level="2.2.8" data-path="matrices.html"><a href="matrices.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.2.8</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.2.9" data-path="matrices.html"><a href="matrices.html#compact-form-of-linear-systems"><i class="fa fa-check"></i><b>2.2.9</b> Compact Form of Linear Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html"><i class="fa fa-check"></i><b>2.3</b> Solving Systems of Equations</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#particular-and-general-solutions"><i class="fa fa-check"></i><b>2.3.1</b> Particular and General Solutions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#elementary-transformations"><i class="fa fa-check"></i><b>2.3.2</b> Elementary Transformations</a></li>
+<li class="chapter" data-level="2.3.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#the-minus-1-trick"><i class="fa fa-check"></i><b>2.3.3</b> The Minus-1 Trick</a></li>
+<li class="chapter" data-level="2.3.4" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#calculating-an-inverse-matrix-via-gaussian-elimination"><i class="fa fa-check"></i><b>2.3.4</b> Calculating an Inverse Matrix via Gaussian Elimination</a></li>
+<li class="chapter" data-level="2.3.5" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#algorithms-for-solving-a-system-of-linear-equations"><i class="fa fa-check"></i><b>2.3.5</b> Algorithms for Solving a System of Linear Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html"><i class="fa fa-check"></i><b>2.4</b> Vector Spaces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#groups"><i class="fa fa-check"></i><b>2.4.1</b> Groups</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#vector-subspaces"><i class="fa fa-check"></i><b>2.4.2</b> Vector Subspaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="linear-independence.html"><a href="linear-independence.html"><i class="fa fa-check"></i><b>2.5</b> Linear Independence</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="linear-independence.html"><a href="linear-independence.html#gaussian-elimination-method"><i class="fa fa-check"></i><b>2.5.1</b> Gaussian Elimination Method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="basis-and-rank.html"><a href="basis-and-rank.html"><i class="fa fa-check"></i><b>2.6</b> Basis and Rank</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="basis-and-rank.html"><a href="basis-and-rank.html#generating-set-and-basis"><i class="fa fa-check"></i><b>2.6.1</b> Generating Set and Basis</a></li>
+<li class="chapter" data-level="2.6.2" data-path="basis-and-rank.html"><a href="basis-and-rank.html#rank"><i class="fa fa-check"></i><b>2.6.2</b> Rank</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="linear-mappings.html"><a href="linear-mappings.html"><i class="fa fa-check"></i><b>2.7</b> Linear Mappings</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
+<li class="chapter" data-level="2.7.2" data-path="linear-mappings.html"><a href="linear-mappings.html#coordinate-systems-and-bases"><i class="fa fa-check"></i><b>2.7.2</b> Coordinate Systems and Bases</a></li>
+<li class="chapter" data-level="2.7.3" data-path="linear-mappings.html"><a href="linear-mappings.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.7.3</b> Basis Change and Equivalence</a></li>
+<li class="chapter" data-level="2.7.6" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.6</b> Image and Kernel of a Linear Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.8</b> Affine Spaces</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="affine-spaces.html"><a href="affine-spaces.html#relation-to-linear-equations"><i class="fa fa-check"></i><b>2.8.1</b> Relation to Linear Equations</a></li>
+<li class="chapter" data-level="2.8.2" data-path="affine-spaces.html"><a href="affine-spaces.html#affine-mappings"><i class="fa fa-check"></i><b>2.8.2</b> Affine Mappings</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSCI 420: Mathematics for Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="vector-spaces-1" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Vector Spaces<a href="vector-spaces-1.html#vector-spaces-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>vector space</strong> is a structured set of objects called <em>vectors</em> that can be added together and scaled by real numbers (scalars), while remaining within the same set. To understand this concept, we first introduce <strong>groups</strong>, which form the foundation for vector space structure.</p>
+<hr />
+<div id="groups" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Groups<a href="vector-spaces-1.html#groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-112" class="definition"><strong>Definition 2.21  </strong></span>A <strong>group</strong> is a set <span class="math inline">\(G\)</span> with an operation <span class="math inline">\(\otimes\)</span> that satisfies:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Closure:</strong> <span class="math inline">\(x \otimes y \in G\)</span> for all <span class="math inline">\(x, y \in G\)</span>.<br />
+</li>
+<li><strong>Associativity:</strong> <span class="math inline">\((x \otimes y) \otimes z = x \otimes (y \otimes z)\)</span>.<br />
+</li>
+<li><strong>Neutral element:</strong> There exists <span class="math inline">\(e \in G\)</span> such that <span class="math inline">\(x \otimes e = e \otimes x = x\)</span>.<br />
+</li>
+<li><strong>Inverse element:</strong> For every <span class="math inline">\(x \in G\)</span>, there exists <span class="math inline">\(y \in G\)</span> such that <span class="math inline">\(x \otimes y = e\)</span>.</li>
+</ol>
+<p>If the operation is also <strong>commutative</strong>, the group is called <strong>Abelian</strong>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-113" class="example"><strong>Example 2.41  </strong></span></p>
+<ul>
+<li><span class="math inline">\((\mathbb{Z}, +)\)</span> is an Abelian group.<br />
+</li>
+<li><span class="math inline">\((\mathbb{N}_0, +)\)</span> is <em>not</em> a group (no inverse elements).<br />
+</li>
+<li><span class="math inline">\((\mathbb{R} \setminus \{0\}, \cdot)\)</span> is an Abelian group.<br />
+</li>
+<li><span class="math inline">\((\mathbb{R}^{n \times n}, \cdot)\)</span> forms a group only for invertible matrices—called the <strong>general linear group</strong>, denoted <span class="math inline">\(\mathrm{GL}(n, \mathbb{R})\)</span>. This group is <em>not</em> Abelian because matrix multiplication is not commutative.</li>
+</ul>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-114" class="example"><strong>Example 2.42  </strong></span>Prove that <span class="math inline">\(\mathrm{GL}(2,\mathbb{R})\)</span> forms a group under multiplication.</p>
+<p>To show that <span class="math inline">\(\mathrm{GL}(2,\mathbb{R})\)</span> forms a group, we verify each property:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Closure</strong><br />
+Let <span class="math inline">\(A, B \in \mathrm{GL}(2,\mathbb{R})\)</span>. Then both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are invertible, meaning there exist matrices <span class="math inline">\(A^{-1}\)</span> and <span class="math inline">\(B^{-1}\)</span> such that:
+<span class="math display">\[
+AA^{-1} = A^{-1}A = I, \quad BB^{-1} = B^{-1}B = I
+\]</span>
+We must show that <span class="math inline">\(AB\)</span> is also invertible. Consider the product <span class="math inline">\(B^{-1}A^{-1}\)</span>. Then:
+<span class="math display">\[
+(AB)(B^{-1}A^{-1}) = A(BB^{-1})A^{-1} = AIA^{-1} = AA^{-1} = I
+\]</span>
+and similarly,
+<span class="math display">\[
+(B^{-1}A^{-1})(AB) = B^{-1}(A^{-1}A)B = B^{-1}IB = BB^{-1} = I
+\]</span>
+Hence, <span class="math inline">\(B^{-1}A^{-1}\)</span> is the inverse of <span class="math inline">\(AB\)</span>. Therefore, <span class="math inline">\(AB\)</span> is invertible and <span class="math inline">\(AB \in \mathrm{GL}(2,\mathbb{R})\)</span>.
+<em>Closure holds.</em></p></li>
+<li><p><strong>Associativity</strong><br />
+Matrix multiplication is associative for all <span class="math inline">\(2 \times 2\)</span> real matrices. Thus, for any <span class="math inline">\(A, B, C \in \mathrm{GL}(2,\mathbb{R})\)</span>:
+<span class="math display">\[
+(AB)C = A(BC)
+\]</span>
+<em>Associativity holds.</em></p></li>
+<li><p><strong>Identity Element</strong><br />
+The <span class="math inline">\(2 \times 2\)</span> identity matrix <span class="math inline">\(I\)</span> is it’s own inverse. It is therefore a <span class="math inline">\(2 \times 2\)</span> invertible matrix and so is in (2,)).<br />
+<em>Identity exists.</em></p></li>
+<li><p><strong>Inverse Element</strong><br />
+By definition, each <span class="math inline">\(A \in \mathrm{GL}(2,\mathbb{R})\)</span> is invertible. So there exists <span class="math inline">\(A^{-1}\)</span> such that:
+<span class="math display">\[
+AA^{-1} = A^{-1}A = I
+\]</span>
+Moreover, since <span class="math inline">\(A\)</span> is the inverse of <span class="math inline">\(A^{-1}\)</span>, we know that <span class="math inline">\(A^{-1}\)</span> is also an invertible <span class="math inline">\(2 \times 2\)</span> matrix and so is in <span class="math inline">\(\mathrm{GL}(2,\mathbb{R})\)</span>.
+<em>Inverses exist.</em></p></li>
+</ol>
+<p>Therefore, since all conditions are satisfied, <span class="math inline">\(\mathrm{GL}(2,\mathbb{R})\)</span> is a group under matrix multiplication.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-115" class="definition"><strong>Definition 2.22  </strong></span>A <strong>real-valued vector space</strong> <span class="math inline">\(V = (V, +, \cdot)\)</span> consists of:</p>
+<ul>
+<li>An <strong>inner operation</strong> (vector addition) <span class="math inline">\(+ : V \times V \to V\)</span>.</li>
+<li>An <strong>outer operation</strong> (scalar multiplication) <span class="math inline">\(\cdot : \mathbb{R} \times V \to V\)</span>.</li>
+</ul>
+<p>The operations satisfy:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\((V, +)\)</span> is an Abelian group.<br />
+</li>
+<li><strong>Distributivity:</strong>
+<ul>
+<li><span class="math inline">\(\lambda \cdot (\mathbf{x} + \mathbf{y}) = \lambda \cdot \mathbf{x} + \lambda \cdot \mathbf{y}\)</span><br />
+</li>
+<li><span class="math inline">\((\lambda + \psi) \cdot \mathbf{x} = \lambda \cdot \mathbf{x} + \psi \cdot \mathbf{x}\)</span><br />
+</li>
+</ul></li>
+<li><strong>Associativity:</strong> <span class="math inline">\(\lambda \cdot (\psi \cdot \mathbf{x}) = (\lambda \psi) \cdot \mathbf{x}\)</span><br />
+</li>
+<li><strong>Neutral element:</strong> <span class="math inline">\(\mathbf{1} \cdot \mathbf{x} = \mathbf{x}\)</span><br />
+</li>
+</ol>
+</div>
+<p>The zero vector <span class="math inline">\(\mathbf{0}\)</span> acts as the neutral element of addition.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-116" class="example"><strong>Example 2.43  </strong></span></p>
+<ul>
+<li><span class="math inline">\(\mathbb{R}^n\)</span>: Vectors added and scaled componentwise.<br />
+</li>
+<li><span class="math inline">\(\mathbb{R}^{m \times n}\)</span>: Matrices added and scaled elementwise.<br />
+</li>
+<li><span class="math inline">\(\mathbb{C}\)</span>: The complex numbers under standard addition and multiplication.</li>
+</ul>
+</div>
+<p>In notation, vectors are typically written as column vectors<br />
+<span class="math display">\[
+\mathbf{x} =
+\begin{bmatrix}
+x_1 \\ \vdots \\ x_n
+\end{bmatrix},
+\]</span>
+and their transposes <span class="math inline">\(\mathbf{x}^\top\)</span> are row vectors.</p>
+<hr />
+</div>
+<div id="vector-subspaces" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Vector Subspaces<a href="vector-spaces-1.html#vector-subspaces" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-117" class="definition"><strong>Definition 2.23  </strong></span>A <strong>vector subspace</strong> <span class="math inline">\(U \subseteq V\)</span> is a subset of a vector space that is itself a vector space under the same operations. To be a subspace, <span class="math inline">\(U\)</span> must satisfy:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathbf{0} \in U\)</span><br />
+</li>
+<li><strong>Closure under scalar multiplication:</strong> <span class="math inline">\(\lambda \mathbf{x} \in U\)</span><br />
+</li>
+<li><strong>Closure under addition:</strong> <span class="math inline">\(\mathbf{x} + \mathbf{y} \in U\)</span><br />
+</li>
+</ol>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-118" class="example"><strong>Example 2.44  </strong></span></p>
+<ul>
+<li>The set of all solutions to a <strong>homogeneous</strong> system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span> is a subspace of <span class="math inline">\(\mathbb{R}^n\)</span>.<br />
+</li>
+<li>The set of solutions to an <strong>inhomogeneous</strong> system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span> (where <span class="math inline">\(\mathbf{b} \neq 0\)</span>) is <em>not</em> a subspace.<br />
+</li>
+<li>The intersection of any number of subspaces is also a subspace.</li>
+</ul>
+</div>
+</div>
+<div id="exercises-5" class="section level3 unnumbered unlisted hasAnchor">
+<h3>Exercises<a href="vector-spaces-1.html#exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-119" class="exercise"><strong>Exercise 2.45  </strong></span>SHow that each of these is a group:</p>
+<ul>
+<li><span class="math inline">\((\mathbb{Z}, +)\)</span> is an Abelian group.<br />
+</li>
+<li><span class="math inline">\((\mathbb{N}_0, +)\)</span> is <em>not</em> a group (no inverse elements).<br />
+</li>
+<li><span class="math inline">\((\mathbb{R} \setminus \{0\}, \cdot)\)</span> is an Abelian group.<br />
+</li>
+<li><span class="math inline">\((\mathbb{R}^{n \times n}, \cdot)\)</span> forms a group only for invertible matrices—called the <strong>general linear group</strong>, denoted <span class="math inline">\(\mathrm{GL}(n, \mathbb{R})\)</span>. This group is <em>not</em> Abelian because matrix multiplication is not commutative.</li>
+</ul>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-120" class="exercise"><strong>Exercise 2.46  </strong></span>SHow that each of these is a vector space:</p>
+<ul>
+<li><span class="math inline">\(\mathbb{R}^n\)</span>: Vectors added and scaled componentwise.<br />
+</li>
+<li><span class="math inline">\(\mathbb{R}^{m \times n}\)</span>: Matrices added and scaled elementwise.<br />
+</li>
+<li><span class="math inline">\(\mathbb{C}\)</span>: The complex numbers under standard addition and multiplication.</li>
+</ul>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-121" class="exercise"><strong>Exercise 2.47  </strong></span>Show each of these is a vector subspace:</p>
+<ul>
+<li>The set of all solutions to a <strong>homogeneous</strong> system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{0}\)</span> is a subspace of <span class="math inline">\(\mathbb{R}^n\)</span>.<br />
+</li>
+<li>The set of solutions to an <strong>inhomogeneous</strong> system <span class="math inline">\(\mathbf{A}\mathbf{x} = \mathbf{b}\)</span> (where <span class="math inline">\(\mathbf{b} \neq 0\)</span>) is <em>not</em> a subspace.<br />
+</li>
+<li>The intersection of any number of subspaces is also a subspace.</li>
+</ul>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-122" class="exercise"><strong>Exercise 2.48  </strong></span>Prove that <span class="math inline">\(\mathbb{Z}\)</span> is a group under addition.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-123" class="exercise"><strong>Exercise 2.49  </strong></span>Prove that <span class="math inline">\(\mathbb{Z}^+\)</span> is not a group under addition.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-124" class="exercise"><strong>Exercise 2.50  </strong></span>Prove that <span class="math inline">\(\mathbb{R} \setminus \{0\}\)</span> is a group under multiplication.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-125" class="exercise"><strong>Exercise 2.51  </strong></span>Let <span class="math inline">\(G\)</span> be the set of matrices of the form <span class="math inline">\(\begin{bmatrix}a&amp;b\\0&amp;c \end{bmatrix}\)</span> where <span class="math inline">\(a,b,c \in \mathbb{R}\)</span> and <span class="math inline">\(ac \not = 0\)</span>. Prove that <span class="math inline">\(G\)</span> forms a subgroup of <span class="math inline">\(G(2\mathbb{R})\)</span>.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-126" class="exercise"><strong>Exercise 2.52  </strong></span>Let <span class="math inline">\(g\)</span> be an element of a group <span class="math inline">\(G\)</span>. Show that it’s inverse is unique.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-127" class="exercise"><strong>Exercise 2.53  </strong></span></p>
+Let <span class="math inline">\(G\)</span> be a group and let <span class="math inline">\(H\)</span> be a non-empty subset of <span class="math inline">\(G\)</span>. Prove the following are equivalent by proving <span class="math inline">\(1 \Rightarrow 3 \Rightarrow 2 \Rightarrow 1\)</span>.
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-128" class="exercise"><strong>Exercise 2.54  </strong></span>Prove that <span class="math inline">\(\mathbb{R}^n\)</span> is a vector space under componentwise addition and scalar multiplication.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-129" class="exercise"><strong>Exercise 2.55  </strong></span>Prove that <span class="math inline">\(\mathbb{R}^{m \times n}\)</span> is a vector space under componentwise addition and scalar multiplication.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-130" class="exercise"><strong>Exercise 2.56  </strong></span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="solving-systems-of-equations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="linear-independence.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["D420-Book.pdf", "D420-Book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

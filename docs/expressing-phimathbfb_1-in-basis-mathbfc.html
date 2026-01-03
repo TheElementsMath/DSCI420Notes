@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2.8 Expressing \(\Phi(\mathbf{b}_1)\) in Basis \(\mathbf{C}\) | DSCI 420: Mathematics for Machine Learning</title>
+  <meta name="description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2.8 Expressing \(\Phi(\mathbf{b}_1)\) in Basis \(\mathbf{C}\) | DSCI 420: Mathematics for Machine Learning" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2.8 Expressing \(\Phi(\mathbf{b}_1)\) in Basis \(\mathbf{C}\) | DSCI 420: Mathematics for Machine Learning" />
+  
+  <meta name="twitter:description" content="An expanded, interactive companion to Mathematics for Machine Learning by Deisenroth et al." />
+  
+
+<meta name="author" content="D420 Faculty Team" />
+
+
+<meta name="date" content="2025-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="linear-mappings.html"/>
+<link rel="next" href="affine-spaces.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">D420: Mathematics for Machine Learning</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html"><i class="fa fa-check"></i>Table of Symbols</a>
+<ul>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#important-symbols-and-where-to-find-them"><i class="fa fa-check"></i>Important Symbols and Where to Find Them:</a></li>
+<li class="chapter" data-level="" data-path="table-of-symbols.html"><a href="table-of-symbols.html#table-of-abbreviations-and-acronyms"><i class="fa fa-check"></i>Table of Abbreviations and Acronyms</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-and-motivation.html"><a href="introduction-and-motivation.html"><i class="fa fa-check"></i><b>1</b> Introduction and Motivation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="finding-words-for-intuitions.html"><a href="finding-words-for-intuitions.html"><i class="fa fa-check"></i><b>1.1</b> Finding Words for Intuitions</a></li>
+<li class="chapter" data-level="1.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html"><i class="fa fa-check"></i><b>1.2</b> Two Ways to Read This Book</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-i-mathematical-foundations"><i class="fa fa-check"></i><b>1.2.1</b> Part I: Mathematical Foundations</a></li>
+<li class="chapter" data-level="1.2.2" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#part-ii-machine-learning-applications"><i class="fa fa-check"></i><b>1.2.2</b> Part II: Machine Learning Applications</a></li>
+<li class="chapter" data-level="1.2.3" data-path="two-ways-to-read-this-book.html"><a href="two-ways-to-read-this-book.html#learning-path"><i class="fa fa-check"></i><b>1.2.3</b> Learning Path</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="exercises-and-feedback.html"><a href="exercises-and-feedback.html"><i class="fa fa-check"></i><b>1.3</b> Exercises and Feedback</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="linear-algebra.html"><a href="linear-algebra.html"><i class="fa fa-check"></i><b>2</b> Linear Algebra</a>
+<ul>
+<li class="chapter" data-level="" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><strong>2.0</strong> Vectors</a>
+<ul>
+<li class="chapter" data-level="2.0.1" data-path="vectors.html"><a href="vectors.html#vector-spaces"><i class="fa fa-check"></i><b>2.0.1</b> Vector Spaces</a></li>
+<li class="chapter" data-level="2.0.2" data-path="vectors.html"><a href="vectors.html#closure"><i class="fa fa-check"></i><b>2.0.2</b> Closure</a></li>
+<li class="chapter" data-level="2.0.3" data-path="vectors.html"><a href="vectors.html#other-properties-of-vectors"><i class="fa fa-check"></i><b>2.0.3</b> Other Properties of Vectors</a></li>
+<li class="chapter" data-level="2.0.4" data-path="vectors.html"><a href="vectors.html#geometric-interpretation-of-a-vector"><i class="fa fa-check"></i><b>2.0.4</b> Geometric Interpretation of a Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html"><i class="fa fa-check"></i><b>2.1</b> Systems of Linear Equations</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#solutions-to-systems-of-linear-equations"><i class="fa fa-check"></i><b>2.1.1</b> Solutions to Systems of Linear Equations</a></li>
+<li class="chapter" data-level="2.1.2" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#geometric-interpretation"><i class="fa fa-check"></i><b>2.1.2</b> Geometric Interpretation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="systems-of-linear-equations.html"><a href="systems-of-linear-equations.html#matrix-formulation"><i class="fa fa-check"></i><b>2.1.3</b> Matrix Formulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="matrices.html"><a href="matrices.html"><i class="fa fa-check"></i><b>2.2</b> Matrices</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="matrices.html"><a href="matrices.html#matrix-addition"><i class="fa fa-check"></i><b>2.2.1</b> Matrix Addition</a></li>
+<li class="chapter" data-level="2.2.2" data-path="matrices.html"><a href="matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>2.2.2</b> Matrix Multiplication</a></li>
+<li class="chapter" data-level="2.2.3" data-path="matrices.html"><a href="matrices.html#identity-matrix"><i class="fa fa-check"></i><b>2.2.3</b> Identity Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="matrices.html"><a href="matrices.html#matrix-properties"><i class="fa fa-check"></i><b>2.2.4</b> Matrix Properties</a></li>
+<li class="chapter" data-level="2.2.5" data-path="matrices.html"><a href="matrices.html#matrix-inverse"><i class="fa fa-check"></i><b>2.2.5</b> Matrix Inverse</a></li>
+<li class="chapter" data-level="2.2.6" data-path="matrices.html"><a href="matrices.html#matrix-transpose"><i class="fa fa-check"></i><b>2.2.6</b> Matrix Transpose</a></li>
+<li class="chapter" data-level="2.2.7" data-path="matrices.html"><a href="matrices.html#symmetric-matrices"><i class="fa fa-check"></i><b>2.2.7</b> Symmetric Matrices</a></li>
+<li class="chapter" data-level="2.2.8" data-path="matrices.html"><a href="matrices.html#scalar-multiplication"><i class="fa fa-check"></i><b>2.2.8</b> Scalar Multiplication</a></li>
+<li class="chapter" data-level="2.2.9" data-path="matrices.html"><a href="matrices.html#compact-form-of-linear-systems"><i class="fa fa-check"></i><b>2.2.9</b> Compact Form of Linear Systems</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html"><i class="fa fa-check"></i><b>2.3</b> Solving Systems of Equations</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#particular-and-general-solutions"><i class="fa fa-check"></i><b>2.3.1</b> Particular and General Solutions</a></li>
+<li class="chapter" data-level="2.3.2" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#elementary-transformations"><i class="fa fa-check"></i><b>2.3.2</b> Elementary Transformations</a></li>
+<li class="chapter" data-level="2.3.3" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#the-minus-1-trick"><i class="fa fa-check"></i><b>2.3.3</b> The Minus-1 Trick</a></li>
+<li class="chapter" data-level="2.3.4" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#calculating-an-inverse-matrix-via-gaussian-elimination"><i class="fa fa-check"></i><b>2.3.4</b> Calculating an Inverse Matrix via Gaussian Elimination</a></li>
+<li class="chapter" data-level="2.3.5" data-path="solving-systems-of-equations.html"><a href="solving-systems-of-equations.html#algorithms-for-solving-a-system-of-linear-equations"><i class="fa fa-check"></i><b>2.3.5</b> Algorithms for Solving a System of Linear Equations</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html"><i class="fa fa-check"></i><b>2.4</b> Vector Spaces</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#groups"><i class="fa fa-check"></i><b>2.4.1</b> Groups</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vector-spaces-1.html"><a href="vector-spaces-1.html#vector-subspaces"><i class="fa fa-check"></i><b>2.4.2</b> Vector Subspaces</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="linear-independence.html"><a href="linear-independence.html"><i class="fa fa-check"></i><b>2.5</b> Linear Independence</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="linear-independence.html"><a href="linear-independence.html#gaussian-elimination-method"><i class="fa fa-check"></i><b>2.5.1</b> Gaussian Elimination Method</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="basis-and-rank.html"><a href="basis-and-rank.html"><i class="fa fa-check"></i><b>2.6</b> Basis and Rank</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="basis-and-rank.html"><a href="basis-and-rank.html#generating-set-and-basis"><i class="fa fa-check"></i><b>2.6.1</b> Generating Set and Basis</a></li>
+<li class="chapter" data-level="2.6.2" data-path="basis-and-rank.html"><a href="basis-and-rank.html#rank"><i class="fa fa-check"></i><b>2.6.2</b> Rank</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="linear-mappings.html"><a href="linear-mappings.html"><i class="fa fa-check"></i><b>2.7</b> Linear Mappings</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
+<li class="chapter" data-level="2.8.1" data-path="expressing-phimathbfb_1-in-basis-mathbfc.html"><a href="expressing-phimathbfb_1-in-basis-mathbfc.html"><i class="fa fa-check"></i><b>2.8.1</b> Coordinate Systems and Bases</a></li>
+<li class="chapter" data-level="2.8.2" data-path="expressing-phimathbfb_1-in-basis-mathbfc.html"><a href="expressing-phimathbfb_1-in-basis-mathbfc.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.8.2</b> Basis Change and Equivalence</a></li>
+<li class="chapter" data-level="2.8.3" data-path="expressing-phimathbfb_1-in-basis-mathbfc.html"><a href="expressing-phimathbfb_1-in-basis-mathbfc.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.8.3</b> Image and Kernel of a Linear Mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.9</b> Affine Spaces</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="affine-spaces.html"><a href="affine-spaces.html#relation-to-linear-equations"><i class="fa fa-check"></i><b>2.9.1</b> Relation to Linear Equations</a></li>
+<li class="chapter" data-level="2.9.2" data-path="affine-spaces.html"><a href="affine-spaces.html#affine-mappings"><i class="fa fa-check"></i><b>2.9.2</b> Affine Mappings</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSCI 420: Mathematics for Machine Learning</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="expressing-phimathbfb_1-in-basis-mathbfc" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> Expressing <span class="math inline">\(\Phi(\mathbf{b}_1)\)</span> in Basis <span class="math inline">\(\mathbf{C}\)</span><a href="expressing-phimathbfb_1-in-basis-mathbfc.html#expressing-phimathbfb_1-in-basis-mathbfc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We need scalars <span class="math inline">\(\alpha_{11}, \alpha_{21}\)</span> such that:</p>
+<p><span class="math display">\[
+\Phi(\mathbf{b}_1)
+= \alpha_{11} \mathbf{c}_1 + \alpha_{21} \mathbf{c}_2
+=
+\alpha_{11}
+\begin{bmatrix}2 \\ 0\end{bmatrix}
++
+\alpha_{21}
+\begin{bmatrix}0 \\ 3\end{bmatrix}
+=
+\begin{bmatrix}4 \\ 6\end{bmatrix}.
+\]</span></p>
+<p>From the components:</p>
+<ul>
+<li><span class="math inline">\(2\alpha_{11} = 4 \Rightarrow \alpha_{11} = 2\)</span></li>
+<li><span class="math inline">\(3\alpha_{21} = 6 \Rightarrow \alpha_{21} = 2\)</span></li>
+</ul>
+<p>Thus:</p>
+<p><span class="math display">\[
+\Phi(\mathbf{b}_1) = 2\mathbf{c}_1 + 2\mathbf{c}_2.
+\]</span></p>
+<p>— Expressing <span class="math inline">\(\Phi(\mathbf{b}_2)\)</span> in Basis <span class="math inline">\(\mathbf{C}\)</span></p>
+<p>Solve:</p>
+<p><span class="math display">\[
+\Phi(\mathbf{b}_2)
+= \alpha_{12}\mathbf{c}_1 + \alpha_{22}\mathbf{c}_2
+=
+\begin{bmatrix}2 \\ 3\end{bmatrix}.
+\]</span></p>
+<ul>
+<li><span class="math inline">\(2\alpha_{12} = 2 \Rightarrow \alpha_{12} = 1\)</span></li>
+<li><span class="math inline">\(3\alpha_{22} = 3 \Rightarrow \alpha_{22} = 1\)</span></li>
+</ul>
+<p>Thus:</p>
+<p><span class="math display">\[
+\Phi(\mathbf{b}_2) = \mathbf{c}_1 + \mathbf{c}_2.
+\]</span>
+Transformation Matrix <span class="math inline">\(\mathbf{A}_\Phi\)</span></p>
+<p>According to the lemma,</p>
+<p><span class="math display">\[
+\mathbf{A}_\Phi(i,j) = \alpha_{ij}.
+\]</span></p>
+<p>So the matrix relative to bases <span class="math inline">\(\mathbf{B}\)</span> and <span class="math inline">\(\mathbf{C}\)</span> is:</p>
+<p><span class="math display">\[
+\mathbf{A}_\Phi
+=
+\begin{bmatrix}
+2 &amp; 1 \\
+2 &amp; 1
+\end{bmatrix}.
+\]</span>
+Applying the Transformation to a Vector</p>
+<p>Let a vector in basis <span class="math inline">\(\mathbf{B}\)</span> be:</p>
+<p><span class="math display">\[
+\hat{\mathbf{x}} =
+\begin{bmatrix}3 \\ -1\end{bmatrix}.
+\]</span></p>
+<p>Then the coordinate vector in basis <span class="math inline">\(\mathbf{C}\)</span> is:</p>
+<p><span class="math display">\[
+\hat{\mathbf{y}} =
+\mathbf{A}_\Phi \hat{\mathbf{x}}
+=
+\begin{bmatrix}
+2 &amp; 1 \\
+2 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}3 \\ -1\end{bmatrix}
+=
+\begin{bmatrix}
+5 \\ 5
+\end{bmatrix}.
+\]</span></p>
+<p>Thus:</p>
+<p><span class="math display">\[
+\hat{\mathbf{y}} =
+5\mathbf{c}_1 + 5\mathbf{c}_2
+\]</span></p>
+<p>is the representation of <span class="math inline">\(\Phi(x)\)</span> in the basis <span class="math inline">\(\mathbf{C}\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="coordinate-systems-and-bases" class="section level3 hasAnchor" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Coordinate Systems and Bases<a href="expressing-phimathbfb_1-in-basis-mathbfc.html#coordinate-systems-and-bases" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A basis defines a coordinate system for a vector space.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-173" class="definition"><strong>Definition 2.33  </strong></span>Given an ordered basis <span class="math inline">\(\mathbf{B} = (b_1, \dots, b_n)\)</span>, any vector <span class="math inline">\(x \in V\)</span> can be uniquely represented as:
+<span class="math display">\[
+x = \alpha_1 b_1 + \cdots + \alpha_n b_n
+\]</span>
+The vector <span class="math inline">\(\alpha = [\alpha_1, \dots, \alpha_n]^T\)</span> is the <strong>coordinate vector</strong> of <span class="math inline">\(x\)</span> with respect to <span class="math inline">\(\mathbf{B}\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-174" class="example"><strong>Example 2.56  </strong></span>Put example here</p>
+</div>
+<hr />
+</div>
+<div id="basis-change-and-equivalence" class="section level3 hasAnchor" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> Basis Change and Equivalence<a href="expressing-phimathbfb_1-in-basis-mathbfc.html#basis-change-and-equivalence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When the bases of <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span> are changed, the transformation matrix changes accordingly.</p>
+<div class="note">
+<p>If <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> are the change-of-basis matrices for <span class="math inline">\(V\)</span> and <span class="math inline">\(W\)</span>, then:
+<span class="math display">\[
+\tilde{\mathbf{A}}_\Phi = T^{-1} \mathbf{A}_\Phi S
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-175" class="example"><strong>Example 2.57  </strong></span>Put example here</p>
+</div>
+</div>
+<div id="image-and-kernel-of-a-linear-mapping" class="section level3 hasAnchor" number="2.8.3">
+<h3><span class="header-section-number">2.8.3</span> Image and Kernel of a Linear Mapping<a href="expressing-phimathbfb_1-in-basis-mathbfc.html#image-and-kernel-of-a-linear-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>image</strong> and <strong>kernel</strong> are important subspaces associated with a linear mapping.</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-176" class="definition"><strong>Definition 2.34  </strong></span>For a linear mapping <span class="math inline">\(\Phi : V \to W\)</span>, the <strong>kernel / null space</strong> of a mapping is the set of values that map to <span class="math inline">\(0_W \in W\)</span>.
+<span class="math display">\[
+\ker(\Phi) := \{ v \in V : \Phi(v) = 0_W \}.
+\]</span>
+The <strong>image / range</strong> is the set of value which get mapped to.<br />
+<span class="math display">\[
+\mathrm{Im}(\Phi) := \{ w \in W : \exists v \in V, \Phi(v) = w \}
+\]</span></p>
+</div>
+<div class="note">
+<ul>
+<li><span class="math inline">\(0_V \in \ker(\Phi)\)</span>, so the null space is never empty.<br />
+</li>
+<li><span class="math inline">\(\ker(\Phi) \subseteq V\)</span> and <span class="math inline">\(\mathrm{Im}(\Phi) \subseteq W\)</span> are subspaces.<br />
+</li>
+<li><span class="math inline">\(\Phi\)</span> is <strong>injective</strong> if and only if <span class="math inline">\(\ker(\Phi) = \{0\}\)</span>.<br />
+</li>
+</ul>
+</div>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-177" class="lemma"><strong>Lemma 2.9  </strong></span>For a matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> representing <span class="math inline">\(\Phi : \mathbb{R}^n \to \mathbb{R}^m\)</span>, <span class="math inline">\(x \mapsto \mathbf{A}x\)</span>:</p>
+<ul>
+<li><p><strong>Image / Column space</strong>
+<span class="math display">\[
+\mathrm{Im}(\Phi) = \mathrm{span}\{a_1, \dots, a_n\} \subseteq \mathbb{R}^m
+\]</span>
+where <span class="math inline">\(a_i\)</span> are the columns of <span class="math inline">\(\mathbf{A}\)</span>.</p></li>
+<li><p><strong>Kernel / Null space</strong>
+<span class="math display">\[
+\ker(\Phi) = \{ x \in \mathbb{R}^n : \mathbf{A}x = 0 \} \subseteq \mathbb{R}^n
+\]</span>
+represents all linear combinations of columns that yield zero.</p></li>
+</ul>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-178" class="example"><strong>Example 2.58  </strong></span>Consider <span class="math inline">\(\Phi : \mathbb{R}^4 \to \mathbb{R}^2\)</span> with</p>
+<p><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 2 &amp; -1 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix},
+\quad
+\Phi(x) = \mathbf{A}x
+\]</span></p>
+<ul>
+<li><p><strong>Image:</strong>
+<span class="math display">\[
+\mathrm{Im}(\Phi) = \mathrm{span}\left\{
+\begin{bmatrix}1\\1\end{bmatrix},
+\begin{bmatrix}2\\0\end{bmatrix},
+\begin{bmatrix}-1\\0\end{bmatrix},
+\begin{bmatrix}0\\1\end{bmatrix} \right\}
+\]</span></p></li>
+<li><p><strong>Kernel:</strong>
+<span class="math display">\[
+\ker(\Phi) = \mathrm{span}\left\{
+\begin{bmatrix}0\\1/2\\1\\0\end{bmatrix},
+\begin{bmatrix}-1\\1/2\\0\\1\end{bmatrix} \right\}
+\]</span></p></li>
+</ul>
+</div>
+<p>The theorem below is known as the <strong>Rank-Nullity Theorem</strong>.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-179" class="theorem"><strong>Theorem 2.5  </strong></span>For <span class="math inline">\(\Phi : V \to W\)</span>:
+<span class="math display">\[
+\dim(\ker(\Phi)) + \dim(\mathrm{Im}(\Phi)) = \dim(V)
+\]</span></p>
+</div>
+<div class="corollary">
+<p><span id="cor:unlabeled-div-180" class="corollary"><strong>Corollary 2.1  </strong></span>For <span class="math inline">\(\Phi : V \to W\)</span>, the following two facts are true:</p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\dim(\mathrm{Im}(\Phi)) &lt; \dim(V)\)</span>, then <span class="math inline">\(\ker(\Phi)\)</span> is non-trivial (<span class="math inline">\(\dim(\ker(\Phi)) \ge 1\)</span>).</p></li>
+<li><p>If <span class="math inline">\(\dim(V) = \dim(W)\)</span>, then
+<span class="math display">\[
+\Phi \text{ injective } \iff \Phi \text{ surjective } \iff \Phi \text{ bijective.}
+\]</span></p></li>
+</ol>
+</div>
+</div>
+<div id="exercises-8" class="section level3 unnumbered unlisted hasAnchor">
+<h3>Exercises<a href="expressing-phimathbfb_1-in-basis-mathbfc.html#exercises-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Put some exercises here.</p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-181" class="exercise"><strong>Exercise 2.74  </strong></span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-182" class="exercise"><strong>Exercise 2.75  </strong></span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-183" class="exercise"><strong>Exercise 2.76  </strong></span></p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+<!-- NEW SECTION -->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="linear-mappings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="affine-spaces.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["D420-Book.pdf", "D420-Book.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
