@@ -18,4 +18,4 @@ rmd_files:
   - "11-DensityEstimationWithGaussianMixtureModels.Rmd"
   - "12-ClassificationWithSupportVectorMachines.Rmd"
 delete_merged_file: true
-output_dir: "_book"
+output_dir: "docs"
