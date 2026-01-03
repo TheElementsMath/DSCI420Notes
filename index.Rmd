@@ -23,3 +23,5 @@ You’ll find:
 
 The aim here is not to replace the textbook; but rather, we wish to provide additional supports for a more novice reader.  The ideas contained in the textbook, in our opinion, are accessible to a very wide audience - specifically one that lacks a strong mathematical foundation.  By providing additional examples and exercises and by breaking down the notation, we hope to expand the audience to a wider audience.  To read this book, the audience should begin with a very basic understanding of calculus (perhaps at a first year level). 
 
+
+

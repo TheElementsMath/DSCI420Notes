@@ -23,7 +23,7 @@
 <meta name="author" content="D420 Faculty Team" />
 
 
-<meta name="date" content="2025-11-16" />
+<meta name="date" content="2026-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="linear-mappings.html"/>
-<link rel="next" href="linear-algebra-1.html"/>
+<link rel="next" href="analytic-geometry.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -147,7 +147,7 @@
 <li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
 <li class="chapter" data-level="2.7.2" data-path="linear-mappings.html"><a href="linear-mappings.html#coordinate-systems-and-bases"><i class="fa fa-check"></i><b>2.7.2</b> Coordinate Systems and Bases</a></li>
 <li class="chapter" data-level="2.7.3" data-path="linear-mappings.html"><a href="linear-mappings.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.7.3</b> Basis Change and Equivalence</a></li>
-<li class="chapter" data-level="2.7.6" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.6</b> Image and Kernel of a Linear Mapping</a></li>
+<li class="chapter" data-level="2.7.4" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.4</b> Image and Kernel of a Linear Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.8</b> Affine Spaces</a>
 <ul>
@@ -179,7 +179,7 @@
 <p>In the machine learning literature, the terms <em>linear</em> and <em>affine</em> are often used interchangeably.</p>
 </div>
 <div class="definition">
-<p><span id="def:unlabeled-div-184" class="definition"><strong>Definition 2.35  </strong></span>Let <span class="math inline">\(V\)</span> be a vector space, <span class="math inline">\(x_0 \in V\)</span>, and <span class="math inline">\(U \subseteq V\)</span> a subspace. Then
+<p><span id="def:unlabeled-div-200" class="definition"><strong>Definition 2.36  </strong></span>Let <span class="math inline">\(V\)</span> be a vector space, <span class="math inline">\(x_0 \in V\)</span>, and <span class="math inline">\(U \subseteq V\)</span> a subspace. Then
 <span class="math display">\[
 L = x_0 + U := \{ x_0 + u : u \in U \}
 \]</span>
@@ -187,30 +187,30 @@ is called an <strong>affine subspace</strong> or <strong>linear manifold</strong
 <ul>
 <li><span class="math inline">\(U\)</span> is the <strong>direction space</strong>.<br />
 </li>
-<li><span class="math inline">\(x_0\)</span> is the <strong>support point</strong>.<br />
+<li><span class="math inline">\(\mathbf{x}_0\)</span> is the <strong>support point</strong>.<br />
 </li>
-<li>If <span class="math inline">\(x_0 \notin U\)</span>, then <span class="math inline">\(L\)</span> is <em>not</em> a linear subspace (it does not contain the origin).</li>
+<li>If <span class="math inline">\(\mathbf{x}_0 \notin U\)</span>, then <span class="math inline">\(L\)</span> is <em>not</em> a linear subspace (it does not contain the origin).</li>
 </ul>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-185" class="example"><strong>Example 2.59  </strong></span>Points, lines, and planes in <span class="math inline">\(\mathbb{R}^3\)</span> that do not necessarily pass through the origin are examples of affine spaces.</p>
+<p><span id="exm:unlabeled-div-201" class="example"><strong>Example 2.59  </strong></span>Points, lines, and planes in <span class="math inline">\(\mathbb{R}^3\)</span> that do not necessarily pass through the origin are examples of affine spaces.</p>
 </div>
 <div class="definition">
-<p><span id="def:unlabeled-div-186" class="definition"><strong>Definition 2.36  </strong></span>If <span class="math inline">\(L = x_0 + U\)</span> and <span class="math inline">\((b_1, \ldots, b_k)\)</span> is a basis of <span class="math inline">\(U\)</span>,<br />
-then every <span class="math inline">\(x \in L\)</span> can be written as:
+<p><span id="def:unlabeled-div-202" class="definition"><strong>Definition 2.37  </strong></span>If <span class="math inline">\(L = \mathbf{x}_0 + U\)</span> and <span class="math inline">\((\mathbf{b}_1, \ldots, \mathbf{b}_k)\)</span> is a basis of <span class="math inline">\(U\)</span>,<br />
+then every <span class="math inline">\(\mathbf{x} \in L\)</span> can be written as:
 <span class="math display">\[
-x = x_0 + \lambda_1 b_1 + \cdots + \lambda_k b_k, \quad \lambda_i \in \mathbb{R}
+\mathbf{x} = \mathbf{x}_0 + \lambda_1 \mathbf{b}_1 + \cdots + \lambda_k \mathbf{b}_k, \quad \lambda_i \in \mathbb{R}
 \]</span>
 This is called the <strong>parametric equation</strong> of the affine subspace.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-187" class="example"><strong>Example 2.60  </strong></span></p>
+<p><span id="exm:unlabeled-div-203" class="example"><strong>Example 2.60  </strong></span></p>
 <ul>
 <li><p>A line <span class="math inline">\(y = x_0 + \lambda b_1\)</span>, where <span class="math inline">\(\lambda \in \mathbb{R}\)</span> is an example of a parametric equation in a 1-dimensional affine subspace.</p></li>
-<li><p>A plane <span class="math inline">\(y = x_0 + \lambda_1 b_1 + \lambda_2 b_2\)</span>, where <span class="math inline">\(b_1, b_2\)</span> are linearly independent is an example of a parametric equation in a 2-dimensional affine subspace.</p></li>
+<li><p>A plane <span class="math inline">\(y = \mathbf{x}_0 + \lambda_1 \mathbf{b}_1 + \lambda_2 \mathbf{b}_2\)</span>, where <span class="math inline">\(\mathbf{b}_1, \mathbf{b}_2\)</span> are linearly independent is an example of a parametric equation in a 2-dimensional affine subspace.</p></li>
 <li><p>A hyperplane is an example of an <span class="math inline">\((n - 1)\)</span>-dimensional affine subspace
 <span class="math display">\[
-y = x_0 + \sum_{i=1}^{n-1} \lambda_i b_i
+y = \mathbf{x}_0 + \sum_{i=1}^{n-1} \lambda_i \mathbf{b}_i
 \]</span></p>
 <ul>
 <li>In <span class="math inline">\(\mathbb{R}^2\)</span>, a line is a hyperplane.<br />
@@ -222,11 +222,11 @@ y = x_0 + \sum_{i=1}^{n-1} \lambda_i b_i
 <hr />
 <div id="relation-to-linear-equations" class="section level3 hasAnchor" number="2.8.1">
 <h3><span class="header-section-number">2.8.1</span> Relation to Linear Equations<a href="affine-spaces.html#relation-to-linear-equations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>For <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> and <span class="math inline">\(x \in \mathbb{R}^m\)</span>, the solution set of <span class="math inline">\(\mathbf{A}\lambda = x\)</span> is either empty or an <strong>affine subspace</strong> of <span class="math inline">\(\mathbb{R}^n\)</span> with dimension <span class="math inline">\(n - \text{rk}(\mathbf{A})\)</span>.</p>
+<p>For <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> and <span class="math inline">\(\mathbf{x} \in \mathbb{R}^m\)</span>, the solution set of <span class="math inline">\(\mathbf{A}\lambda = \mathbf{x}\)</span> is either empty or an <strong>affine subspace</strong> of <span class="math inline">\(\mathbb{R}^n\)</span> with dimension <span class="math inline">\(n - \text{rk}(\mathbf{A})\)</span>.</p>
 <ul>
-<li>The equation <span class="math inline">\(\mathbf{A} x = b\)</span> (inhomogeneous system) defines an affine subspace.<br />
+<li>The equation <span class="math inline">\(\mathbf{A} \mathbf{x} = \mathbf{b}\)</span> (inhomogeneous system) defines an affine subspace.<br />
 </li>
-<li>The equation <span class="math inline">\(\mathbf{A} x = 0\)</span> (homogeneous system) defines a <strong>vector subspace</strong>, which can be seen as a special affine subspace with support point <span class="math inline">\(x_0 = 0\)</span>.</li>
+<li>The equation <span class="math inline">\(\mathbf{A} \mathbf{x} = \mathbf{0}\)</span> (homogeneous system) defines a vector subspace, which can be seen as a special affine subspace with support point <span class="math inline">\(\mathbf{x}_0 = \mathbf{0}\)</span>.</li>
 </ul>
 <hr />
 </div>
@@ -234,14 +234,14 @@ y = x_0 + \sum_{i=1}^{n-1} \lambda_i b_i
 <h3><span class="header-section-number">2.8.2</span> Affine Mappings<a href="affine-spaces.html#affine-mappings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Affine mappings generalize linear mappings by including a <strong>translation</strong>.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-188" class="definition"><strong>Definition 2.37  </strong></span>Let <span class="math inline">\(V, W\)</span> be vector spaces, <span class="math inline">\(\Phi : V \to W\)</span> a linear map, and <span class="math inline">\(a \in W\)</span>. Then
+<p><span id="def:unlabeled-div-204" class="definition"><strong>Definition 2.38  </strong></span>Let <span class="math inline">\(V, W\)</span> be vector spaces, <span class="math inline">\(\Phi : V \to W\)</span> a linear map, and <span class="math inline">\(\mathbf{a} \in W\)</span>. Then
 <span class="math display">\[
-\varphi : V \to W, \quad x \mapsto a + \Phi(x)
+\varphi : V \to W, \quad x \mapsto \mathbf{a} + \Phi(\mathbf{x})
 \]</span>
-is an <strong>affine mapping</strong> with <strong>translation vector</strong> <span class="math inline">\(a\)</span>.</p>
+is an <strong>affine mapping</strong> with <strong>translation vector</strong> <span class="math inline">\(\mathbf{a}\)</span>.</p>
 </div>
 <div class="lemma">
-<p><span id="lem:unlabeled-div-189" class="lemma"><strong>Lemma 2.10  </strong></span>Properties:</p>
+<p><span id="lem:unlabeled-div-205" class="lemma"><strong>Lemma 2.9  </strong></span>Properties:</p>
 <ul>
 <li>Every affine map can be written as a composition:
 <span class="math display">\[
@@ -251,7 +251,7 @@ where <span class="math inline">\(\tau\)</span> is a translation and <span class
 </li>
 <li>The composition of affine mappings is <strong>affine</strong>.<br />
 </li>
-<li>If an affine mapping is <strong>bijective</strong>, it preserves:
+<li>If an affine mapping is bijective, it preserves:
 <ul>
 <li><strong>Dimension</strong><br />
 </li>
@@ -274,7 +274,7 @@ where <span class="math inline">\(\tau\)</span> is a translation and <span class
         </div>
       </div>
 <a href="linear-mappings.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="linear-algebra-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="analytic-geometry.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

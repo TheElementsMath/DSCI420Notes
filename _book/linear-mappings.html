@@ -23,7 +23,7 @@
 <meta name="author" content="D420 Faculty Team" />
 
 
-<meta name="date" content="2025-11-16" />
+<meta name="date" content="2026-01-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,7 +147,7 @@
 <li class="chapter" data-level="2.7.1" data-path="linear-mappings.html"><a href="linear-mappings.html#matrix-representation-of-linear-mappings"><i class="fa fa-check"></i><b>2.7.1</b> Matrix Representation of Linear Mappings</a></li>
 <li class="chapter" data-level="2.7.2" data-path="linear-mappings.html"><a href="linear-mappings.html#coordinate-systems-and-bases"><i class="fa fa-check"></i><b>2.7.2</b> Coordinate Systems and Bases</a></li>
 <li class="chapter" data-level="2.7.3" data-path="linear-mappings.html"><a href="linear-mappings.html#basis-change-and-equivalence"><i class="fa fa-check"></i><b>2.7.3</b> Basis Change and Equivalence</a></li>
-<li class="chapter" data-level="2.7.6" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.6</b> Image and Kernel of a Linear Mapping</a></li>
+<li class="chapter" data-level="2.7.4" data-path="linear-mappings.html"><a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping"><i class="fa fa-check"></i><b>2.7.4</b> Image and Kernel of a Linear Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="affine-spaces.html"><a href="affine-spaces.html"><i class="fa fa-check"></i><b>2.8</b> Affine Spaces</a>
 <ul>
@@ -466,7 +466,7 @@ We want to express <span class="math inline">\(\mathbf{x}\)</span> as a unique l
 \]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-175" class="example"><strong>Example 2.57  </strong></span>Let <span class="math inline">\(V=W=\mathbb{R}^2\)</span> and let <span class="math inline">\(\Phi:V\to W\)</span> be the linear map whose matrix in the <strong>standard bases</strong> is
+<p><span id="exm:unlabeled-div-175" class="example"><strong>Example 2.57  </strong></span>Let <span class="math inline">\(V=W=\mathbb{R}^2\)</span> and let <span class="math inline">\(\Phi:V\to W\)</span> be the linear map whose matrix in the standard basis is
 <span class="math display">\[
 \mathbf{A} =
 \begin{bmatrix}
@@ -524,14 +524,11 @@ T^{-1} = \begin{bmatrix}1/2 &amp; 0\\[4pt]0 &amp; 1/3\end{bmatrix},\qquad
 \begin{bmatrix}3/2 &amp; 1/2\\[4pt]1 &amp; -1\end{bmatrix}.
 \]</span></p>
 <p>So in the new bases <span class="math inline">\(\mathbf{B},\mathbf{C}\)</span> the transformation matrix is
-<span class="math display">\[
-\boxed{\;
-\widetilde{\mathbf{A}}_\Phi =
-\begin{bmatrix}3/2 &amp; 1/2\\[4pt]1 &amp; -1\end{bmatrix}
-\; }.
-\]</span></p>
-<div id="direct-check-interpretation" class="section level3 hasAnchor" number="2.7.4">
-<h3><span class="header-section-number">2.7.4</span> Direct check (interpretation)<a href="linear-mappings.html#direct-check-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+[</p>
+_=
+<span class="math display">\[\begin{bmatrix}3/2 &amp; 1/2\\[4pt]1 &amp; -1\end{bmatrix}\]</span>
+<p>.
+]</p>
 <p>We can check the same result by mapping the new domain basis vectors and expressing the results in the new codomain basis:</p>
 <ul>
 <li><p><span class="math inline">\(\Phi(b_1) = \mathbf{A} b_1 = \mathbf{A}\begin{bmatrix}1\\[2pt]1\end{bmatrix} = \begin{bmatrix}3\\[2pt]3\end{bmatrix}.\)</span><br />
@@ -545,52 +542,42 @@ This gives <span class="math inline">\(\beta_1=1/2,\; \beta_2=-1\)</span>. So th
 <span class="math display">\[
 \widetilde{\mathbf{A}}_\Phi = T^{-1}\mathbf{A}S.
 \]</span></p>
-<hr />
-</div>
-<div id="takeaway" class="section level3 hasAnchor" number="2.7.5">
-<h3><span class="header-section-number">2.7.5</span> Takeaway<a href="linear-mappings.html#takeaway" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Changing bases in domain and codomain changes the coordinate representation of the same linear map. The change is exactly the similarity-like relation
-<span class="math display">\[
-\widetilde{\mathbf{A}}_\Phi = T^{-1}\mathbf{A}_\Phi S,
-\]</span>
-where <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span> have columns equal to the new basis vectors expressed in the original bases.</p>
 </div>
 </div>
-</div>
-<div id="image-and-kernel-of-a-linear-mapping" class="section level3 hasAnchor" number="2.7.6">
-<h3><span class="header-section-number">2.7.6</span> Image and Kernel of a Linear Mapping<a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="image-and-kernel-of-a-linear-mapping" class="section level3 hasAnchor" number="2.7.4">
+<h3><span class="header-section-number">2.7.4</span> Image and Kernel of a Linear Mapping<a href="linear-mappings.html#image-and-kernel-of-a-linear-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <strong>image</strong> and <strong>kernel</strong> are important subspaces associated with a linear mapping.</p>
 <div class="definition">
 <p><span id="def:unlabeled-div-176" class="definition"><strong>Definition 2.34  </strong></span>For a linear mapping <span class="math inline">\(\Phi : V \to W\)</span>, the <strong>kernel / null space</strong> of a mapping is the set of values that map to <span class="math inline">\(0_W \in W\)</span>.
 <span class="math display">\[
-\ker(\Phi) := \{ v \in V : \Phi(v) = 0_W \}.
+\ker(\Phi) := \{ \mathbf{v} \in V : \Phi(\mathbf{v}) = \mathbf{0}_W \}.
 \]</span>
 The <strong>image / range</strong> is the set of value which get mapped to.<br />
 <span class="math display">\[
-\mathrm{Im}(\Phi) := \{ w \in W : \exists v \in V, \Phi(v) = w \}
+\mathrm{Im}(\Phi) := \{ \mathbf{w} \in W : \exists \mathbf{v} \in \mathbf{V}, \Phi(\mathbf{v}) = \mathbf{w} \}
 \]</span></p>
 </div>
 <div class="note">
 <ul>
-<li><span class="math inline">\(0_V \in \ker(\Phi)\)</span>, so the null space is never empty.<br />
+<li><span class="math inline">\(\mathbf{0}_V \in \ker(\Phi)\)</span>, so the null space is never empty.<br />
 </li>
 <li><span class="math inline">\(\ker(\Phi) \subseteq V\)</span> and <span class="math inline">\(\mathrm{Im}(\Phi) \subseteq W\)</span> are subspaces.<br />
 </li>
-<li><span class="math inline">\(\Phi\)</span> is <strong>injective</strong> if and only if <span class="math inline">\(\ker(\Phi) = \{0\}\)</span>.<br />
+<li><span class="math inline">\(\Phi\)</span> is <strong>injective</strong> if and only if <span class="math inline">\(\ker(\Phi) = \{\mathbf{0}\}\)</span>.<br />
 </li>
 </ul>
 </div>
-<div class="lemma">
-<p><span id="lem:unlabeled-div-177" class="lemma"><strong>Lemma 2.9  </strong></span>For a matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> representing <span class="math inline">\(\Phi : \mathbb{R}^n \to \mathbb{R}^m\)</span>, <span class="math inline">\(x \mapsto \mathbf{A}x\)</span>:</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-177" class="definition"><strong>Definition 2.35  </strong></span>For a matrix <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> representing <span class="math inline">\(\Phi : \mathbb{R}^n \to \mathbb{R}^m\)</span>, <span class="math inline">\(x \mapsto \mathbf{A}x\)</span>:</p>
 <ul>
 <li><p><strong>Image / Column space</strong>
 <span class="math display">\[
-\mathrm{Im}(\Phi) = \mathrm{span}\{a_1, \dots, a_n\} \subseteq \mathbb{R}^m
+\mathrm{Im}(\Phi) = \mathrm{span}\{\mathbf{a}_1, \dots, \mathbf{a}_n\} \subseteq \mathbb{R}^m
 \]</span>
-where <span class="math inline">\(a_i\)</span> are the columns of <span class="math inline">\(\mathbf{A}\)</span>.</p></li>
+where <span class="math inline">\(\mathbf{a}_i\)</span> are the columns of <span class="math inline">\(\mathbf{A}\)</span>.</p></li>
 <li><p><strong>Kernel / Null space</strong>
 <span class="math display">\[
-\ker(\Phi) = \{ x \in \mathbb{R}^n : \mathbf{A}x = 0 \} \subseteq \mathbb{R}^n
+\ker(\Phi) = \{ \mathbf{x} \in \mathbb{R}^n : \mathbf{A}\mathbf{x} = \mathbf{0} \} \subseteq \mathbb{R}^n
 \]</span>
 represents all linear combinations of columns that yield zero.</p></li>
 </ul>
@@ -604,7 +591,7 @@ represents all linear combinations of columns that yield zero.</p></li>
 1 &amp; 0 &amp; 0 &amp; 1
 \end{bmatrix},
 \quad
-\Phi(x) = \mathbf{A}x
+\Phi(\mathbf{x}) = \mathbf{A}\mathbf{x}
 \]</span></p>
 <ul>
 <li><p><strong>Image:</strong>
@@ -643,21 +630,179 @@ represents all linear combinations of columns that yield zero.</p></li>
 </div>
 <div id="exercises-8" class="section level3 unnumbered unlisted hasAnchor">
 <h3>Exercises<a href="linear-mappings.html#exercises-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Put some exercises here.</p>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-181" class="exercise"><strong>Exercise 2.74  </strong></span></p>
+<p><span id="exr:unlabeled-div-181" class="exercise"><strong>Exercise 2.74  </strong></span>Consider <span class="math inline">\(\Phi : \mathbb{R}^4 \to \mathbb{R}^2\)</span> with</p>
+<p><span class="math display">\[
+\mathbf{A} =
+\begin{bmatrix}
+1 &amp; 2 &amp; -1 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix},
+\quad
+\Phi(\mathbf{x}) = \mathbf{A}\mathbf{x}
+\]</span>
+Verify that</p>
+<ul>
+<li><p><strong>Image:</strong>
+<span class="math display">\[
+\mathrm{Im}(\Phi) = \mathrm{span}\left\{
+\begin{bmatrix}1\\1\end{bmatrix},
+\begin{bmatrix}2\\0\end{bmatrix},
+\begin{bmatrix}-1\\0\end{bmatrix},
+\begin{bmatrix}0\\1\end{bmatrix} \right\}
+\]</span></p></li>
+<li><p><strong>Kernel:</strong>
+<span class="math display">\[
+\ker(\Phi) = \mathrm{span}\left\{
+\begin{bmatrix}0\\1/2\\1\\0\end{bmatrix},
+\begin{bmatrix}-1\\1/2\\0\\1\end{bmatrix} \right\}
+\]</span></p></li>
+</ul>
 <div style="text-align: right;">
 <p><a href="">Solution</a></p>
 </div>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-182" class="exercise"><strong>Exercise 2.75  </strong></span></p>
+<p><span id="exr:unlabeled-div-182" class="exercise"><strong>Exercise 2.75  </strong></span>Prove that for <span class="math inline">\(\Phi : V \to W\)</span>, the following two facts are true:</p>
+<ol style="list-style-type: decimal">
+<li><p>If <span class="math inline">\(\dim(\mathrm{Im}(\Phi)) &lt; \dim(V)\)</span>, then <span class="math inline">\(\ker(\Phi)\)</span> is non-trivial (<span class="math inline">\(\dim(\ker(\Phi)) \ge 1\)</span>).</p></li>
+<li><p>If <span class="math inline">\(\dim(V) = \dim(W)\)</span>, then
+<span class="math display">\[
+\Phi \text{ injective } \iff \Phi \text{ surjective } \iff \Phi \text{ bijective.}
+\]</span></p></li>
+</ol>
 <div style="text-align: right;">
 <p><a href="">Solution</a></p>
 </div>
 </div>
 <div class="exercise">
-<p><span id="exr:unlabeled-div-183" class="exercise"><strong>Exercise 2.76  </strong></span></p>
+<p><span id="exr:unlabeled-div-183" class="exercise"><strong>Exercise 2.76  </strong></span>Prove the Rank-Nullity Theorem.</p>
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-184" class="exercise"><strong>Exercise 2.77  </strong></span></p>
+Let <span class="math inline">\(f: \bbR \rightarrow \bbR\)</span> be defined as <span class="math inline">\(f(x) = x^3\)</span>. Show that <span class="math inline">\(f\)</span> is bijective.<br />
+
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-185" class="exercise"><strong>Exercise 2.78  </strong></span></p>
+Let <span class="math inline">\(f: \bbR \rightarrow \bbR\)</span> be defined as <span class="math inline">\(f(x) = x^2\)</span>. Show that <span class="math inline">\(f\)</span> is not bijective.
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-186" class="exercise"><strong>Exercise 2.79  </strong></span></p>
+Let <span class="math inline">\(f: \bbR^+ \rightarrow \bbR^+\)</span> be defined as <span class="math inline">\(f(x) = \sqrt{x}\)</span>. Show that <span class="math inline">\(f\)</span> is bijective.<br />
+
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-187" class="exercise"><strong>Exercise 2.80  </strong></span></p>
+Show that there is an isomorphism between <span class="math inline">\(S = \set{1,2,3,4,5}\)</span> and <span class="math inline">\(\bbZ_5 = \set{0,1,2,3,4}\)</span>.<br />
+
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-188" class="exercise"><strong>Exercise 2.81  </strong></span></p>
+Write the coordinate <span class="math inline">\(\begin{bmatrix}2\\3\end{bmatrix}\)</span> in terms of the standard basis vectors in <span class="math inline">\(\bbR^2\)</span>. Then write it in terms of the basis <span class="math inline">\(\bb_1=\begin{bmatrix}1\\-1\end{bmatrix}\)</span> and <span class="math inline">\(\bb_2=\begin{bmatrix}1\\1\end{bmatrix}\)</span>.<br />
+
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-189" class="exercise"><strong>Exercise 2.82  </strong></span></p>
+Write the coordinate <span class="math inline">\(\begin{bmatrix}4\\-1\end{bmatrix}\)</span> in terms of the standard basis vectors in <span class="math inline">\(\bbR^2\)</span>. Then write it in terms of the basis <span class="math inline">\(\bb_1=\begin{bmatrix}0\\-1\end{bmatrix}\)</span> and <span class="math inline">\(\bb_2=\begin{bmatrix}-1\\0\end{bmatrix}\)</span>.<br />
+
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-190" class="exercise"><strong>Exercise 2.83  </strong></span></p>
+On graph paper, create a grid with a standard basis. Then, in a different colour, create a grid using the basis <span class="math inline">\(\bb_1 = \begin{bmatrix}2\\1\end{bmatrix}\)</span> and <span class="math inline">\(\bb_2 = \begin{bmatrix}-1\\1\end{bmatrix}\)</span>. If <span class="math inline">\(\ba = \begin{bmatrix}1\\3\end{bmatrix}\)</span> is a vector in the second basis, what are the coordinates of that vector in the standard basis. Draw the vector on the grid.<br />
+
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-191" class="exercise"><strong>Exercise 2.84  </strong></span></p>
+Prove that if <span class="math inline">\(V\)</span> is a vector space with basis <span class="math inline">\(\{\bb_1, \ldots, \bb_n\}\)</span>, then every vector <span class="math inline">\(\mathbf{v} \in V\)</span> can be written uniquely as a linear combination of <span class="math inline">\(\bb_1, \ldots , \bb_n\)</span>.<br />
+
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-192" class="exercise"><strong>Exercise 2.85  </strong></span></p>
+Find the change of basis matrix from <span class="math inline">\(B\)</span> to <span class="math inline">\(C\)</span> and from <span class="math inline">\(C\)</span> to <span class="math inline">\(B\)</span>. Show that they are inverses of each other. \
+Here, <span class="math inline">\(V = \bbR^2\)</span>; <span class="math inline">\(B = \set{\begin{bmatrix}9\\2\end{bmatrix}, \begin{bmatrix}4\\−3\end{bmatrix}}\)</span>; <span class="math inline">\(C = \set{\begin{bmatrix}2\\1\end{bmatrix}, \begin{bmatrix}−3\\1\end{bmatrix}}\)</span>.
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-193" class="exercise"><strong>Exercise 2.86  </strong></span></p>
+Find the change of basis matrix from <span class="math inline">\(B\)</span> to <span class="math inline">\(C\)</span> and from <span class="math inline">\(C\)</span> to <span class="math inline">\(B\)</span>. Show that they are inverses of each other. \
+Here, <span class="math inline">\(V = \bbR^3\)</span>; <span class="math inline">\(B=\set{\begin{bmatrix}2\\−5\\0\end{bmatrix},\begin{bmatrix}3\\0\\5\end{bmatrix},
+       \begin{bmatrix}8\\−2\\−9\end{bmatrix}}; C=\set{\begin{bmatrix}1\\−1\\1\end{bmatrix}, \begin{bmatrix}2\\0\\1\end{bmatrix},\begin{bmatrix}0\\1\\3\end{bmatrix}}\)</span>.
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-194" class="exercise"><strong>Exercise 2.87  </strong></span></p>
+Define <span class="math inline">\(\Phi(\bA) = \bA + \bA^T\)</span>. What is the <span class="math inline">\(\ker(\Phi)\)</span>?
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-195" class="exercise"><strong>Exercise 2.88  </strong></span></p>
+Define <span class="math inline">\(\Phi(\bA) = \begin{bmatrix}0&amp;1\\0&amp;0 \end{bmatrix}\bA\)</span>. What is the <span class="math inline">\(\ker(\Phi)\)</span>?
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-196" class="exercise"><strong>Exercise 2.89  </strong></span></p>
+Define <span class="math inline">\(\Phi: \bbR^3 \rightarrow \bbR^4\)</span> given by <span class="math inline">\(\Phi\left(\begin{bmatrix}x\\y\\z\end{bmatrix} \right) = \begin{bmatrix}x\\x\\y\\y\end{bmatrix}\)</span>. What is the <span class="math inline">\(\ker(\Phi)\)</span>?
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-197" class="exercise"><strong>Exercise 2.90  </strong></span></p>
+Define <span class="math inline">\(\Phi: \bbR^{2 \times 2} \rightarrow \bbR^{2 \times 2}\)</span> given by <span class="math inline">\(\Phi\left(\begin{bmatrix}a &amp; b \\ c &amp; d\end{bmatrix}\right) = \begin{bmatrix}a+b &amp; b+c \\ c+d &amp; d + a \end{bmatrix}\)</span>. What is the <span class="math inline">\(\ker(\Phi)\)</span>?
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-198" class="exercise"><strong>Exercise 2.91  </strong></span></p>
+he matrix <span class="math inline">\(\bM = \begin{bmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{bmatrix}\)</span> rotates a vector clockwise 90 degrees. Determine the matrix that rotates a vector 90 degrees clockwise in the basis <span class="math inline">\(\bB = \set{\begin{bmatrix}1\\3 \end{bmatrix}, \begin{bmatrix}2\\-1 \end{bmatrix}}\)</span>.
+<div style="text-align: right;">
+<p><a href="">Solution</a></p>
+</div>
+</div>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-199" class="exercise"><strong>Exercise 2.92  </strong></span></p>
+Suppose Alice has standard basis vectors <span class="math inline">\(e_1\)</span> and <span class="math inline">\(e_2\)</span>. Let Bob have basis vectors given by <span class="math inline">\(\bb_1 = \begin{bmatrix}1\\2 \end{bmatrix}\)</span> and <span class="math inline">\(\bb_2 = \begin{bmatrix} -1\\1 \end{bmatrix}\)</span>.
+\begin{enumerate}
+Take vector <span class="math inline">\(\bv_b = \begin{bmatrix} 3\\5 \end{bmatrix}\)</span> and map it into Alice’s world.
+What are Alice’s basis vectors in terms of Bob’s basis?
+Perform a 90 degree rotation in Alice’s world for the vector <span class="math inline">\(\begin{bmatrix} 4\\ 1 \end{bmatrix}\)</span> in Bob’s world and move it back to Bob’s world.
 <div style="text-align: right;">
 <p><a href="">Solution</a></p>
 </div>
